@@ -4,6 +4,3 @@ machine:
 dependencies:
   pre:
     - npm install -g @angular/cli
-test:
-  override:
-    - npm rebuild node-sass --force && npm run test
