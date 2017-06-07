@@ -1,3 +1,3 @@
 dependencies:
   pre:
-    - snpm install angular-cli@latest -g
+    - npm install angular-cli@latest -g
