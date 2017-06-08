@@ -4,3 +4,6 @@ machine:
 dependencies:
   pre:
     - npm install -g @angular/cli
+test:
+  override:
+    - ng test --single-run
