@@ -6,13 +6,12 @@ import { AppComponent } from './app.component';
 import { CbFindFoodComponent } from './components/cb-find-food/cb-find-food.component';
 import { CbHeaderComponent } from './components/shared/cb-header/cb-header.component';
 import { FrontpageComponent } from './components/frontpage/frontpage.component';
+import { RegisterComponent } from './register/register.component';
 
 const appRoutes: Routes = [
   { path: 'find-food', component: CbFindFoodComponent },
   { path: '', component: FrontpageComponent, pathMatch: 'full'  }
 ];
-
-import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
