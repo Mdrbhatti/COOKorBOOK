@@ -9,7 +9,7 @@ import { Component } from '@angular/core';
 @Component ({
   selector: 'app-root',
   templateUrl: './frontpage.template.html',
-  styleUrls:   ['../app.component.scss']
+  styleUrls:   ['./frontpage.component.scss']
 
 })
 
