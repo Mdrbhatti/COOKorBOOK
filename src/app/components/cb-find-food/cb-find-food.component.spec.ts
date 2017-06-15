@@ -1,3 +1,4 @@
+import { CbHeaderComponent } from '../shared/cb-header/cb-header.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CbFindFoodComponent } from './cb-find-food.component';
@@ -8,7 +9,7 @@ describe('CbFindFoodComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CbFindFoodComponent ]
+      declarations: [ CbFindFoodComponent, CbHeaderComponent ]
     })
     .compileComponents();
   }));
