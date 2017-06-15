@@ -1,0 +1,23 @@
+.food-listing-item {
+    display: block;
+    background-color: #FAFAFA;
+    min-height: 250px;
+    margin: 20px 0;
+    
+    .food-listing-item__img {
+        margin: 10px;
+        border-radius: 15px;
+        -moz-border-radius: 15px;
+        -webkit-border-radius: 15px;
+        border: 3px solid #ffb741;
+        overflow: hidden;
+    }
+
+    .food-listing-item__description {
+        .food-listing-item__description--heading {
+            font-size: 24px;
+
+        }
+
+    }
+}
