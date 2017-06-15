@@ -4,9 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { CbFindFoodComponent } from './components/cb-find-food/cb-find-food.component';
 import { CbHeaderComponent } from './components/shared/cb-header/cb-header.component';
+import { FrontpageComponent } from './components/frontpage/frontpage.component';
 
 const appRoutes: Routes = [
-  { path: 'find-food', component: CbFindFoodComponent }
+  { path: 'find-food', component: CbFindFoodComponent },
+  { path: '', component: FrontpageComponent }
 ];
 
 
@@ -14,7 +16,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     CbFindFoodComponent,
-    CbHeaderComponent
+    CbHeaderComponent,
+    FrontpageComponent
   ],
   imports: [
     BrowserModule,
