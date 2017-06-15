@@ -12,13 +12,15 @@ const appRoutes: Routes = [
   { path: '', component: FrontpageComponent, pathMatch: 'full'  }
 ];
 
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CbFindFoodComponent,
     CbHeaderComponent,
-    FrontpageComponent
+    FrontpageComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
