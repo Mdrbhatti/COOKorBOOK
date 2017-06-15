@@ -1,8 +1,38 @@
 
 .hero.is-primary {
-  background-color: #ffb741;
+  background-image: url("http://s.eatthis-cdn.com/media/images/ext/336492655/fast-food.jpg");
+  background-size: cover;
+}
+
+.hero.is-medium{
+  height: 40em;
 }
 
 .button.is-info {
-  background-color: #ae7a32;
+  background-color: #ffb741 ;
+}
+
+.hero h1{
+  font-weight: bold;
+  font-size: 4em;
+  color: #4d464a;
+}
+
+.hero h2{
+  font-weight: bold;
+  font-size: 2em;
+  color: #4d464a;
+}
+
+.icon-block {
+  font-size: 5em;
+}
+
+.field.has-addons {
+  margin-top: 10em;
+}
+
+.panel {
+  border: 1px solid grey;
+  padding: 40px;
 }

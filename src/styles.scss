@@ -1,3 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/bulma/css/bulma.css";
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+
+.nav{
+  background-color: #ffb741 ;
+}
+
+.hero-head{
+  position: fixed;
+  width: 100%;
+  z-index: 1500;
+}
