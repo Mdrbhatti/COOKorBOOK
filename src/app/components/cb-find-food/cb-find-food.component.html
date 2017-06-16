@@ -1,4 +1,77 @@
 <app-cb-header></app-cb-header>
-<p>
-  cb-find-food works!
-</p>
+<section class="section">
+  <div class="container">
+    <h1 class="title has-text-centered">Find homemade food in your area</h1>
+  </div>
+</section>
+<section class="section has-text-centered">
+  <div class="container">
+    <div class="columns">
+      <div class="column">
+        type of food
+      </div>
+      <div class="column">
+        location
+      </div>
+      <div class="column">
+        search btn
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <h1 class="title">
+      Search results
+    </h1>
+    <h2 class="subtitle">
+      Use the side menu to refine the search results
+    </h2>
+    <div class="columns">
+      <div class="column is-3">
+        <aside class="menu">
+          <p class="menu-label">
+            Type
+          </p>
+          <ul class="menu-list">
+            <li><a>Vegeratian</a></li>
+            <li><a>Non-vegeratian</a></li>
+          </ul>
+          <p class="menu-label">
+            Price
+          </p>
+          <ul class="menu-list">
+            <li><a class="is-active">0€ - 5€ </a></li>
+            <li><a>6€ - 10€</a></li>
+          </ul>
+          <p class="menu-label">
+            Delivery options
+          </p>
+          <ul class="menu-list">
+            <li><a>Home Delivery</a></li>
+            <li><a>Self Pickup</a></li>
+          </ul>
+        </aside>
+      </div>
+      <div class="column">
+        <div class="food-listing-item" *ngFor="let foodItem of foodItems">
+          <div class="columns">
+            <div class="column">
+              <div class="food-listing-item__img">
+                <img src="{{foodItem.picture}}" />
+              </div>
+            </div>
+            <div class="column food-listing-item__description">
+              <div class="food-listing-item__description--heading">{{foodItem.name}}</div>
+            </div>
+            <div class="column">
+              <h1 class="title">
+                {{foodItem.price}}
+              </h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

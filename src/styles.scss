@@ -2,12 +2,12 @@
 @import "../node_modules/bulma/css/bulma.css";
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
 
-.nav{
-  background-color: #ffb741 ;
+.nav {
+  background-color: #ffb741;
 }
 
-.hero-head{
-  position: fixed;
+.hero-head {
   width: 100%;
-  z-index: 1500;
+  // position: fixed; // todo: change header styling
+  // z-index: 2;
 }
