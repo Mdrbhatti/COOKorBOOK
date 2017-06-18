@@ -1,0 +1,97 @@
+@import "~variables.scss";
+
+.menu-list a.is-active {
+  background-color: $cb-orange-main;
+}
+
+.title-find-food {
+    font-family: $open-sans-light;
+    font-size: 52px;
+}
+.food-listing-item {
+    display: block;
+    background-color: #FAFAFA;
+    min-height: 250px;
+    margin: 20px 0;
+    
+    .food-listing-item__img {
+        margin: 10px;
+        border-radius: 15px;
+        -moz-border-radius: 15px;
+        -webkit-border-radius: 15px;
+        border: 3px solid $cb-orange-main;
+        overflow: hidden;
+    }
+
+    .food-listing-item__description {
+        position: relative;
+        
+        &--heading {
+            font-size: 24px;
+            font-family: $open-sans-semibold;
+
+        }
+        &--description {
+            font-size: 18px;
+            margin-top: 10px;
+
+        }
+        &--seller-comments {
+            font-size: 16px;
+            margin-top: 20px;
+            font-style: italic;
+
+        }
+        &--type {
+            position: absolute;
+            bottom: 20px;
+        }
+        &--rating {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+    }
+
+    .food-listing-item__actions--price {
+        position: relative;
+        height: 33%;
+
+        &--icon {
+            font-size: 30px;
+            padding-top: 27px;
+        }
+
+        &--text {
+            font-size: 40px;
+        }
+
+        &--comments {
+            margin-top: 15px;
+        }
+    }
+
+    .food-listing-item__actions--location {
+        position: relative;
+        height: 33%;
+
+        &--icon {
+            font-size: 30px;
+            padding-top: 27px;
+        }
+
+        &--address {
+            
+        }
+    }
+
+    .food-listing-item__actions--order {
+        height: 33%;
+
+        &--btn {
+            margin-top: 20px;
+            height: 50px;
+        }
+    }
+}

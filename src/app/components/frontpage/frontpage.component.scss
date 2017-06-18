@@ -1,0 +1,58 @@
+
+.hero.is-primary {
+  background-image: url("http://s.eatthis-cdn.com/media/images/ext/336492655/fast-food.jpg");
+  background-size: cover;
+}
+
+.hero.is-medium{
+  height: 40em;
+}
+
+.button.is-info {
+  background-color: #ffb741 ;
+}
+
+.hero h1{
+  font-weight: bold;
+  font-size: 4em;
+  color: whitesmoke;
+  text-shadow: 1px 1px 2px #555;
+
+
+}
+
+.hero h2{
+  font-weight: bold;
+  font-size: 2em;
+  color: whitesmoke;
+  text-shadow: 1px 1px 2px #555;
+}
+
+.icon-block {
+  font-size: 5em;
+}
+
+.field.has-addons {
+  margin-top: 10em;
+}
+
+.panel {
+  border: 1px solid grey;
+  padding: 40px;
+}
+
+@media screen and (min-width: 768px) {
+  .field.has-addons {
+    margin-left: 10em;
+    margin-right: 10em;
+  }
+
+  .is-4 .panel{
+    height: 100%;
+  }
+
+}
+
+p.control{
+  box-shadow: 2px 2px 20px black;
+}

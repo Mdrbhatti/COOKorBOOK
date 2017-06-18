@@ -1,0 +1,27 @@
+<div class = hero-head>
+  <header class="nav">
+    <div class="container">
+      <div class="nav-left">
+        <a class="nav-item" routerLink="/" routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }">
+          Home
+        </a>
+        <a class="nav-item" routerLink="/find-food" routerLinkActive="is-active">
+          Find food
+        </a>
+        <a class="nav-item">
+          Cook food
+        </a>
+      </div>
+      <span class="nav-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+      
+      <div class="nav-right nav-menu">
+        <a class="nav-item" routerLink="/login" routerLinkActive="is-active">Sign in</a>
+        <a class="nav-item" routerLink="/register" routerLinkActive="is-active">Register</a>
+      </div>
+    </div>
+  </header>
+</div>

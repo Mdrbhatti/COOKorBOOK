@@ -1,0 +1,133 @@
+<app-cb-header></app-cb-header>
+<section class="section">
+  <div class="container">
+    <h1 class="title has-text-centered title-find-food">Find homemade food in your area</h1>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <div class="columns">
+      <div class="column is-half is-offset-one-quarter">
+
+        <div class="field has-addons">
+          <p class="control is-expanded">
+            <input class="input is-large" type="text" [(ngModel)]="serachInput" (keyup.enter)="search()" placeholder="Search for food...">
+          </p>
+          <p class="control">
+            <a class="button is-info is-large" (click)="search()">
+              Search
+            </a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <h1 class="title">
+      Search results
+    </h1>
+    <h2 class="subtitle">
+      Use the side menu to refine the search results
+    </h2>
+    <div class="columns">
+      <div class="column is-3">
+        <aside class="menu">
+          <p class="menu-label">
+            Type
+          </p>
+          <ul class="menu-list">
+            <li><a>Vegetarian</a></li>
+            <li><a>Non-vegeratian</a></li>
+          </ul>
+          <p class="menu-label">
+            Price
+          </p>
+          <ul class="menu-list">
+            <li><a class="is-active">0€ - 5€ </a></li>
+            <li><a>6€ - 10€</a></li>
+          </ul>
+          <p class="menu-label">
+            Delivery options
+          </p>
+          <ul class="menu-list">
+            <li>
+              <div class="field">
+                <p class="control">
+                  <label class="checkbox">
+                    <input type="checkbox">
+                    Home Delivery
+                  </label>
+                </p>
+              </div>
+            </li>
+            <li><a>Self Pickup</a></li>
+          </ul>
+        </aside>
+      </div>
+      <div class="column">
+        <div class="food-listing-item" *ngFor="let foodItem of foodItemsToDisplay">
+          <div class="columns">
+            <div class="column">
+              <div class="food-listing-item__img">
+                <img src="{{foodItem.picture}}" />
+              </div>
+            </div>
+            <div class="column food-listing-item__description">
+              <div class="food-listing-item__description--heading">{{foodItem.name}}</div>
+              <div class="food-listing-item__description--description">{{foodItem.description}}</div>
+              <div class="food-listing-item__description--seller-comments">&ldquo;{{foodItem.sellerComments}}&rdquo;</div>
+              <div class="food-listing-item__description--type">
+                  <span *ngIf="foodItem.type === 'vegetarian'" class="tag is-success">{{foodItem.type}}</span>
+                  <span *ngIf="foodItem.type !== 'vegetarian'" class="tag is-cb-bg is-text-white">{{foodItem.type}}</span>
+              </div>
+              <div class="food-listing-item__description--rating is-cb-colored">
+                <span *ngFor="let i of createRangeArray(foodItem.rating)">★</span>
+              </div>
+            </div>
+            <div class="column">
+              <div class="food-listing-item__actions--price">
+                <div class="columns">
+                  <div class="column food-listing-item__actions--price--icon">
+                    <i class="fa fa-eur"></i>
+                  </div>
+                  <div class="column is-3 food-listing-item__actions--price--text">
+                    {{foodItem.pricePerPortion}}
+                  </div>
+                  <div class="column is-8 food-listing-item__actions--price--comments">
+                      <span *ngIf="foodItem.bulkPricing" class="tag is-dark">Bulk Pricing also available</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="food-listing-item__actions--location">
+                <div class="columns">
+                  <div class="column food-listing-item__actions--location--icon">
+                    <i class="fa fa-map-marker"></i>  
+                  </div>
+                  <div class="column is-11 food-listing-item__actions--location--address">
+                    {{foodItem.addressStreet}}
+                    <br>
+                    {{foodItem.addressPostalCode}} {{foodItem.addressCity}}
+                  </div>
+                </div>
+              </div>
+              <div class="food-listing-item__actions--order">
+                <div class="food-listing-item__actions--order--btn">
+                  <a class="button is-large is-cb-bg is-text-white">
+                    <span class="icon is-medium">
+                      <i class="fa fa-shopping-cart"></i>
+                    </span>
+                    <span>Place Order</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
