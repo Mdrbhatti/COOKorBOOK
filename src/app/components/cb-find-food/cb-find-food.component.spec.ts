@@ -1,6 +1,7 @@
 import { CbHeaderComponent } from '../shared/cb-header/cb-header.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule } from '@angular/forms';
 import { CbFindFoodComponent } from './cb-find-food.component';
 
 describe('CbFindFoodComponent', () => {
@@ -9,7 +10,8 @@ describe('CbFindFoodComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CbFindFoodComponent, CbHeaderComponent ]
+      declarations: [ CbFindFoodComponent, CbHeaderComponent ],
+      imports: [ FormsModule, RouterTestingModule ]
     })
     .compileComponents();
   }));

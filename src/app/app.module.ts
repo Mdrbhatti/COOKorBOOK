@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
@@ -8,7 +9,7 @@ import { FrontpageComponent } from './components/frontpage/frontpage.component';
 
 const appRoutes: Routes = [
   { path: 'find-food', component: CbFindFoodComponent },
-  { path: '', component: FrontpageComponent }
+  { path: '', component: FrontpageComponent, pathMatch: 'full'  }
 ];
 
 
@@ -21,6 +22,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [],
