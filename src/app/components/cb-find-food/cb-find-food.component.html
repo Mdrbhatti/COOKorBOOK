@@ -4,17 +4,22 @@
     <h1 class="title has-text-centered">Find homemade food in your area</h1>
   </div>
 </section>
-<section class="section has-text-centered">
+<section class="section">
   <div class="container">
     <div class="columns">
-      <div class="column">
-        type of food
-      </div>
-      <div class="column">
-        location
-      </div>
-      <div class="column">
-        search btn
+      <div class="column is-half is-offset-one-quarter">
+
+        <div class="field has-addons">
+          <p class="control is-expanded">
+            <input class="input is-large" type="text" [(ngModel)]="serachInput" (keyup.enter)="search()" placeholder="Sarch for food...">
+          </p>
+          <p class="control">
+            <a class="button is-info is-large" (click)="search()">
+              Search
+            </a>
+          </p>
+        </div>
+
       </div>
     </div>
   </div>
@@ -48,13 +53,22 @@
             Delivery options
           </p>
           <ul class="menu-list">
-            <li><a>Home Delivery</a></li>
+            <li>
+              <div class="field">
+                <p class="control">
+                  <label class="checkbox">
+                    <input type="checkbox">
+                    Home Delivery
+                  </label>
+                </p>
+              </div>
+            </li>
             <li><a>Self Pickup</a></li>
           </ul>
         </aside>
       </div>
       <div class="column">
-        <div class="food-listing-item" *ngFor="let foodItem of foodItems">
+        <div class="food-listing-item" *ngFor="let foodItem of foodItemsToDisplay">
           <div class="columns">
             <div class="column">
               <div class="food-listing-item__img">
@@ -63,11 +77,22 @@
             </div>
             <div class="column food-listing-item__description">
               <div class="food-listing-item__description--heading">{{foodItem.name}}</div>
+              <div class="">{{foodItem.description}}</div>
+              <div class="">{{foodItem.sellerComments}}</div>
+              <div class="">{{foodItem.type}}</div>
+              <div class="">{{foodItem.rating}}</div>
             </div>
             <div class="column">
               <h1 class="title">
-                {{foodItem.price}}
+                {{foodItem.pricePerPortion}}
               </h1>
+              <div *ngIf="foodItem.bulkPricing" class="">Bulk Pricing also available</div>
+              <div class="">
+                  {{foodItem.addressStreet}}
+                  <br>
+                  {{foodItem.addressPostalCode}} {{foodItem.addressCity}} 
+              </div>
+              <a class="button is-success is-outlined">Place Order</a>
             </div>
           </div>
         </div>
