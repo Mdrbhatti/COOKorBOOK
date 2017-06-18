@@ -6,19 +6,24 @@ import { AppComponent } from './app.component';
 import { CbFindFoodComponent } from './components/cb-find-food/cb-find-food.component';
 import { CbHeaderComponent } from './components/shared/cb-header/cb-header.component';
 import { FrontpageComponent } from './components/frontpage/frontpage.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 
 const appRoutes: Routes = [
-  { path: 'find-food', component: CbFindFoodComponent },
-  { path: '', component: FrontpageComponent, pathMatch: 'full'  }
+  { path: '', component: FrontpageComponent, pathMatch: 'full'  },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'find-food', component: CbFindFoodComponent }
 ];
-
 
 @NgModule({
   declarations: [
     AppComponent,
-    CbFindFoodComponent,
     CbHeaderComponent,
-    FrontpageComponent
+    CbFindFoodComponent,
+    FrontpageComponent,
+    RegisterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,4 +33,5 @@ const appRoutes: Routes = [
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

@@ -5,7 +5,6 @@
         <a class="nav-item" routerLink="/" routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }">
           Home
         </a>
-        <!--<a class="nav-item" href="/find-food">-->
         <a class="nav-item" routerLink="/find-food" routerLinkActive="is-active">
           Find food
         </a>
@@ -13,21 +12,15 @@
           Cook food
         </a>
       </div>
-          <span class="nav-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
+      <span class="nav-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+      
       <div class="nav-right nav-menu">
-        <a class="nav-item">
-          Profile
-        </a>
-        <a class="nav-item">
-          Sign in
-        </a>
-        <a class="nav-item">
-          Documentation
-        </a>
+        <a class="nav-item" routerLink="/login" routerLinkActive="is-active">Sign in</a>
+        <a class="nav-item" routerLink="/register" routerLinkActive="is-active">Register</a>
       </div>
     </div>
   </header>
