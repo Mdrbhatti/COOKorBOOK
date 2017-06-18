@@ -1,7 +1,7 @@
 <app-cb-header></app-cb-header>
 <section class="section">
   <div class="container">
-    <h1 class="title has-text-centered">Find homemade food in your area</h1>
+    <h1 class="title has-text-centered title-find-food">Find homemade food in your area</h1>
   </div>
 </section>
 <section class="section">
@@ -77,22 +77,53 @@
             </div>
             <div class="column food-listing-item__description">
               <div class="food-listing-item__description--heading">{{foodItem.name}}</div>
-              <div class="">{{foodItem.description}}</div>
-              <div class="">{{foodItem.sellerComments}}</div>
-              <div class="">{{foodItem.type}}</div>
-              <div class="">{{foodItem.rating}}</div>
+              <div class="food-listing-item__description--description">{{foodItem.description}}</div>
+              <div class="food-listing-item__description--seller-comments">&ldquo;{{foodItem.sellerComments}}&rdquo;</div>
+              <div class="food-listing-item__description--type">
+                  <span *ngIf="foodItem.type === 'vegetarian'" class="tag is-success">{{foodItem.type}}</span>
+                  <span *ngIf="foodItem.type !== 'vegetarian'" class="tag is-cb-bg is-text-white">{{foodItem.type}}</span>
+              </div>
+              <div class="food-listing-item__description--rating is-cb-colored">
+                <span *ngFor="let i of createRangeArray(foodItem.rating)">★</span>
+              </div>
             </div>
             <div class="column">
-              <h1 class="title">
-                {{foodItem.pricePerPortion}}
-              </h1>
-              <div *ngIf="foodItem.bulkPricing" class="">Bulk Pricing also available</div>
-              <div class="">
-                  {{foodItem.addressStreet}}
-                  <br>
-                  {{foodItem.addressPostalCode}} {{foodItem.addressCity}} 
+              <div class="food-listing-item__actions--price">
+                <div class="columns">
+                  <div class="column food-listing-item__actions--price--icon">
+                    <i class="fa fa-eur"></i>
+                  </div>
+                  <div class="column is-3 food-listing-item__actions--price--text">
+                    {{foodItem.pricePerPortion}}
+                  </div>
+                  <div class="column is-8 food-listing-item__actions--price--comments">
+                      <span *ngIf="foodItem.bulkPricing" class="tag is-dark">Bulk Pricing also available</span>
+                  </div>
+                </div>
               </div>
-              <a class="button is-success is-outlined">Place Order</a>
+
+              <div class="food-listing-item__actions--location">
+                <div class="columns">
+                  <div class="column food-listing-item__actions--location--icon">
+                    <i class="fa fa-map-marker"></i>  
+                  </div>
+                  <div class="column is-11 food-listing-item__actions--location--address">
+                    {{foodItem.addressStreet}}
+                    <br>
+                    {{foodItem.addressPostalCode}} {{foodItem.addressCity}}
+                  </div>
+                </div>
+              </div>
+              <div class="food-listing-item__actions--order">
+                <div class="food-listing-item__actions--order--btn">
+                  <a class="button is-large is-cb-bg is-text-white">
+                    <span class="icon is-medium">
+                      <i class="fa fa-shopping-cart"></i>
+                    </span>
+                    <span>Place Order</span>
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>

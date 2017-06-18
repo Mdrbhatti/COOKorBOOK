@@ -9,7 +9,7 @@ import { FrontpageComponent } from './components/frontpage/frontpage.component';
 
 const appRoutes: Routes = [
   { path: 'find-food', component: CbFindFoodComponent },
-  { path: '', component: FrontpageComponent }
+  { path: '', component: FrontpageComponent, pathMatch: 'full'  }
 ];
 
 

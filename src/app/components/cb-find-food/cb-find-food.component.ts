@@ -38,4 +38,8 @@ export class CbFindFoodComponent implements OnInit {
       el.name.toLowerCase().indexOf(this.serachInput.toLowerCase()) > -1
     )
   }
+
+  createRangeArray(x: number) {
+    return Array(x).fill(x);
+  }
 }
