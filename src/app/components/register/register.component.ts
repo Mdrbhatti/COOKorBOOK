@@ -30,5 +30,8 @@ export class RegisterComponent implements OnInit {
   isPasswordValid() {
     return this.password.length > 3;
   }
+  registerUser(){
+    alert("SHAKKUD");
+  }
 
 }

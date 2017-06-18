@@ -1,76 +1,74 @@
+<app-cb-header></app-cb-header>
 <!--Name-->
-<div class="field is-horizontal">
-    <div class="field-body">
-        <div class="field is-narrow">
-            <div class="control has-icons-left has-icons-right">
-                <input class="input" [class.is-success]="isNameValid()" [class.is-danger]="!isNameValid()" name="name" type="text" placeholder="Name" [(ngModel)]="name">
-                <span class="icon is-small is-left">
+<div class="column is-half is-offset-one-quarter">
+    <div class="field is-narrow">
+        <div class="control has-icons-left has-icons-right">
+            <input class="input is-large" [class.is-success]="isNameValid()" [class.is-danger]="!isNameValid()" name="name" type="text" placeholder="Name" [(ngModel)]="name">
+            <span class="icon is-small is-left">
                   <i class="fa fa-user"></i>
                 </span>
-            </div>
         </div>
     </div>
 </div>
 <!--Username-->
-<div class="field is-horizontal">
-    <div class="field-body">
-        <div class="field is-narrow">
-            <div class="control has-icons-left has-icons-right">
-                <input class=" input" [class.is-success]="isUsernameValid()" [class.is-danger]="!isUsernameValid()" name="username" type="text" placeholder="Username" [(ngModel)]="username">
-                <span class="icon is-small is-left">
+<div class="column is-half is-offset-one-quarter">
+    <div class="field is-narrow">
+        <div class="control has-icons-left has-icons-right">
+            <input class="input is-large" [class.is-success]="isUsernameValid()" [class.is-danger]="!isUsernameValid()" name="username" type="text" placeholder="Username" [(ngModel)]="username">
+            <span class="icon is-small is-left">
                   <i class="fa fa-user"></i>
                 </span>
-                <span class="icon is-small is-right" *ngIf="isUsernameValid()">
+            <span class="icon is-small is-right" *ngIf="isUsernameValid()">
                   <i class="fa fa-check "></i>
                 </span>
-            </div>
         </div>
     </div>
 </div>
 <!--Email-->
-<div class="field is-horizontal">
-    <div class="field-body">
-        <div class="field is-narrow">
-            <div class="control has-icons-left has-icons-right">
-                <input class="input" [class.is-success]="isEmailValid()" [class.is-danger]="!isEmailValid()" name="email" type="email" placeholder="Email" [(ngModel)]="email">
-                <span class="icon is-small is-left ">
+<div class="column is-half is-offset-one-quarter">
+    <div class="field is-narrow">
+        <div class="control has-icons-left has-icons-right">
+            <input class="input is-large" [class.is-success]="isEmailValid()" [class.is-danger]="!isEmailValid()" name="email" type="email" placeholder="Email" [(ngModel)]="email">
+            <span class="icon is-small is-left ">
                   <i class="fa fa-envelope "></i>
                 </span>
-                <span class="icon is-small is-right" *ngIf="isEmailValid()">
+            <span class="icon is-small is-right" *ngIf="isEmailValid()">
                   <i class="fa fa-check "></i>
                 </span>
-            </div>
         </div>
     </div>
 </div>
 <!--Password-->
-<div class="field is-horizontal">
-    <div class="field-body">
-        <div class="field is-narrow">
-            <p class="control has-icons-left has-icons-right">
-                <input class="input" [class.is-success]="isPasswordValid()" [class.is-danger]="!isPasswordValid()" type="password" placeholder="Password" [(ngModel)]="password">
-                <span class="icon is-small is-left">
+<div class="column is-half is-offset-one-quarter">
+    <div class="field is-narrow">
+        <div class="control has-icons-left has-icons-right">
+            <input class="input is-large" [class.is-success]="isPasswordValid()" [class.is-danger]="!isPasswordValid()" type="password" placeholder="Password" [(ngModel)]="password">
+            <span class="icon is-small is-left">
                   <i class="fa fa-lock"></i>
                 </span>
-            </p>
         </div>
     </div>
 </div>
-<!--Password Confirm-->
-<div class="field is-horizontal ">
-    <div class="field-body ">
-        <div class="field ">
-            <div class="control ">
-                <p class="help is-danger" *ngIf="username.length <= 0">
-                    Username required
-                </p>
-                <p class="help is-danger " *ngIf="email.length <= 0">
-                    Email is required
-                </p>
-                <button class="button is-primary" [disabled]="!(isEmailValid() && isUsernameValid() && isPasswordValid() && isNameValid())">
-                    Register
-                </button>
-            </div>
-        </div>
+<!--Submit -->
+<div class="has-text-centered">
+    <p class="help is-danger" *ngIf="username.length <= 4">
+        Name is required
+    </p>
+    <p class="help is-danger" *ngIf="username.length <= 4">
+        Username is required
+    </p>
+    <p class="help is-danger" *ngIf="email.length <= 4">
+        Email is required
+    </p>
+    <p class="help is-danger" *ngIf="password.length <= 4">
+        Password with at least 4 characters is required
+    </p>
+    <div *ngIf="(isEmailValid() && isUsernameValid() && isPasswordValid() && isNameValid())" class="button is-large" (click)="registerUser()">
+        <i class="fa fa-sign-in fa-lg"></i> Register
+    </div>
+    <div *ngIf="!(isEmailValid() && isUsernameValid() && isPasswordValid() && isNameValid())" class="button is-large" disabled>
+        <i class="fa fa-sign-in fa-lg"></i> Register
     </div>
 </div>
+
+<!--fa fa-user-plus-->

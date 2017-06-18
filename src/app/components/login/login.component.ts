@@ -20,4 +20,7 @@ export class LoginComponent implements OnInit {
   isPasswordValid() {
     return this.password.length > 3;
   }
+  logInUser(){
+    alert("SHAKKUD");
+  }
 }

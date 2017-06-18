@@ -1,25 +1,26 @@
+<app-cb-header></app-cb-header>
 <!--Username-->
-<div class="field is-horizontal is-grouped-centered">
-    <div class="field-body">
-        <div class="field is-narrow">
-            <div class="control has-icons-left has-icons-right">
-                <input class=" input" [class.is-success]="isUsernameValid()" [class.is-danger]="!isUsernameValid()" name="username" type="text" placeholder="Username" [(ngModel)]="username">
-                <span class="icon is-small is-left">
+<!--<div class="field is-grouped-centered">-->
+<div class="column is-half is-offset-one-quarter">
+    <div class="field is-narrow">
+        <div class="control has-icons-left has-icons-right">
+            <input class="input is-large" [class.is-success]="isUsernameValid()" [class.is-danger]="!isUsernameValid()" name="username" type="text" placeholder="Username" [(ngModel)]="username">
+            <span class="icon is-small is-left">
                   <i class="fa fa-user"></i>
                 </span>
-                <span class="icon is-small is-right" *ngIf="isUsernameValid()">
+            <span class="icon is-small is-right" *ngIf="isUsernameValid()">
                   <i class="fa fa-check "></i>
                 </span>
-            </div>
         </div>
     </div>
 </div>
+<!--</div>-->
 <!--Password-->
-<div class="field is-horizontal">
-    <div class="field-body">
+<div class="column is-half is-offset-one-quarter">
+    <div class="field is-narrow">
         <div class="field is-narrow">
             <p class="control has-icons-left has-icons-right">
-                <input class="input" [class.is-success]="isPasswordValid()" [class.is-danger]="!isPasswordValid()" type="password" placeholder="Password" [(ngModel)]="password">
+                <input class="input is-large" [class.is-success]="isPasswordValid()" [class.is-danger]="!isPasswordValid()" type="password" placeholder="Password" [(ngModel)]="password">
                 <span class="icon is-small is-left">
                   <i class="fa fa-lock"></i>
                 </span>
@@ -28,14 +29,12 @@
     </div>
 </div>
 <!--Password Confirm-->
-<div class="field is-horizontal ">
-    <div class="field-body ">
-        <div class="field ">
-            <div class="control ">
-                <button class="button is-primary" [disabled]="!(isUsernameValid() && isPasswordValid())">
-                    Login
-                </button>
-            </div>
-        </div>
+<div class="has-text-centered">
+    <!-- Some really cool stuff going on here ;) -->
+    <div *ngIf="(isUsernameValid() && isPasswordValid())" class="button is-large" (click)="logInUser()">
+        <i class="fa fa-sign-in fa-lg"></i> Log in
+    </div>
+    <div *ngIf="!(isUsernameValid() && isPasswordValid())" class="button is-large" disabled>
+        <i class="fa fa-sign-in fa-lg"></i> Log in
     </div>
 </div>
