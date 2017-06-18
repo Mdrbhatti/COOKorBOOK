@@ -52,23 +52,6 @@
 body {
   font-family: $open-sans-regular;
 }
-.nav {
-  background-color: $cb-orange-main;
-}
-
-.nav-item a, a.nav-item {
-  color: white;
-  font-family: $open-sans-semibold;
-}
-.menu-list a.is-active {
-  background-color: $cb-orange-main;
-}
-.hero-head {
-  width: 100%;
-  // position: fixed; // todo: change header styling
-  // z-index: 2;
-}
-
 
 /*
 * custom classes

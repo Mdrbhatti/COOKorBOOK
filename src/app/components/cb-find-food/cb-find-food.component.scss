@@ -1,5 +1,9 @@
 @import "~variables.scss";
 
+.menu-list a.is-active {
+  background-color: $cb-orange-main;
+}
+
 .title-find-food {
     font-family: $open-sans-light;
     font-size: 52px;
