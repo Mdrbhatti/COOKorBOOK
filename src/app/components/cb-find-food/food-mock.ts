@@ -1,7 +1,7 @@
 export let fooditemsMock = [
   {
     'name': 'Spaghetti Bolognaise',
-    'description': 'w/ parmeggaino and balsikum',
+    'description': 'w/ parmeggiano and basilikum',
     'sellerComments': 'Cooked after my grandmother\'s famous recipe',
     'pricePerPortion': 3,
     'bulkPricing': true,
