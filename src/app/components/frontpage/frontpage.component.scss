@@ -15,13 +15,17 @@
 .hero h1{
   font-weight: bold;
   font-size: 4em;
-  color: #4d464a;
+  color: whitesmoke;
+  text-shadow: 1px 1px 2px #555;
+
+
 }
 
 .hero h2{
   font-weight: bold;
   font-size: 2em;
-  color: #4d464a;
+  color: whitesmoke;
+  text-shadow: 1px 1px 2px #555;
 }
 
 .icon-block {
@@ -35,4 +39,20 @@
 .panel {
   border: 1px solid grey;
   padding: 40px;
+}
+
+@media screen and (min-width: 768px) {
+  .field.has-addons {
+    margin-left: 10em;
+    margin-right: 10em;
+  }
+
+  .is-4 .panel{
+    height: 100%;
+  }
+
+}
+
+p.control{
+  box-shadow: 2px 2px 20px black;
 }
