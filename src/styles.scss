@@ -1,7 +1,57 @@
 /* You can add global styles to this file, and also import other style files */
 @import "../node_modules/bulma/css/bulma.css";
 @import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+@import "~variables.scss";
 
+/*
+* TYPOGRAPHY
+*/
+
+@font-face {
+  font-family: OpenSans-Bold-webfont;
+  src: url('./assets/fonts/OpenSans-Bold.otf') format('opentype'), url('./assets/fonts/OpenSans-Bold-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: OpenSans-BoldItalic-webfont;
+  src: url('./assets/fonts/OpenSans-BoldItalic.otf') format('opentype'), url('./assets/fonts/OpenSans-BoldItalic-webfont.woff') format('woff');
+}
+@font-face {
+  font-family: OpenSans-ExtraBold-webfont;
+  src: url('./assets/fonts/OpenSans-ExtraBold.otf') format('opentype'), url('./assets/fonts/OpenSans-ExtraBold-webfont.woff') format('woff');
+}
+@font-face {
+  font-family: OpenSans-ExtraBoldItalic-webfont;
+  src: url('./assets/fonts/OpenSans-ExtraBoldItalic.otf') format('opentype'), url('./assets/fonts/OpenSans-ExtraBoldItalic-webfont.woff') format('woff');
+}
+@font-face {
+  font-family: OpenSans-Italic-webfont;
+  src: url('./assets/fonts/OpenSans-Italic.otf') format('opentype'), url('./assets/fonts/OpenSans-Italic-webfont.woff') format('woff');
+}
+@font-face {
+  font-family: OpenSans-Light-webfont;
+  src: url('./assets/fonts/OpenSans-Light.otf') format('opentype'), url('./assets/fonts/OpenSans-Light-webfont.woff') format('woff');
+}
+@font-face {
+  font-family: OpenSans-LightItalic-webfont;
+  src: url('./assets/fonts/OpenSans-LightItalic.otf') format('opentype'), url('./assets/fonts/OpenSans-LightItalic-webfont.woff') format('woff');
+}
+@font-face {
+  font-family: OpenSans-Regular-webfont;
+  src: url('./assets/fonts/OpenSans-Regular.otf') format('opentype'), url('./assets/fonts/OpenSans-Regular-webfont.woff') format('woff');
+}
+@font-face {
+  font-family: OpenSans-Semibold-webfont;
+  src: url('./assets/fonts/OpenSans-Semibold.otf') format('opentype'), url('./assets/fonts/OpenSans-Semibold-webfont.woff') format('woff');
+}
+@font-face {
+  font-family: OpenSans-SemiboldItalic-webfont;
+  src: url('./assets/fonts/OpenSans-SemiboldItalic.otf') format('opentype'), url('./assets/fonts/OpenSans-SemiboldItalic-webfont.woff') format('woff');
+}
+
+body {
+  font-family: $open-sans-regular;
+}
 .nav {
   background-color: #ffb741;
 }
