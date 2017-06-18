@@ -55,16 +55,16 @@
     </div>
     <!--Submit -->
     <div class="has-text-centered">
-        <p class="help is-danger" *ngIf="username.length <= 4">
+        <p class="help is-danger" *ngIf="!isNameValid()">
             Name is required
         </p>
-        <p class="help is-danger" *ngIf="username.length <= 4">
+        <p class="help is-danger" *ngIf="!isUsernameValid()">
             Username is required
         </p>
-        <p class="help is-danger" *ngIf="email.length <= 4">
+        <p class="help is-danger" *ngIf="!isEmailValid()">
             Email is required
         </p>
-        <p class="help is-danger" *ngIf="password.length <= 4">
+        <p class="help is-danger" *ngIf="!isPasswordValid()">
             Password with at least 4 characters is required
         </p>
         <div *ngIf="(isEmailValid() && isUsernameValid() && isPasswordValid() && isNameValid())" class="button is-large" (click)="registerUser()">
