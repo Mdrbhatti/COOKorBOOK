@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { CbHeaderComponent } from '../shared/cb-header/cb-header.component';
 import { RegisterComponent } from './register.component';
+import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -8,7 +10,8 @@ describe('RegisterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegisterComponent ]
+      declarations: [ RegisterComponent, CbHeaderComponent ],
+      imports: [ FormsModule, RouterTestingModule ]
     })
     .compileComponents();
   }));
