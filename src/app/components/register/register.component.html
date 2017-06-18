@@ -4,6 +4,9 @@
         <div class="field is-narrow">
             <div class="control has-icons-left has-icons-right">
                 <input class="input" [class.is-success]="isNameValid()" [class.is-danger]="!isNameValid()" name="name" type="text" placeholder="Name" [(ngModel)]="name">
+                <span class="icon is-small is-left">
+                  <i class="fa fa-user"></i>
+                </span>
             </div>
         </div>
     </div>
