@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class LoginComponent implements OnInit {
   username: string = "";
   password: string = "";
-  constructor() { }
+  loginSuccess: boolean = false;
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
     return this.password.length > 3;
   }
   logInUser(){
-    alert("SHAKKUD");
+    this.loginSuccess = true;
+    setTimeout(() => {this.router.navigate(['/find-food']);}, 2000);
   }
 }

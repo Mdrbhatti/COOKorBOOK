@@ -1,5 +1,8 @@
 <app-cb-header></app-cb-header>
 <!--Name-->
+<div *ngIf="registerSuccess" class="notification is-success has-text-centered">
+    <button class="delete"></button> Registeration successful. Redirecting...
+</div>
 <form>
     <div class="column is-half is-offset-one-quarter">
         <div class="field is-narrow">

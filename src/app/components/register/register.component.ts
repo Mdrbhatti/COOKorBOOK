@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -10,7 +10,8 @@ export class RegisterComponent implements OnInit {
   username: string = "";
   name: string = "";
   password: string = "";
-  constructor() { }
+  registerSuccess: boolean = false;
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -31,7 +32,8 @@ export class RegisterComponent implements OnInit {
     return this.password.length > 3;
   }
   registerUser(){
-    alert("SHAKKUD");
+    this.registerSuccess = true;
+    setTimeout(() => {this.router.navigate(['/find-food']);}, 2000);
   }
 
 }

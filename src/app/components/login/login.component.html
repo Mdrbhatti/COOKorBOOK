@@ -1,6 +1,9 @@
 <app-cb-header></app-cb-header>
 <!--Username-->
 <!--<div class="field is-grouped-centered">-->
+<div *ngIf="loginSuccess" class="notification is-success has-text-centered">
+    <button class="delete"></button> Log in successful. Redirecting...
+</div>
 <form>
     <div class="column is-half is-offset-one-quarter">
         <div class="field is-narrow">
