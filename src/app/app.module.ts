@@ -10,12 +10,11 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 
 const appRoutes: Routes = [
-  { path: 'find-food', component: CbFindFoodComponent },
   { path: '', component: FrontpageComponent, pathMatch: 'full'  },
   { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent }
+  { path: 'register', component: RegisterComponent },
+  { path: 'find-food', component: CbFindFoodComponent }
 ];
-
 
 @NgModule({
   declarations: [
@@ -34,4 +33,5 @@ const appRoutes: Routes = [
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
