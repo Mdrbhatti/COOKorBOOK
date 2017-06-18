@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { CbHeaderComponent } from './cb-header.component';
 
 describe('CbHeaderComponent', () => {
@@ -8,7 +8,8 @@ describe('CbHeaderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CbHeaderComponent ]
+      declarations: [ CbHeaderComponent ],
+      imports: [RouterTestingModule]
     })
     .compileComponents();
   }));
