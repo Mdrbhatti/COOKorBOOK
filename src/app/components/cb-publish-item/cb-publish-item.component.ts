@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { Item } from './Item';
 import { ItemCategory } from './Category';
 import { ItemIngredient } from './Ingredient';
@@ -16,28 +15,24 @@ import { itemsMock } from './ItemMock';
 
 export class CbPublishItemComponent implements OnInit {
   public itemsAvailable: Array<Item> = [];
-  public itemForm: FormGroup;
-  public publishForm: FormGroup;
+  // item variables
+  private _id: number = -1;
+  public title: string = '';
+  public description: string = '';
+  public categories: Array<ItemCategory> = [];
+  public ingredients: Array<ItemIngredient> = [];
+  public allergens: Array<ItemAllergen> = [];
 
-  constructor(private builder: FormBuilder) {
+  // publish info
+  public date: string = '';
+  public servings: number = 0;
+  public price: number = 0.0;
+
+  constructor() {
     this.itemsAvailable = itemsMock;
   }
 
-  ngOnInit() {
-    this.itemForm = this.builder.group({
-      _id: [-1],
-      title: ['', Validators.required],
-      description: [''],
-      categories: [[], Validators.required],
-      ingredients: [[], Validators.required],
-      allergens: [[]]
-    });
-    this.publishForm = this.builder.group({
-      date: ['', Validators.required],
-      servings: [0, Validators.required],
-      price: [0.0, Validators.required]
-    });
-  }
+  ngOnInit() { }
 
   autocompleteFormatter(item: any): string {
     let generateTagsHtml = (list, tag) => {
@@ -91,34 +86,31 @@ export class CbPublishItemComponent implements OnInit {
   }
 
   titleReused(item) {
-    this.itemForm.patchValue({
-        _id: item.id,
-        description: item.description,
-        categories: this.itemsToTags(item.categories),
-        ingredients: this.itemsToTags(item.ingredients),
-        allergens: this.itemsToTags(item.allergens)
-      });
+    this._id = item.id;
+    this.description = item.description;
+    this.categories = this.itemsToTags(item.categories);
+    this.ingredients = this.itemsToTags(item.ingredients);
+    this.allergens = this.itemsToTags(item.allergens);
   }
 
   registerItem() {
     console.log(`Registering item, id: ${this.itemsAvailable.length}`);
     // set dummy id
     let item = new Item(this.itemsAvailable.length);
-    this.itemForm.controls['_id'].setValue(item.id);
-    let controls = this.itemForm.controls;
+    this._id = item.id;
 
-    item.title = controls['title'].value;
-    item.description = controls['description'].value;
-    item.categories = this.tagsToItems(controls['categories'], ItemCategory);
-    item.allergens = this.tagsToItems(controls['allergens'], ItemAllergen);
-    item.ingredients = this.tagsToItems(controls['ingredients'], ItemIngredient);
+    item.title = this.title;
+    item.description = this.description;
+    item.categories = this.tagsToItems(this.categories, ItemCategory);
+    item.allergens = this.tagsToItems(this.allergens, ItemAllergen);
+    item.ingredients = this.tagsToItems(this.ingredients, ItemIngredient);
     this.itemsAvailable.push(item);
     return item;
   }
 
   publishItem() {
     // check item form
-    if (this.itemForm.controls['_id'].value == -1) {
+    if (this._id == -1) {
       this.registerItem();
     }
     // published info accessable via:

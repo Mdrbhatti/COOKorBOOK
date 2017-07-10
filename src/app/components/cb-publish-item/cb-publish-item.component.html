@@ -12,94 +12,90 @@
       <div class="columns">
         <div class="column is-half has-text-centered is-offset-one-quarter">
           <h2 class="subtitle is-2">Select or create new</h2>
-          <div [formGroup]="itemForm">
-            <div class="field">
-              <div class="control">
-                <input ngui-auto-complete
-                      formControlName="title"
-                      class="input"
-                      name="title"
-                      [source]="itemsAvailable"
-                      [list-formatter]="autocompleteFormatter"
-                      display-property-name="title"
-                      (valueChanged)="titleReused($event)"
-                      type="text"
-                      placeholder="Title" />
-              </div>
-            </div>
-            <div class="field">
-              <p class="control">
-                <textarea formControlName="description"
-                          name="description"
-                          class="textarea"
-                          placeholder="Description" ></textarea>
-              </p>
-            </div>
-            <div class="field">
-              <p class="control">
-                <tag-input formControlName="categories"
-                          name="categories"
-                          [theme]="'minimal'"
-                          placeholder="Add category"
-                          secondaryPlaceholder="Add categories"></tag-input>
-              </p>
-            </div>
-            <div class="field">
-              <p class="control">
-                <tag-input formControlName="ingredients"
-                          name="ingredients"
-                          [theme]="'minimal'"
-                          placeholder="Add ingredient"
-                          secondaryPlaceholder="Add ingredients"></tag-input>
-              </p>
-            </div>
-            <div class="field">
-              <p class="control">
-                <tag-input formControlName="allergens"
-                          name="allergens"
-                          [theme]="'minimal'"
-                          placeholder="Add allergen"
-                          secondaryPlaceholder="Add allergens"></tag-input>
-              </p>
+          <div class="field">
+            <div class="control">
+              <input ngui-auto-complete
+                    [(ngModel)]="title"
+                    class="input"
+                    name="title"
+                    [source]="itemsAvailable"
+                    [list-formatter]="autocompleteFormatter"
+                    display-property-name="title"
+                    (valueChanged)="titleReused($event)"
+                    type="text"
+                    placeholder="Title" />
             </div>
           </div>
+          <div class="field">
+            <p class="control">
+              <textarea [(ngModel)]="description"
+                        name="description"
+                        class="textarea"
+                        placeholder="Description" ></textarea>
+            </p>
+          </div>
+          <div class="field">
+            <p class="control">
+              <tag-input [(ngModel)]="categories"
+                        name="categories"
+                        [theme]="'minimal'"
+                        placeholder="Add category"
+                        secondaryPlaceholder="Add categories"></tag-input>
+            </p>
+          </div>
+          <div class="field">
+            <p class="control">
+              <tag-input [(ngModel)]="ingredients"
+                        name="ingredients"
+                        [theme]="'minimal'"
+                        placeholder="Add ingredient"
+                        secondaryPlaceholder="Add ingredients"></tag-input>
+            </p>
+          </div>
+          <div class="field">
+            <p class="control">
+              <tag-input [(ngModel)]="allergens"
+                        name="allergens"
+                        [theme]="'minimal'"
+                        placeholder="Add allergen"
+                        secondaryPlaceholder="Add allergens"></tag-input>
+            </p>
+          </div>
           <hr />
-          <div [formGroup]="publishForm">
-            <div class="field">
-              <div class="control">
-                <input ngui-datetime-picker
-                      formControlName="date"
-                      class="input"
-                      name="date" />
-              </div>
+          <div class="field">
+            <div class="control">
+              <input ngui-datetime-picker
+                    [(ngModel)]="date"
+                    class="input"
+                    name="date" />
             </div>
-            <div class="field">
-              <div class="control">
-                <input formControlName="servings"
-                      class="input"
-                      name="title"
-                      type="number"
-                      placeholder="Amount of servings" />
-              </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input [(ngModel)]="servings"
+                    class="input"
+                    name="title"
+                    type="number"
+                    placeholder="Amount of servings" />
             </div>
-            <div class="field has-addons">
-              <p class="control">
-                <span class="select">
-                  <select>
-                    <option>$</option>
-                    <option>£</option>
-                    <option>€</option>
-                  </select>
-                </span>
-              </p>
-              <p class="control is-expanded">
-                <input formControlname="price"
-                      class="input"
-                      name="price"
-                      type="text"
-                      placeholder="Price per serving">
-              </p>
-            </div>
+          </div>
+          <div class="field has-addons">
+            <p class="control">
+              <span class="select">
+                <select>
+                  <option>$</option>
+                  <option>£</option>
+                  <option>€</option>
+                </select>
+              </span>
+            </p>
+            <p class="control is-expanded">
+              <input [(ngModel)]="price"
+                    class="input"
+                    name="price"
+                    type="text"
+                    placeholder="Price per serving">
+            </p>
           </div>
           <hr />
           <div class="field">
