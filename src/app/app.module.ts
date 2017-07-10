@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { TagInputModule } from 'ngx-chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { TagInputModule } from 'ng2-tag-input';
 import { NguiDatetimePickerModule } from '@ngui/datetime-picker';
 import { NguiAutoCompleteModule } from '@ngui/auto-complete';
 import { AppComponent } from './app.component';
@@ -27,18 +27,20 @@ const appRoutes: Routes = [
     AppComponent,
     CbHeaderComponent,
     CbFindFoodComponent,
+    FrontpageComponent,
+    RegisterComponent,
+    LoginComponent,
     CbPublishItemComponent,
-    CbHeaderComponent
   ],
   imports: [
+    TagInputModule,
+    BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
-    TagInputModule,
     NguiDatetimePickerModule,
-    NguiAutoCompleteModule,
-    BrowserAnimationsModule
+    NguiAutoCompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]
