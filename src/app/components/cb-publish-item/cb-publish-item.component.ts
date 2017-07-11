@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Item } from './Item';
 import { ItemCategory } from './Category';
-import { ItemIngredient } from './Ingredient';
 import { ItemAllergen } from './Allergen';
 import { PublishInformation } from './Publish';
 import { itemsMock } from './ItemMock';
@@ -20,7 +19,6 @@ export class CbPublishItemComponent implements OnInit {
   public title: string = '';
   public description: string = '';
   public categories: Array<ItemCategory> = [];
-  public ingredients: Array<ItemIngredient> = [];
   public allergens: Array<ItemAllergen> = [];
 
   // publish info
@@ -53,7 +51,6 @@ export class CbPublishItemComponent implements OnInit {
                       <div class="media-content">
                         <p class="title is-4">${ item.title}</p>
                         <p class="subtitle is-6">${ generateTagsHtml(item.categories, 'is-success')}</p>
-                        <p class="subtitle is-6">${ generateTagsHtml(item.ingredients, 'is-warning')}</p>
                         <p class="subtitle is-6">${ generateTagsHtml(item.allergens, 'is-danger')}</p>
                       </div>
                     </div>
@@ -89,7 +86,6 @@ export class CbPublishItemComponent implements OnInit {
     this._id = item.id;
     this.description = item.description;
     this.categories = this.itemsToTags(item.categories);
-    this.ingredients = this.itemsToTags(item.ingredients);
     this.allergens = this.itemsToTags(item.allergens);
   }
 
@@ -103,7 +99,6 @@ export class CbPublishItemComponent implements OnInit {
     item.description = this.description;
     item.categories = this.tagsToItems(this.categories, ItemCategory);
     item.allergens = this.tagsToItems(this.allergens, ItemAllergen);
-    item.ingredients = this.tagsToItems(this.ingredients, ItemIngredient);
     this.itemsAvailable.push(item);
     return item;
   }

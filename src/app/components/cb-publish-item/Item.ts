@@ -1,5 +1,4 @@
 import { ItemCategory } from './Category';
-import { ItemIngredient } from './Ingredient';
 import { ItemAllergen } from './Allergen';
 
 /**
@@ -15,7 +14,6 @@ export class Item {
     public description: string;
     public categories: Array<ItemCategory>;
     public allergens: Array<ItemAllergen>;
-    public ingredients: Array<ItemIngredient>;
 
     /**
      * Creates an instance of Item.
