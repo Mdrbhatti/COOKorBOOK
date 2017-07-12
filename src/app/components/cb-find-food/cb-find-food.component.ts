@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FoodItem } from './food';
-import { fooditemsMock } from './food-mock';
+import { FoodItem } from './../shared/food/food';
+import { fooditemsMock } from './../shared/food/food-mock';
 
 @Component({
   selector: 'app-cb-find-food',

@@ -8,12 +8,14 @@ import { CbHeaderComponent } from './components/shared/cb-header/cb-header.compo
 import { FrontpageComponent } from './components/frontpage/frontpage.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { ManageComponent } from './components/manage-inventory/manage-inventory.component';
 
 const appRoutes: Routes = [
   { path: '', component: FrontpageComponent, pathMatch: 'full'  },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'find-food', component: CbFindFoodComponent }
+  { path: 'find-food', component: CbFindFoodComponent },
+  { path: 'manage-inventory', component: ManageComponent }
 ];
 
 @NgModule({
@@ -24,6 +26,7 @@ const appRoutes: Routes = [
     FrontpageComponent,
     RegisterComponent,
     LoginComponent,
+    ManageComponent
   ],
   imports: [
     BrowserModule,
