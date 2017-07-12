@@ -10,7 +10,8 @@ export let fooditemsMock = [
     'rating': 5,
     'addressStreet': 'Marbachstraße 3',
     'addressPostalCode': '81639',
-    'addressCity': 'München'
+    'addressCity': 'München',
+    
   },
   {
     'name': 'Cheesy Lasagna',
