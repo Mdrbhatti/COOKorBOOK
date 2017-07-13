@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
 import { FoodItem } from './../shared/food/food';
 import { fooditemsMock } from './../shared/food/food-mock';
 import { FoodQuantity } from './../shared/food/food-quantity';
+import {Router } from '@angular/router';
+
 
 // import template from './frontpage.template.html';
 
@@ -16,12 +18,12 @@ import { FoodQuantity } from './../shared/food/food-quantity';
 
 })
 
-export class ManageComponent {
+export class ManageComponent implements OnInit{
 
   foodItemsToDisplay: FoodQuantity[] = [];
   foodItemsQuantity: FoodQuantity[] = [];
 
-  constructor(){
+  constructor(private router: Router) {
 
     for(const fooditem of fooditemsMock){
       this.foodItemsQuantity.push(new FoodQuantity(new FoodItem( fooditem.name,
@@ -38,6 +40,14 @@ export class ManageComponent {
     }
     this.foodItemsToDisplay = this.foodItemsQuantity.slice();
 
+  }
+
+  save(){
+
+  }
+
+  cancel(){
+    setTimeout(() => {this.router.navigate(['/find-food']);}, 0);
   }
 
   ngOnInit(){}

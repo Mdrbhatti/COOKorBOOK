@@ -1,43 +1,65 @@
 <app-cb-header></app-cb-header>
-<section class = "header">
-  <div class = container>
-    <h1>Manage Inventory</h1>
+<section class="section">
+  <div class="container">
+    <h1 class="title has-text-centered is-1">Manage Inventory</h1>
   </div>
 </section>
 <section>
   <div class="container">
-    <div class="column">
+    <div class="columns">
+      <div class="column">
+        Dish
+      </div>
+      <div class="column">
+        Price
+      </div>
+      <div class="column">
+        Quantity
+      </div>
+      <div class="column">
+        Currently ordered
+      </div>
+    </div>
       <div class="food-listing-item" *ngFor="let foodItem of foodItemsToDisplay">
         <div class="columns">
           <div class="column">
+            <div class="content">
+              <h3>{{foodItem.fooditem.name}}</h3></div>
           </div>
-          <div class="column food-listing-item__description">
-            <div class="food-listing-item__description--heading">{{foodItem.fooditem.name}}</div>
+          <div class="column price">
+            <p class="control">
+              <input class="input is-medium" type="text" placeholder="Price..." value = "{{foodItem.fooditem.pricePerPortion}}">
+            </p>
           </div>
           <div class="column">
             <div class="food-listing-item__actions--price">
               <div class="columns">
-                <div class="column is-3 food-listing-item__actions--price--text">
+                <span class="select is-medium">
                   <select>
-                  <option selected value="{{foodItem.quantity}}">{{foodItem.quantity}}</option>
-                    <option value = 0>0</option>
-                    <option value = 1>1</option>
-                    <option value = 2>2</option>
-                    <option value = 3>3</option>
-                    <option value = 4>4</option>
-                    <option value = 5>5</option>
-                    <option value = 6>6</option>
-                    <option value = 7>7</option>
-                    <option value = 8>8</option>
-                    <option value = 9>9</option>
-                    <option value = 10>10</option>
+                  <option *ngFor="let num of foodItem.quantityList" selected value="{{num}}">{{num}}</option>
                   </select>
-                </div>
+                  <!--<input type="text" placeholder="Provide new total amount...">-->
+                </span>
               </div>
             </div>
           </div>
+          <div class="column">
+
+          </div>
         </div>
       </div>
+    </div>
+
+</section>
+<section>
+  <div class = "container">
+    <div class = "column is-centered buttonsection">
+      <a class="button is-info is-large" (click)="save()">
+        Save changes
+      </a>
+      <a class="button is-danger is-large" (click)="cancel()">
+        Cancel
+      </a>
     </div>
   </div>
 </section>
