@@ -21,8 +21,8 @@ const appRoutes: Routes = [
   { path: '', component: FrontpageComponent, pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'find-food', component: CbFindFoodComponent },
-  { path: 'cook-food', component: CbPublishItemComponent }
+  { path: 'find-food', component: CbFindFoodComponent, canActivate: [AuthGuard] },
+  { path: 'cook-food', component: CbPublishItemComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

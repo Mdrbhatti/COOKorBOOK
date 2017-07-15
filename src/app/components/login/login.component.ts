@@ -30,7 +30,6 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.username, this.password).subscribe(
       (res: any) => {
         this.loginStatus = 'success';
-
         localStorage.setItem('token', res.token);
         console.log("Access Token : \n" + res.token);
         setTimeout(() => { this.router.navigate(['/find-food']); }, 2000);
