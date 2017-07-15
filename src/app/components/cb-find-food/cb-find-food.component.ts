@@ -52,12 +52,6 @@ export class CbFindFoodComponent implements OnInit {
   }
 
   updateFilter(f: any) {
-    // for ( const key in f) {
-    //   if (this.filterParametersArray[key] !== undefined) {
-    //     delete this.filterParametersArray[key];
-    //   }
-    //   this.filterParametersArray[key] = f[key];
-    // }
     for ( const key in f) {
       if (this.filterParametersArray[key] !== undefined) {  // not first filter of category
         this.filterParametersArray[key].push(f[key]);
