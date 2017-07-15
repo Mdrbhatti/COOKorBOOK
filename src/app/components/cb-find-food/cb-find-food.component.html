@@ -119,24 +119,41 @@
             Price
           </p>
           <ul class="menu-list">
-            <li><a class="is-active">0€ - 5€ </a></li>
-            <li><a>6€ - 10€</a></li>
+            <li>
+              <div class="field">
+                <p class="control">
+                  <label class="checkbox">
+                    <input type="checkbox" (change)="$event.target.checked ? updateFilter({pricePerPortion : '0,5'}) : removeFilterParameter({pricePerPortion : '0,5'})">
+                    0€ - 5€
+                  </label>
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="field">
+                <p class="control">
+                  <label class="checkbox">
+                    <input type="checkbox" (change)="$event.target.checked ? updateFilter({pricePerPortion : '5,10'}) : removeFilterParameter({pricePerPortion : '5,10'})">
+                    5€ - 10€
+                  </label>
+                </p>
+              </div>
+            </li>
           </ul>
           <p class="menu-label">
-            Delivery options
+            Bulk Pricing
           </p>
           <ul class="menu-list">
             <li>
               <div class="field">
                 <p class="control">
                   <label class="checkbox">
-                    <input type="checkbox">
-                    Home Delivery
+                    <input type="checkbox" (change)="$event.target.checked ? updateFilter({bulkPricing : true}) : removeFilterParameter({bulkPricing : true})">
+                    Yes, I need in bulk.
                   </label>
                 </p>
               </div>
             </li>
-            <li><a>Self Pickup</a></li>
           </ul>
         </aside>
       </div>

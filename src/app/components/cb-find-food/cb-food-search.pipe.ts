@@ -9,8 +9,19 @@ export class FilterSearchResultsPipe implements PipeTransform {
     console.log(filterParameters);
     return foodItems = foodItems.filter(foodItem => {
       for (const filterParameter in filterParameters) {
-        if (foodItem[filterParameter] === undefined || foodItem[filterParameter] !== filterParameters[filterParameter]) {
+        console.log(filterParameter);
+        if (foodItem[filterParameter] === undefined ) {
           return false;
+        }
+        if ( filterParameter === 'pricePerPortion') {
+          const priceLimits = filterParameters[filterParameter].split(',');
+          if ( foodItem[filterParameter] <= priceLimits[0] || foodItem[filterParameter] > priceLimits[1]) {
+            return false;
+          }
+        } else {
+          if (foodItem[filterParameter] !== filterParameters[filterParameter]) {
+            return false;
+          }
         }
       }
       return true;

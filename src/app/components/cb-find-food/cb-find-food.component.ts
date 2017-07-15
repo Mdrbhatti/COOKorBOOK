@@ -39,7 +39,7 @@ export class CbFindFoodComponent implements OnInit {
 
   search() {
     if (this.serachInput === '') {
-      return this.foodItemsToDisplay;
+      return this.foodItemsToDisplay = this.foodItems;
     } else {
       this.foodItemsToDisplay = this.foodItems.slice().filter((el) =>
         el.name.toLowerCase().indexOf(this.serachInput.toLowerCase()) > -1
