@@ -5,50 +5,58 @@
   </div>
 </section>
 <section>
-  <div class="container">
+  <div class="container main">
     <div class="columns">
       <div class="column">
-        Dish
+        <div class="content">
+          <h1>Dish</h1>
+        </div>
       </div>
       <div class="column">
-        Price
+        <div class="content">
+          <h1>Price (€)</h1>
+        </div>
       </div>
       <div class="column">
-        Quantity
+        <div class="content">
+          <h1>Quantity</h1>
+        </div>
       </div>
       <div class="column">
-        Currently ordered
+        <div class="content">
+          <h1>Currently ordered</h1>
+        </div>
       </div>
     </div>
-      <div class="food-listing-item" *ngFor="let foodItem of foodItemsToDisplay">
-        <div class="columns">
-          <div class="column">
-            <div class="content">
-              <h3>{{foodItem.fooditem.name}}</h3></div>
-          </div>
-          <div class="column price">
-            <p class="control">
-              <input class="input is-medium" type="text" placeholder="Price..." value = "{{foodItem.fooditem.pricePerPortion}}">
-            </p>
-          </div>
-          <div class="column">
-            <div class="food-listing-item__actions--price">
-              <div class="columns">
-                <span class="select is-medium">
+    <div class="food-listing-item" *ngFor="let foodItem of foodItemsToDisplay">
+      <div class="columns">
+        <div class="column">
+          <div class="content">
+            <h3>{{foodItem.fooditem.name}}</h3></div>
+        </div>
+        <div class="column price">
+          <p class="control">
+            <input class="input is-medium" type="text" placeholder="Price..." value = "{{foodItem.fooditem.pricePerPortion}}">
+          </p>
+        </div>
+        <div class="column">
+          <div class="food-listing-item__actions--price">
+            <div class="columns">
+                <span class="select is-medium is-fullwidth">
                   <select>
                   <option *ngFor="let num of foodItem.quantityList" selected value="{{num}}">{{num}}</option>
                   </select>
                   <!--<input type="text" placeholder="Provide new total amount...">-->
                 </span>
-              </div>
             </div>
           </div>
-          <div class="column">
+        </div>
+        <div class="column">
 
-          </div>
         </div>
       </div>
     </div>
+  </div>
 
 </section>
 <section>

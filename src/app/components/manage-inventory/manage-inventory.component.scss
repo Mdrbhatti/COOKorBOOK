@@ -1,7 +1,18 @@
+@import "~variables.scss";
+
+
 .buttonsection{
   text-align: center;
 }
 
 .price{
   padding-top: 0px;
+}
+
+.main {
+  background-color: #FAFAFA;
+}
+
+section {
+  font-family: $open-sans-light;
 }
