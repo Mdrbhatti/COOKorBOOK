@@ -13,15 +13,18 @@ import { CbHeaderComponent } from './components/shared/cb-header/cb-header.compo
 import { FrontpageComponent } from './components/frontpage/frontpage.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './auth.guard';
+import { AuthService } from './services/auth.service';
+import { HttpModule } from '@angular/http';
 import { ManageComponent } from './components/manage-inventory/manage-inventory.component';
 
 const appRoutes: Routes = [
-  { path: '', component: FrontpageComponent, pathMatch: 'full'  },
+  { path: '', component: FrontpageComponent, pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'manage-inventory', component: ManageComponent },
-  { path: 'find-food', component: CbFindFoodComponent },
-  { path: 'cook-food', component: CbPublishItemComponent }
+  { path: 'find-food', component: CbFindFoodComponent, canActivate: [AuthGuard] },
+  { path: 'cook-food', component: CbPublishItemComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
@@ -43,9 +46,14 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     NguiDatetimePickerModule,
-    NguiAutoCompleteModule
+    NguiAutoCompleteModule,
+    HttpModule,
+    RouterModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    AuthService,
+  ],
   bootstrap: [AppComponent]
 })
 
