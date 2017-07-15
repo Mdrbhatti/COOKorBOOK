@@ -14,7 +14,7 @@ export class CbFindFoodComponent implements OnInit {
   foodItems: FoodItem[] = [];
   foodItemsToDisplay: FoodItem[] = [];
   filterParametersArray = {};
-  serachInput: string;
+  serachInput = '';
 
   constructor() {
 
@@ -38,9 +38,13 @@ export class CbFindFoodComponent implements OnInit {
   ngOnInit() { }
 
   search() {
-    this.foodItemsToDisplay = this.foodItems.slice().filter((el) =>
-      el.name.toLowerCase().indexOf(this.serachInput.toLowerCase()) > -1
-    )
+    if (this.serachInput === '') {
+      return this.foodItemsToDisplay;
+    } else {
+      this.foodItemsToDisplay = this.foodItems.slice().filter((el) =>
+        el.name.toLowerCase().indexOf(this.serachInput.toLowerCase()) > -1
+      )
+    }
   }
 
   createRangeArray(x: number) {
