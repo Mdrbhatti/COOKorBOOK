@@ -50,8 +50,7 @@ export class RegisterComponent implements OnInit {
   registerUser() {
     this.authService.register(this.name, this.username, this.password, this.email).subscribe(
       (res: any) => {
-        this.registerStatus = 'success';
-        
+        this.registerStatus = 'success';        
         localStorage.setItem('token', res.token);
         console.log("Access Token : \n" + res.token);
         setTimeout(() => { this.router.navigate(['/find-food']); }, 2000);

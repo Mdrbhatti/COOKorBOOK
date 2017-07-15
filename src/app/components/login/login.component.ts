@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
 
   username = '';
   password = '';
-  loginSuccess = false;
+  loginStatus = '';
 
   constructor(private router: Router, private authService: AuthService) { }
 
@@ -27,14 +27,15 @@ export class LoginComponent implements OnInit {
   }
 
   logInUser() {
-    this.loginSuccess = true;
     this.authService.login(this.username, this.password).subscribe(
       (res: any) => {
+        this.loginStatus = 'success';
+
         localStorage.setItem('token', res.token);
         console.log("Access Token : \n" + res.token);
         setTimeout(() => { this.router.navigate(['/find-food']); }, 2000);
       },
-      (error) => { console.log(error); }
+      (error) => { console.log(error); this.loginStatus = 'fail' }
     );
   }
 }

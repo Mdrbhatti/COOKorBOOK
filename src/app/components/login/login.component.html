@@ -1,8 +1,11 @@
 <app-cb-header></app-cb-header>
 <!--Username-->
 <!--<div class="field is-grouped-centered">-->
-<div *ngIf="loginSuccess" class="notification is-success has-text-centered">
-    <button class="delete"></button> Log in successful. Redirecting...
+<div *ngIf="loginStatus=='success'" class="notification is-success has-text-centered">
+    <button class="delete"></button> Login successful. Redirecting...
+</div>
+<div *ngIf="loginStatus=='fail'" class="notification is-warning has-text-centered">
+    <button class="delete"></button> Wrong username or password. Try again...
 </div>
 <form>
     <div class="column is-half is-offset-one-quarter">
