@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,7 @@ export class RegisterComponent implements OnInit {
   password = '';
   registerSuccess = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -30,7 +31,6 @@ export class RegisterComponent implements OnInit {
     return true;
   }
 
-  // TODO: Proper email validation
   isEmailValid() {
     return this.emailValidator(this.email);
   }
@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
     return this.username.length > 3;
   }
 
-  isNameValid()  {
+  isNameValid() {
     return this.name.length > 3;
   }
 
@@ -49,6 +49,11 @@ export class RegisterComponent implements OnInit {
 
   registerUser() {
     this.registerSuccess = true;
-    setTimeout(() => {this.router.navigate(['/find-food']);}, 2000);
+    this.authService.register(this.name, this.username, this.password, this.email).subscribe(
+      (res: any) => {
+        setTimeout(() => {this.router.navigate(['/find-food']);}, 2000);
+      },
+      (error) => { console.log(error); }
+    );
   }
 }

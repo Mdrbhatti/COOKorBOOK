@@ -13,9 +13,12 @@ import { CbHeaderComponent } from './components/shared/cb-header/cb-header.compo
 import { FrontpageComponent } from './components/frontpage/frontpage.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './auth.guard';
+import { AuthService } from './services/auth.service';
+import { HttpModule } from '@angular/http';
 
 const appRoutes: Routes = [
-  { path: '', component: FrontpageComponent, pathMatch: 'full'  },
+  { path: '', component: FrontpageComponent, pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'find-food', component: CbFindFoodComponent },
@@ -40,9 +43,14 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
     NguiDatetimePickerModule,
-    NguiAutoCompleteModule
+    NguiAutoCompleteModule,
+        HttpModule,
+    RouterModule
   ],
-  providers: [],
+  providers: [
+    AuthGuard,
+    AuthService,
+  ],
   bootstrap: [AppComponent]
 })
 
