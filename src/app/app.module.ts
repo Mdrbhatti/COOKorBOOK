@@ -44,7 +44,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     NguiDatetimePickerModule,
     NguiAutoCompleteModule,
-        HttpModule,
+    HttpModule,
     RouterModule
   ],
   providers: [
