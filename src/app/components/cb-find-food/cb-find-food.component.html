@@ -123,7 +123,7 @@
               <div class="field">
                 <p class="control">
                   <label class="checkbox">
-                    <input type="checkbox" (change)="$event.target.checked ? updateFilter({pricePerPortion : '0,5'}) : removeFilterParameter({pricePerPortion : '0,5'})">
+                    <input type="checkbox" (change)="updatePriceFilter($event, '0,1,2,3,4,5')">
                     0€ - 5€
                   </label>
                 </p>
@@ -133,7 +133,7 @@
               <div class="field">
                 <p class="control">
                   <label class="checkbox">
-                    <input type="checkbox" (change)="$event.target.checked ? updateFilter({pricePerPortion : '5,10'}) : removeFilterParameter({pricePerPortion : '5,10'})">
+                    <input type="checkbox" (change)="updatePriceFilter($event, '5.5,7.5,6,7,8,9,10')">
                     5€ - 10€
                   </label>
                 </p>

@@ -52,12 +52,21 @@ export class CbFindFoodComponent implements OnInit {
   }
 
   updateFilter(f: any) {
+    // for ( const key in f) {
+    //   if (this.filterParametersArray[key] !== undefined) {
+    //     delete this.filterParametersArray[key];
+    //   }
+    //   this.filterParametersArray[key] = f[key];
+    // }
     for ( const key in f) {
-      if (this.filterParametersArray[key] !== undefined) {
-        delete this.filterParametersArray[key];
+      if (this.filterParametersArray[key] !== undefined) {  // not first filter of category
+        this.filterParametersArray[key].push(f[key]);
+      } else if (this.filterParametersArray[key] === undefined) { // first category filter
+        this.filterParametersArray[key] = [];
+        this.filterParametersArray[key].push(f[key]);
       }
-      this.filterParametersArray[key] = f[key];
     }
+    console.log(this.filterParametersArray);
   }
 
   removeFilterParameter(r: any) {
@@ -67,8 +76,37 @@ export class CbFindFoodComponent implements OnInit {
       key = i;
       value = r[i];
     }
-    if (this.filterParametersArray[key] !== undefined ) {
-      delete this.filterParametersArray[key];
+    if (this.filterParametersArray[key] !== undefined ) { // if the key exists
+      const indexOfValueToDelete = this.filterParametersArray[key].indexOf(value);
+      console.log('index: ' + indexOfValueToDelete);
+      if (indexOfValueToDelete > -1) {
+        console.log('before');
+        console.log(this.filterParametersArray[key]);
+        this.filterParametersArray[key].splice(indexOfValueToDelete, 1);
+        console.log('after');
+        console.log(this.filterParametersArray[key]);
+        console.log('end');
+      } else {
+        console.log('in else');
+      }
+
+      if (this.filterParametersArray[key].length === 0) {
+        delete this.filterParametersArray[key];
+      }
+    }
+    console.log(this.filterParametersArray);
+  }
+
+  updatePriceFilter(e: any, range: string) {  // simple filter for now
+    const rangeArray = range.split(',');
+    if (e.target.checked) {
+      for (let i = 0; i < rangeArray.length; i++ ) {
+        this.updateFilter({pricePerPortion : Number(rangeArray[i])});
+      }
+    } else {
+      for (let i = 0; i < rangeArray.length; i++ ) {
+        this.removeFilterParameter({pricePerPortion : Number(rangeArray[i])});
+      }
     }
   }
 }
