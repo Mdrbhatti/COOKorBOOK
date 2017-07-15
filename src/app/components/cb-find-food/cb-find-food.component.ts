@@ -78,18 +78,9 @@ export class CbFindFoodComponent implements OnInit {
     }
     if (this.filterParametersArray[key] !== undefined ) { // if the key exists
       const indexOfValueToDelete = this.filterParametersArray[key].indexOf(value);
-      console.log('index: ' + indexOfValueToDelete);
       if (indexOfValueToDelete > -1) {
-        console.log('before');
-        console.log(this.filterParametersArray[key]);
         this.filterParametersArray[key].splice(indexOfValueToDelete, 1);
-        console.log('after');
-        console.log(this.filterParametersArray[key]);
-        console.log('end');
-      } else {
-        console.log('in else');
       }
-
       if (this.filterParametersArray[key].length === 0) {
         delete this.filterParametersArray[key];
       }
