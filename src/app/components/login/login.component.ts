@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Router } from '@angular/router';
-
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   password = '';
   loginSuccess = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -28,6 +28,13 @@ export class LoginComponent implements OnInit {
 
   logInUser() {
     this.loginSuccess = true;
-    setTimeout(() => {this.router.navigate(['/find-food']); } , 2000);
+    this.authService.login(this.username, this.password).subscribe(
+      (res: any) => {
+        localStorage.setItem('token', res.token);
+        console.log("Access Token : \n" + res.token);
+        setTimeout(() => { this.router.navigate(['/find-food']); }, 2000);
+      },
+      (error) => { console.log(error); }
+    );
   }
 }

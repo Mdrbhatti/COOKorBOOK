@@ -7,7 +7,7 @@ export class AuthGuard implements CanActivate {
 
   canActivate() {
     // Check to see if a user has a valid JWT
-    const data = localStorage.getItem('access_token');
+    const data = localStorage.getItem('token');
     if (data === null) {
       // If they do, return true and allow the user to load the home component
       console.log("No access token found!");

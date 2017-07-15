@@ -10,8 +10,8 @@ export class AuthService {
     constructor(private http: Http, private router: Router) { }
 
     register(name, username, password, email) {
-        const req = { 
-            'name': name, 'username': username, 'password': password, 
+        const req = {
+            'name': name, 'username': username, 'password': password,
             'email': email, 'userType': "user"
         };
         let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -35,4 +35,28 @@ export class AuthService {
         );
     }
 
+    login(username, password) {
+        const req = {
+            'username': username, 'password': password
+        };
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+
+        return this.http.post(`${this.baseUrl}/login`,
+            req, options)
+            .map(
+            (response: Response) => {
+                const data = response.json();
+                console.log(data);
+                return data;
+            },
+        )
+            .catch(
+            (error: Response) => {
+                const data = error.json();
+                console.log(data);
+                return Observable.throw(error.status);
+            },
+        );
+    }
 }
