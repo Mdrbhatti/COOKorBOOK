@@ -11,6 +11,9 @@
                 <a *ngIf="isUserLoggedIn()" class="nav-item" routerLink="/cook-food" routerLinkActive="is-active">
           Cook food
         </a>
+              <a *ngIf="isUserLoggedIn()" class="nav-item" routerLink="/manage-inventory" routerLinkActive="is-active">
+          Manage
+        </a>
             </div>
             <span class="nav-toggle" (click)="toggleOnMobile = !toggleOnMobile">
         <span></span>

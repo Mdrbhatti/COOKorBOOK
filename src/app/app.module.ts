@@ -37,8 +37,8 @@ const appRoutes: Routes = [
     RegisterComponent,
     LoginComponent,
     CbPublishItemComponent,
-    ManageComponent
-    FilterSearchResultsPipe,
+    ManageComponent,
+    FilterSearchResultsPipe
   ],
   imports: [
     TagInputModule,
