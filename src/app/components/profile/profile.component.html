@@ -24,7 +24,7 @@
                         <br> {{review.description}}
                     </p>
                 </div>
-                <nav class="level is-mobile">
+                <nav *ngIf="userType=='buyer'" class="level is-mobile">
                     <div class="level-left">
                         <a class="level-item">
                             <span class="icon is-small"><i class="fa fa-edit"></i></span>
