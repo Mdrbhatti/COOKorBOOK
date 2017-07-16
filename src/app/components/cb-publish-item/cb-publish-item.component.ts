@@ -19,6 +19,8 @@ export class CbPublishItemComponent implements OnInit {
   public image: string = '';
   // flag for disabling field
   public itemReused: boolean = false;
+  // flag for successful publish
+  public published: boolean = false;
 
   // publish info
   public date: string = '';
@@ -32,7 +34,6 @@ export class CbPublishItemComponent implements OnInit {
 
   constructor(private apiService: BackendService) {
     this.apiService.getItems({}).subscribe((res: any) => {
-        // console.log(res);
         this.itemsAvailable = res;
       },
         (error) => {
@@ -50,7 +51,6 @@ export class CbPublishItemComponent implements OnInit {
       }
       return html
     };
-    console.log(item);
     let html = `<div class="card">
                   <div class="card-content">
                     <div class="media">
@@ -85,7 +85,6 @@ export class CbPublishItemComponent implements OnInit {
 
   tagsToItems(tags) {
     let items = [];
-    console.log(tags);
     for (let tag of tags) {
       items.push({ 'title': tag.value , 'description': ''});
     }
@@ -101,19 +100,17 @@ export class CbPublishItemComponent implements OnInit {
   onChange(newValue) {
     if (typeof (newValue) === 'object') {
       // item selected, set values
-      this._id = newValue.id;
+      this._id = newValue._id;
       this.description = newValue.description;
       this.categories = this.itemsToTags(newValue.categories);
       this.allergens = this.itemsToTags(newValue.allergens);
       // make all item fields readonly, except title
       this.itemReused = true;
-      console.log(this.itemReused);
     } else if (typeof (newValue) === 'string') {
       // unmake readonly
       this.itemReused = false;
 
       this.apiService.getItems({ title: newValue }).subscribe((res: any) => {
-        // console.log(res);
         this.itemsAvailable = res;
       },
         (error) => {
@@ -139,7 +136,7 @@ export class CbPublishItemComponent implements OnInit {
       this.registerItem().subscribe((res: any) => {
         this._id = res._id;
         this.apiService.publishItem(this._id, this.date, this.servings, this.price).subscribe((res: any) => {
-          console.log(res);
+          this.published = true;
         },
           (error) => {
             console.log(error);
@@ -149,9 +146,8 @@ export class CbPublishItemComponent implements OnInit {
           console.log(error);
         });
     } else {
-
       this.apiService.publishItem(this._id, this.date, this.servings, this.price).subscribe((res: any) => {
-        console.log(res);
+        this.published = true;
       },
         (error) => {
           console.log(error);

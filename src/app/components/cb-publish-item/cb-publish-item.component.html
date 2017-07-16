@@ -1,5 +1,9 @@
 <app-cb-header></app-cb-header>
 
+<div *ngIf="published" class="notification is-success has-text-centered">
+    <button class="delete"></button> Item successfully published...
+</div>
+
 <section class="section">
   <div class="container">
     <h1 class="title has-text-centered is-1">Publish food</h1>
@@ -100,11 +104,9 @@
             </p>
           </div>
           <hr />
-          <div class="field">
+          <div class="field cb-publish-submit">
             <div class="control">
-              <p class="control">
-                <button class="button is-primary">Publish</button>
-              </p>
+              <button class="button is-primary">Publish</button>
             </div>
           </div>
         </div>
