@@ -49,7 +49,6 @@ export class RegisterComponent implements OnInit {
   }
 
   isUserTypeValid() {
-    console.log (this.userType);
     return (this.userType.toLowerCase() == "seller" || this.userType.toLowerCase() == "buyer");
   }
 
