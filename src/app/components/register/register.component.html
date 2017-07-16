@@ -6,7 +6,22 @@
 <div *ngIf="registerStatus=='fail'" class="notification is-warning has-text-centered">
     <button class="delete"></button> Registeration unsuccessful. Try again...
 </div>
+<br>
 <form>
+    <div class="has-text-centered column is-half is-offset-one-quarter">
+        <div class="field is-narrow">
+            <div class="control has-icons-left has-icons-right">
+                <span class="select is-large is-fullwidth" [class.is-success]="isUserTypeValid()" [class.is-danger]="!isUserTypeValid()">
+                    <select [(ngModel)]="userType" class="form-control" [ngModelOptions]="{standalone: true}">
+                        <option disabled [ngValue]="'placeholder'" style="display:none">Choose Account Type</option>
+                        <option [ngValue]="'seller'">Seller</option>
+                        <option [ngValue]="'buyer'">Buyer</option>
+                    </select>
+                </span>
+            </div>
+        </div>
+    </div>
+
     <div class="column is-half is-offset-one-quarter">
         <div class="field is-narrow">
             <div class="control has-icons-left has-icons-right">
@@ -61,6 +76,9 @@
         <p class="help is-danger" *ngIf="!isNameValid()">
             Name is required
         </p>
+        <p class="help is-danger" *ngIf="!isUserTypeValid()">
+            Select a User type
+        </p>
         <p class="help is-danger" *ngIf="!isUsernameValid()">
             Username is required
         </p>
@@ -70,10 +88,11 @@
         <p class="help is-danger" *ngIf="!isPasswordValid()">
             Password with at least 4 characters is required
         </p>
-        <div *ngIf="(isEmailValid() && isUsernameValid() && isPasswordValid() && isNameValid())" class="button is-large" (click)="registerUser()">
+        <br>
+        <div *ngIf="enableButton()" class="button is-large" (click)="registerUser()">
             <i class="fa fa-sign-in fa-lg"></i> Register
         </div>
-        <div *ngIf="!(isEmailValid() && isUsernameValid() && isPasswordValid() && isNameValid())" class="button is-large" disabled>
+        <div *ngIf="!enableButton()" class="button is-large" disabled>
             <i class="fa fa-sign-in fa-lg"></i> Register
         </div>
     </div>
