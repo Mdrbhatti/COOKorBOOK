@@ -32,7 +32,7 @@ export class ManageComponent implements OnInit {
       (res: any[]) => {
         this.random = res;
         console.log(this.random);
-        res.forEach(test => this.foodItemsToDisplay.push(new FoodQuantity(test.item.title, test.price, test.servings)))
+        res.forEach(test => this.foodItemsToDisplay.push(new FoodQuantity(test.item._id, test.item.title, test.price, test.servings)))
       },
       (error) => { console.log(error); }
 
