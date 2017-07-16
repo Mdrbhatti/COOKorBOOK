@@ -15,6 +15,7 @@ export class CbFindFoodComponent implements OnInit {
   foodItemsToDisplay: FoodItem[] = [];
   filterParametersArray = {};
   serachInput = '';
+  isFilterMenuClosedOnMobile = true;
 
   constructor() {
 

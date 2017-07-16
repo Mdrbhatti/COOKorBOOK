@@ -1,14 +1,11 @@
 <app-cb-header></app-cb-header>
-<section class="section">
+<section class="section cb-find-food-section-header">
   <div class="container">
-    <h1 class="title has-text-centered title-find-food">Find homemade food in your area</h1>
+    <h1 class="title has-text-centered title-find-food">Find homemade food<br>in your area</h1>
   </div>
-</section>
-<section class="section">
   <div class="container">
     <div class="columns">
-      <div class="column is-half is-offset-one-quarter">
-
+      <div class="column is-half is-offset-one-quarter cb-search-input">
         <div class="field has-addons">
           <p class="control is-expanded">
             <input class="input is-large" type="text" [(ngModel)]="serachInput" (keyup.enter)="search()" placeholder="Search for food...">
@@ -19,7 +16,6 @@
             </a>
           </p>
         </div>
-
       </div>
     </div>
   </div>
@@ -29,11 +25,12 @@
     <h1 class="title">
       Search results
     </h1>
-    <h2 class="subtitle">
-      Use the side menu to refine the search results
+    <a class="button is-primary is-outlined is-hidden-tablet is-fullwidth" (click)="isFilterMenuClosedOnMobile = !isFilterMenuClosedOnMobile">Search Filters</a>
+    <h2 class="subtitle" [class.is-hidden-mobile]="isFilterMenuClosedOnMobile">
+      Use the filters to refine the search results
     </h2>
     <div class="columns">
-      <div class="column is-3">
+      <div class="column is-3" [class.is-hidden-mobile]="isFilterMenuClosedOnMobile">
         <aside class="menu">
           <p class="menu-label">
             Type
@@ -165,13 +162,14 @@
                 <img src="{{foodItem.picture}}" />
               </div>
             </div>
-            <div class="column food-listing-item__description">
+            <div class="column food-listing-item__description" >
               <div class="food-listing-item__description--heading">{{foodItem.name}}</div>
               <div class="food-listing-item__description--description">{{foodItem.description}}</div>
               <div class="food-listing-item__description--seller-comments">&ldquo;{{foodItem.sellerComments}}&rdquo;</div>
               <div class="food-listing-item__description--type">
                   <span *ngIf="foodItem.type === 'vegetarian'" class="tag is-success">{{foodItem.type}}</span>
-                  <span *ngIf="foodItem.type !== 'vegetarian'" class="tag is-cb-bg is-text-white">{{foodItem.type}}</span>
+                  <span *ngIf="foodItem.type !== 'vegetarian'" class="tag is-info is-text-white">{{foodItem.type}}</span>
+                  <span *ngIf="foodItem.bulkPricing" class="tag is-dark">Bulk Pricing &#10004;</span>
               </div>
               <div class="food-listing-item__description--rating is-cb-colored">
                 <span *ngFor="let i of createRangeArray(foodItem.rating)">★</span>
@@ -179,21 +177,18 @@
             </div>
             <div class="column">
               <div class="food-listing-item__actions--price">
-                <div class="columns">
-                  <div class="column food-listing-item__actions--price--icon">
+                <div class="columns is-mobile">
+                  <div class="column is-2 food-listing-item__actions--price--icon">
                     <i class="fa fa-eur"></i>
                   </div>
-                  <div class="column is-3 food-listing-item__actions--price--text">
+                  <div class="column is-10 food-listing-item__actions--price--text">
                     {{foodItem.pricePerPortion}}
-                  </div>
-                  <div class="column is-8 food-listing-item__actions--price--comments">
-                      <span *ngIf="foodItem.bulkPricing" class="tag is-dark">Bulk Pricing also available</span>
                   </div>
                 </div>
               </div>
 
               <div class="food-listing-item__actions--location">
-                <div class="columns">
+                <div class="columns is-mobile">
                   <div class="column food-listing-item__actions--location--icon">
                     <i class="fa fa-map-marker"></i>  
                   </div>
