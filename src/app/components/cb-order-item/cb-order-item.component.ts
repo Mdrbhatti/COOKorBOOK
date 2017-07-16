@@ -15,6 +15,7 @@ export class CbOrderItemComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
        this.id = params['id'];
+       // assume some food id 
     });
   }
 
