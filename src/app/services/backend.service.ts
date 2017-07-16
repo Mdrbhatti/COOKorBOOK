@@ -93,16 +93,35 @@ export class BackendService {
     const uri = `${this.baseUrl}/items`;
     const token = localStorage.getItem('token');
     const headers = new Headers();
+    headers.append('Authorization', `JWT ${token}`);
     const body = { title: title, description: description, categories: categories, allergens: allergens, image: image };
     return this.http.post(uri, body, { headers: headers })
       .map((response: Response) => {
         const data = response.json();
-        console.log(data)
+        console.log(data);
         return data;
       })
       .catch((error: Response) => {
         console.log(error);
         return Observable.throw('Something went wrong@createItem');
       });
+  }
+
+  publishItem(id, time, servings, price) {
+    const uri = `${this.baseUrl}/items/${id}/publish`;
+    const token = localStorage.getItem('token');
+    const headers = new Headers();
+    headers.append('Authorization', `JWT ${token}`);
+    const body = { time: time, servings: servings, price: price };
+    return this.http.post(uri, body, { headers: headers })
+      .map((response: Response) => {
+        const data = response.json();
+        console.log(data);
+        return data;
+      })
+      .catch((error: Response) => {
+        console.log(error);
+        return Observable.throw('Something went wrong@publishItem');
+      })
   }
 }

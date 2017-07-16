@@ -24,8 +24,8 @@ export class CbPublishItemComponent implements OnInit {
   public image: String = '';
   // publish info
   public date: string = '';
-  public servings: number = 0;
-  public price: number = 0.0;
+  public servings: number;
+  public price: number;
 
   imageResizeOptions: ResizeOptions = {
     resizeMaxHeight: 256,
@@ -118,13 +118,25 @@ export class CbPublishItemComponent implements OnInit {
     // check item form
     if (this._id == -1) {
       this.registerItem().subscribe((res: any) => {
-        console.log(res)
         this._id = res._id;
+        this.apiService.publishItem(this._id, this.date, this.servings, this.price).subscribe((res: any) => {
+          console.log(res);
+        },
+          (error) => {
+            console.log(error);
+          });
+      },
+        (error) => {
+          console.log(error);
+        });
+    } else {
+
+      this.apiService.publishItem(this._id, this.date, this.servings, this.price).subscribe((res: any) => {
+        console.log(res);
       },
         (error) => {
           console.log(error);
         });
     }
-
   }
 }
