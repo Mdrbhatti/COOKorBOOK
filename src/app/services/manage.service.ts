@@ -12,5 +12,25 @@ export class ManageService {
   constructor(private http: Http, private router: Router) {
   }
 
+  updateInventory(){
+
+  }
+
+  getInventory(seller){
+    return this.http.get(`${this.baseUrl}/items/`+ seller).map((response: Response) =>{
+      const data = response.json();
+      console.log(data);
+      return data;
+    }).catch(
+      (error: Response) => {
+        const data = error.json();
+        console.log(data);
+        return Observable.throw(error.status);
+      }
+    )
+
+  }
+
+
 
 }

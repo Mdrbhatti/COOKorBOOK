@@ -50,6 +50,10 @@ export class ManageComponent implements OnInit{
     setTimeout(() => {this.router.navigate(['/find-food']);}, 0);
   }
 
+  cancelOrders(){
+    
+  }
+
   ngOnInit(){}
 
 }
