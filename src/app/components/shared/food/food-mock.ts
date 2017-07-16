@@ -18,7 +18,7 @@ export let fooditemsMock = [
     'description': 'with chicken and black olives',
     'sellerComments': 'Cooked after my grandmother\'s famous recipe',
     'pricePerPortion': 4,
-    'bulkPricing': false,
+    'bulkPricing': true,
     'image': 'http://assets.kraftfoods.com/recipe_images/opendeploy/Table-for-Two_Lasagna_640x428.jpg',
     'type': 'non-vegetarian',
     'rating': 3,

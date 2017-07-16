@@ -17,6 +17,7 @@ import { AuthGuard } from './auth.guard';
 import { AuthService } from './services/auth.service';
 import { HttpModule } from '@angular/http';
 import { ManageComponent } from './components/manage-inventory/manage-inventory.component';
+import { FilterSearchResultsPipe } from './components/cb-find-food/cb-food-search.pipe';
 
 const appRoutes: Routes = [
   { path: '', component: FrontpageComponent, pathMatch: 'full' },
@@ -37,6 +38,7 @@ const appRoutes: Routes = [
     LoginComponent,
     CbPublishItemComponent,
     ManageComponent
+    FilterSearchResultsPipe,
   ],
   imports: [
     TagInputModule,
