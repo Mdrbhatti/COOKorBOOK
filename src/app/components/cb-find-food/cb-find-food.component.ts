@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 import { FoodItem } from './food';
 import { fooditemsMock } from './food-mock';
 import { FilterSearchResultsPipe } from './cb-food-search.pipe';
@@ -20,7 +21,7 @@ export class CbFindFoodComponent implements OnInit {
   serachInput = '';
   isFilterMenuClosedOnMobile = true;
 
-  constructor(private bcService: BackendService) { 
+  constructor(private bcService: BackendService, private ref: ChangeDetectorRef) { 
     // this.getAllPublishedItems();
     // for (const fooditem of fooditemsMock) {
     //   this.foodItems.push(new FoodItem(fooditem.name,
@@ -74,6 +75,8 @@ export class CbFindFoodComponent implements OnInit {
         }
         console.log(this.foodItems);
         this.foodItemsToDisplay = this.foodItems.slice();
+        console.log(this.foodItemsToDisplay);
+        this.ref.detectChanges();
       },
       (error) => { console.log(error); }
     );
