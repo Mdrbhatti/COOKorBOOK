@@ -21,11 +21,4 @@ export class CbHeaderComponent implements OnInit {
     localStorage.removeItem('token');
     setTimeout(() => { this.router.navigate(['/login']); }, 500);
   }
-  redirectToLogIn () {
-    this.router.navigate(['/login']);
-  }
-  redirectToRegister () {
-    this.router.navigate(['/register']);
-  }
-
 }
