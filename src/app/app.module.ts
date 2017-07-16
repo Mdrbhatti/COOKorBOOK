@@ -19,6 +19,7 @@ import { AuthService } from './services/auth.service';
 import { BackendService } from './services/backend.service';
 import { HttpModule } from '@angular/http';
 import { FilterSearchResultsPipe } from './components/cb-find-food/cb-food-search.pipe';
+import { CbOrderItemComponent } from './components/cb-order-item/cb-order-item.component';
 
 const appRoutes: Routes = [
   { path: '', component: FrontpageComponent, pathMatch: 'full' },
@@ -26,6 +27,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'find-food', component: CbFindFoodComponent, canActivate: [AuthGuard] },
   { path: 'cook-food', component: CbPublishItemComponent, canActivate: [AuthGuard] },
+  { path: 'order-food/:id', component: CbOrderItemComponent, canActivate: [AuthGuard] }
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
@@ -40,6 +42,7 @@ const appRoutes: Routes = [
     LoginComponent,
     CbPublishItemComponent,
     FilterSearchResultsPipe,
+    CbOrderItemComponent,
     ProfileComponent
   ],
   imports: [
