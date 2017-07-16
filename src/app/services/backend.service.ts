@@ -31,9 +31,30 @@ export class BackendService {
       );
   }
 
+  getPublishedItems() {
+    const token = localStorage.getItem('token');
+    const headers = new Headers();
+    headers.append('Authorization', 'JWT ' + token);
+
+    return this.http.get(`${this.baseUrl}/items/published`, { headers: headers })
+      .map(
+      (response: Response) => {
+        const data = response.json();
+        console.log(data);
+        return data;
+      }
+      )
+      .catch(
+      (error: Response) => {
+        console.log(error);
+        return Observable.throw('Something went wrong@getUserData');
+      }
+      );
+  }
+
   getUserReviews(id, type) {
     var query = "";
-    if (type == "seller"){
+    if (type == "seller") {
       query = `seller=${id}`
     }
     else if (type == "buyer") {
