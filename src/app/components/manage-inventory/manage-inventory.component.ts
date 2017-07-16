@@ -41,7 +41,9 @@ export class ManageComponent implements OnInit {
   }
 
   save(){
+    this.foodItemsToDisplay.forEach(item => this.manageService.updateInventory(item.itemId, item.price, item.quantity).subscribe(
 
+    ))
   }
 
   cancel(){
