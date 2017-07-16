@@ -11,10 +11,10 @@ export class AuthService {
     
     constructor(private http: Http, private router: Router) { }
 
-    register(name, username, password, email) {
+    register(name, username, password, email, userType) {
         const req = {
             'name': name, 'username': username, 'password': password,
-            'email': email, 'userType': "user"
+            'email': email, 'userType': userType
         };
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });

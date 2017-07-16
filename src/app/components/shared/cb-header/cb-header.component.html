@@ -1,27 +1,30 @@
-<div class = hero-head>
-  <header class="nav">
-    <div class="container">
-      <div class="nav-left">
-        <a class="nav-item" routerLink="/" routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }">
+<div class="hero-head">
+    <header class="nav">
+        <div class="container">
+            <div class="nav-left">
+                <a class="nav-item" routerLink="/" routerLinkActive="is-active" [routerLinkActiveOptions]="{ exact: true }">
           Home
         </a>
-        <a class="nav-item" routerLink="/find-food" routerLinkActive="is-active">
+                <a *ngIf="isUserLoggedIn()" class="nav-item" routerLink="/find-food" routerLinkActive="is-active">
           Find food
         </a>
-        <a class="nav-item" routerLink="/cook-food" routerLinkActive="is-active">
+                <a *ngIf="isUserLoggedIn()" class="nav-item" routerLink="/cook-food" routerLinkActive="is-active">
           Cook food
         </a>
-      </div>
-      <span class="nav-toggle">
+            </div>
+            <span class="nav-toggle" (click)="toggleOnMobile = !toggleOnMobile">
         <span></span>
-        <span></span>
-        <span></span>
-      </span>
-
-      <div class="nav-right nav-menu">
-        <a class="nav-item" routerLink="/login" routerLinkActive="is-active">Sign in</a>
-        <a class="nav-item" routerLink="/register" routerLinkActive="is-active">Register</a>
-      </div>
-    </div>
-  </header>
+            <span></span>
+            <span></span>
+            </span>
+            <div *ngIf="isUserLoggedIn()" class="nav-right nav-menu" [class.is-active]="toggleOnMobile">
+                <a class="nav-item" routerLink="/profile" routerLinkActive="is-active">Profile</a>
+                <a class="nav-item" (click)="logUserOut()">Log out</a>
+            </div>
+            <div *ngIf="!isUserLoggedIn()" class="nav-right nav-menu" [class.is-active]="toggleOnMobile">
+                <a class="nav-item" routerLink="/login" routerLinkActive="is-active">Sign in</a>
+                <a class="nav-item" routerLink="/register" routerLinkActive="is-active">Register</a>
+            </div>
+        </div>
+    </header>
 </div>

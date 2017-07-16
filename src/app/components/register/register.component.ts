@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   name = '';
   password = '';
   registerStatus = '';
+  userType = 'placeholder';
 
   constructor(private router: Router, private authService: AuthService) { }
 
@@ -47,12 +48,22 @@ export class RegisterComponent implements OnInit {
     return this.password.length > 3;
   }
 
+  isUserTypeValid() {
+    return (this.userType.toLowerCase() == "seller" || this.userType.toLowerCase() == "buyer");
+  }
+
+  enableButton() {
+    return (this.isUserTypeValid && this.isEmailValid() && this.isUsernameValid() && this.isPasswordValid() && this.isNameValid());
+  }
+
   registerUser() {
-    this.authService.register(this.name, this.username, this.password, this.email).subscribe(
+    this.authService.register(this.name, this.username, this.password, this.email, this.userType).subscribe(
       (res: any) => {
         this.registerStatus = 'success';        
         localStorage.setItem('token', res.token);
-        console.log("Access Token : \n" + res.token);
+        localStorage.setItem('userType', res.userType);
+        localStorage.setItem('id', res.id);
+        console.log("Access Token : \n" + res.token + "\nid: " + res.id);
         setTimeout(() => { this.router.navigate(['/find-food']); }, 2000);
       },
       (error) => { console.log(error); this.registerStatus = 'fail';}

@@ -31,7 +31,9 @@ export class LoginComponent implements OnInit {
       (res: any) => {
         this.loginStatus = 'success';
         localStorage.setItem('token', res.token);
-        console.log("Access Token : \n" + res.token);
+        localStorage.setItem('userType', res.userType);
+        localStorage.setItem('id', res.id);
+        console.log("Access Token : \n" + res.token + "\nid: " + res.id);
         setTimeout(() => { this.router.navigate(['/find-food']); }, 2000);
       },
       (error) => { console.log(error); this.loginStatus = 'fail' }
