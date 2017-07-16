@@ -39,36 +39,126 @@
             Type
           </p>
           <ul class="menu-list">
-            <li><a>Vegetarian</a></li>
-            <li><a>Non-vegeratian</a></li>
+            <li>
+              <div class="field">
+                <p class="control">
+                  <label class="checkbox">
+                    <input type="checkbox" (change)="$event.target.checked ? updateFilter({type : 'vegetarian'}) : removeFilterParameter({type: 'vegetarian'})">
+                    Vegetarian
+                  </label>
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="field">
+                <p class="control">
+                  <label class="checkbox">
+                    <input type="checkbox" (change)="$event.target.checked ? updateFilter({type : 'non-vegetarian'}) : removeFilterParameter({type: 'non-vegetarian'})">
+                    Non-vegeratian
+                  </label>
+                </p>
+              </div>
+            </li>
           </ul>
           <p class="menu-label">
-            Price
-          </p>
-          <ul class="menu-list">
-            <li><a class="is-active">0€ - 5€ </a></li>
-            <li><a>6€ - 10€</a></li>
-          </ul>
-          <p class="menu-label">
-            Delivery options
+            Rating
           </p>
           <ul class="menu-list">
             <li>
               <div class="field">
                 <p class="control">
                   <label class="checkbox">
-                    <input type="checkbox">
-                    Home Delivery
+                    <input type="checkbox" (change)="$event.target.checked ? updateFilter({rating : 5}) : removeFilterParameter({rating: 5})">
+                    ★★★★★
                   </label>
                 </p>
               </div>
             </li>
-            <li><a>Self Pickup</a></li>
+            <li>
+              <div class="field">
+                <p class="control">
+                  <label class="checkbox">
+                    <input type="checkbox" (change)="$event.target.checked ? updateFilter({rating : 4}) : removeFilterParameter({rating: 4})">
+                    ★★★★
+                  </label>
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="field">
+                <p class="control">
+                  <label class="checkbox">
+                    <input type="checkbox" (change)="$event.target.checked ? updateFilter({rating : 3}) : removeFilterParameter({rating: 3})">
+                    ★★★
+                  </label>
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="field">
+                <p class="control">
+                  <label class="checkbox">
+                    <input type="checkbox" (change)="$event.target.checked ? updateFilter({rating : 2}) : removeFilterParameter({rating: 2})">
+                    ★★
+                  </label>
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="field">
+                <p class="control">
+                  <label class="checkbox">
+                    <input type="checkbox" (change)="$event.target.checked ? updateFilter({rating : 1}) : removeFilterParameter({rating: 1})">
+                    ★
+                  </label>
+                </p>
+              </div>
+            </li>
+          </ul>
+          <p class="menu-label">
+            Price
+          </p>
+          <ul class="menu-list">
+            <li>
+              <div class="field">
+                <p class="control">
+                  <label class="checkbox">
+                    <input type="checkbox" (change)="updatePriceFilter($event, '0,1,2,3,4,5')">
+                    0€ - 5€
+                  </label>
+                </p>
+              </div>
+            </li>
+            <li>
+              <div class="field">
+                <p class="control">
+                  <label class="checkbox">
+                    <input type="checkbox" (change)="updatePriceFilter($event, '5.5,7.5,6,7,8,9,10')">
+                    5€ - 10€
+                  </label>
+                </p>
+              </div>
+            </li>
+          </ul>
+          <p class="menu-label">
+            Bulk Pricing
+          </p>
+          <ul class="menu-list">
+            <li>
+              <div class="field">
+                <p class="control">
+                  <label class="checkbox">
+                    <input type="checkbox" (change)="$event.target.checked ? updateFilter({bulkPricing : true}) : removeFilterParameter({bulkPricing : true})">
+                    Yes, I need in bulk.
+                  </label>
+                </p>
+              </div>
+            </li>
           </ul>
         </aside>
       </div>
       <div class="column">
-        <div class="food-listing-item" *ngFor="let foodItem of foodItemsToDisplay">
+        <div class="food-listing-item" *ngFor="let foodItem of foodItemsToDisplay | filterFood: filterParametersArray">
           <div class="columns">
             <div class="column">
               <div class="food-listing-item__img">
