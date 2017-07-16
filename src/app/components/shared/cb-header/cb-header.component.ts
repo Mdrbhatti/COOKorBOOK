@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cb-header',
@@ -7,9 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CbHeaderComponent implements OnInit {
   toggleOnMobile = false;
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit() { 
+   }
+
+  isUserLoggedIn() {
+    return localStorage.getItem('token') !== null;
+  }
+
+  logUserOut() {
+    localStorage.removeItem('token');
+    setTimeout(() => { this.router.navigate(['/login']); }, 500);
+  }
+  redirectToLogIn () {
+    this.router.navigate(['/login']);
+  }
+  redirectToRegister () {
+    this.router.navigate(['/register']);
   }
 
 }
