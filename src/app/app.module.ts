@@ -17,13 +17,15 @@ import { AuthGuard } from './auth.guard';
 import { AuthService } from './services/auth.service';
 import { HttpModule } from '@angular/http';
 import { FilterSearchResultsPipe } from './components/cb-find-food/cb-food-search.pipe';
+import { CbOrderItemComponent } from './components/cb-order-item/cb-order-item.component';
 
 const appRoutes: Routes = [
   { path: '', component: FrontpageComponent, pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'find-food', component: CbFindFoodComponent, canActivate: [AuthGuard] },
-  { path: 'cook-food', component: CbPublishItemComponent, canActivate: [AuthGuard] }
+  { path: 'cook-food', component: CbPublishItemComponent, canActivate: [AuthGuard] },
+  { path: 'order-food/:id', component: CbOrderItemComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
@@ -36,6 +38,7 @@ const appRoutes: Routes = [
     LoginComponent,
     CbPublishItemComponent,
     FilterSearchResultsPipe,
+    CbOrderItemComponent,
   ],
   imports: [
     TagInputModule,

@@ -1,0 +1,37 @@
+@import "~variables.scss";
+@import "~mixins.scss";
+
+.menu-list a.is-active {
+  background-color: $cb-orange-main;
+}
+
+.cb-order-food-section-header {
+    background-color: lightcoral;
+    background-image: url("https://www.lieferando.de/assets/images/header/bg.jpg");
+    background-position: center;
+    background-size: cover;
+    @include desktop {
+        min-height: 320px;
+    }
+}
+.title-order-food {
+    color: #fff;
+    @include desktop {
+        font-family: $open-sans-semibold;
+        font-size: 72px;
+        text-shadow: 0 0 26px rgba(0, 0, 0, 1);
+    }
+
+    @include mobile {
+        font-family: $open-sans-semibold;
+        font-size: 42px;
+        text-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
+    }
+}
+
+.order-item__img {
+    img {
+        border: 3px solid $cb-orange-main;
+    }
+
+}

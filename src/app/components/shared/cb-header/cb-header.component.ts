@@ -10,7 +10,7 @@ export class CbHeaderComponent implements OnInit {
   toggleOnMobile = false;
   constructor(private router: Router) { }
 
-  ngOnInit() { 
+  ngOnInit() {
    }
 
   isUserLoggedIn() {
