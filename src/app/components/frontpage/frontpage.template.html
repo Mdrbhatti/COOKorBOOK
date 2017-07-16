@@ -1,25 +1,45 @@
 <app-cb-header></app-cb-header>
-<section class="hero is-primary is-medium">
-  <div class="hero-body">
+<section class="hero is-primary is-medium cb-home-page-section">
+  <div class="hero-body cb-home-page-section">
     <div class="container has-text-centered">
-      <h1 class="title">
-        CookOrBook
-      </h1>
-      <h2>
-        Let your neighbours cook for you!
-      </h2>
-      <div class="field has-addons">
-        <p class="control is-expanded">
-          <input class="input" type="text" placeholder="Find homemade food in your area...">
-        </p>
-        <p class="control">
-          <a class="button is-info">
-            Search
+      <div class="title-home-page">
+        Let your neighbours<br>cook for you
+      </div>
+      <div class="columns cb-home-page-actions">
+        <div class="column">
+          <a class="button is-large is-cb-bg is-text-white" [routerLink]="['/register']">
+            <span class="icon is-medium">
+              <i class="fa fa-cutlery"></i>
+            </span>
+            <span>Create your free account</span>
           </a>
-        </p>
+        </div>
       </div>
     </div>
   </div>
+</section>
+<section class="section">
+<div class="container">
+  <div class="columns">
+    <div class="column">
+      <h2 class="subtitle is-2">Advantages at glance</h2>
+      <br>
+      <div class="is-cb-colored ">
+        <span class="icon is-large">
+          <i class="fa fa-cutlery"></i>
+        </span>
+        <a class="cb-text-logo">&nbsp;&nbsp;COOKorBOOK</a>
+      </div>
+    </div>
+    <div class="column">
+      <h4 class="subtitle is-5">&#10004; Healthy and Tasty </h4>
+      <h4 class="subtitle is-5">&#10004; Eat fresh and homemade</h4>
+      <h4 class="subtitle is-5">&#10004; Save time and money </h4>
+      <h4 class="subtitle is-5">&#10004; Become friends with great cooks </h4>
+      <h4 class="subtitle is-5">&#10004; Negotitate Bulk pricing</h4>
+    </div>
+  </div>
+</div>
 </section>
 <div class="section main">
   <div class="container">
@@ -49,3 +69,4 @@
     </div>
   </div>
 </div>
+<app-cb-footer></app-cb-footer>

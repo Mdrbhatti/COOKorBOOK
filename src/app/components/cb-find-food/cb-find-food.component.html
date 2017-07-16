@@ -201,7 +201,8 @@
               </div>
               <div class="food-listing-item__actions--order">
                 <div class="food-listing-item__actions--order--btn">
-                  <a class="button is-large is-cb-bg is-text-white">
+                  <a  class="button is-large is-cb-bg is-text-white"
+                      [routerLink]="['/order-food', '98123']">
                     <span class="icon is-medium">
                       <i class="fa fa-shopping-cart"></i>
                     </span>
@@ -216,3 +217,4 @@
     </div>
   </div>
 </section>
+<app-cb-footer></app-cb-footer>

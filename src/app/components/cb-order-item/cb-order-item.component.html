@@ -1,0 +1,154 @@
+<app-cb-header></app-cb-header>
+<section class="section cb-order-food-section-header">
+  <div class="container">
+    <h1 class="title has-text-centered title-order-food">Few moments away<br>from fresh homemade food</h1>
+  </div>
+</section>
+<section class="section">
+  <div class="container">
+    <h1 class="title">
+      Place your order  {{id}}
+    </h1>
+    <h2 class="subtitle">
+      Your order will be in preperation as soon as its confirmed
+    </h2>
+    <div class="columns">
+      <!-- hide this sidebar on mobile -->
+      <div class="column is-3 is-hidden-mobile">
+        <div class="order-item__img">
+          <img src="http://www.italianicious.com.au/uploads/italianicious/articles/Ital-0312-gnocch-sorrentino-630.jpg" width="100%"/>
+        </div>
+        <br>
+        <article class="message">
+          <div class="message-header">
+            <p>Ingredients</p>
+          </div>
+          <div class="message-body">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempusneque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+          </div>
+        </article>
+        <article class="message">
+          <div class="message-header">
+            <p>Allergens</p>
+          </div>
+          <div class="message-body">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempusneque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+          </div>
+        </article>
+      </div>
+      <div class="column">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Portions</th>
+              <th>Subtotal</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <h4 class="subtitle is-4">Spaghetti Bolognaise</h4>
+                <p>
+                  w/ parmeggiano and basilikum<br>
+                  Cooked after my grandmother\'s famous recipe
+                </p>
+                <span class="tag is-success">vegetarian</span>
+              </td>
+              <td>
+                <p class="control">
+                  <span class="select">
+                    <select>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                      <option>6</option>
+                      <option>7</option>
+                      <option>8</option>
+                      <option>9</option>
+                      <option>10</option>
+                    </select>
+                  </span>
+                </p>
+              </td>
+              <td>123</td>
+            </tr>
+          </tbody>
+        </table>
+        <hr>
+        <div class="columns">
+          <div class="column is-three-quarters">
+            <h5 class="subtitle is-5">Select one of the pickup slot from dropdown</h5>
+          </div>
+          <!-- for desktop/tablet with pulled-right -->
+          <div class="column is-pulled-right is-hidden-mobile">
+            <div class="field">
+              <p class="control">
+                <span class="select is-large">
+                  <select>
+                    <option>24/8 20:00</option>
+                    <option>24/8 21:00</option>
+                    <option>24/8 22:00</option>
+                  </select>
+                </span>
+              </p>
+            </div>
+          </div>
+          <!-- for mobile without pulled-right -->
+          <div class="column is-hidden-tablet is-hidden-desktop">
+            <div class="field">
+              <p class="control">
+                <span class="select is-large">
+                  <select>
+                    <option>24/8 20:00</option>
+                    <option>24/8 21:00</option>
+                    <option>24/8 22:00</option>
+                  </select>
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <hr>
+
+        <div class="columns">
+          <div class="column">
+            Any additional remarks
+          </div>
+          <div class="column is-three-quarters">
+            <div class="field">
+              <p class="control">
+                <textarea class="textarea is-hovered" placeholder="Write here"></textarea>
+              </p>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="columns">
+          <div class="column is-three-quarters">
+            <h3 class="subtitle is-3">Order Total</h3>
+          </div>
+          <div class="column has-text-right">
+            <h3 class="subtitle is-3"> € 123</h3>
+          </div>
+        </div>
+        <div class="columns">
+          <div class="column is-three-quarters"></div>
+          <div class="column">
+            <!-- change to input type submit after changing to form -->
+            <a class="button is-large is-cb-bg is-text-white is-fullwidth">
+              <span class="icon is-medium">
+                <i class="fa fa-shopping-cart"></i>
+              </span>
+              <span>Order</span>
+            </a>
+          </div>
+        </div>        
+      </div>
+    </div>
+  </div>
+</section>
+<app-cb-footer></app-cb-footer>
