@@ -1,12 +1,45 @@
 @import "~variables.scss";
+@import "~mixins.scss";
 
 .menu-list a.is-active {
   background-color: $cb-orange-main;
 }
 
+.cb-find-food-section-header {
+    background-color: lightcoral;
+    background-image: url("../../../assets/images/findfood-bg-2.jpg");
+    background-size: cover;
+}
 .title-find-food {
-    font-family: $open-sans-light;
-    font-size: 52px;
+    @include desktop {
+        font-family: $open-sans-semibold;
+        font-size: 72px;
+        color: #fff;
+        text-shadow: 0 0 26px rgba(0, 0, 0, 1);
+    }
+
+    @include mobile {
+        font-family: $open-sans-semibold;
+        font-size: 42px;
+        color: #fff;
+        text-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
+    }
+}
+
+.cb-search-input {
+    @include mobile {
+        margin-top: 30px;
+    }
+
+    @include tablet {
+        margin-top: 30px;
+    }
+
+    @include desktop {
+        margin-top: 90px;
+        margin-bottom: 30px;
+        background-color: lightgrey;
+    }
 }
 .food-listing-item {
     display: block;
@@ -21,10 +54,15 @@
         -webkit-border-radius: 15px;
         border: 3px solid $cb-orange-main;
         overflow: hidden;
+        min-width: 200px;
     }
 
     .food-listing-item__description {
         position: relative;
+        // background-color: yellow;
+        @include desktop {
+            // min-width: 33%;
+        }
         
         &--heading {
             font-size: 24px;
@@ -43,13 +81,14 @@
 
         }
         &--type {
-            position: absolute;
-            bottom: 20px;
+            position: relative;
+            margin-top: 20px;
         }
         &--rating {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
+            position: relative;
+            float: right;
+            // margin-bottom: 20px;
+            // margin-right: 20px;
         }
 
     }
@@ -57,6 +96,7 @@
     .food-listing-item__actions--price {
         position: relative;
         height: 33%;
+        // background-color: lightblue;
 
         &--icon {
             font-size: 30px;
@@ -66,15 +106,12 @@
         &--text {
             font-size: 40px;
         }
-
-        &--comments {
-            margin-top: 15px;
-        }
     }
 
     .food-listing-item__actions--location {
         position: relative;
         height: 33%;
+        // background-color: lightcoral;
 
         &--icon {
             font-size: 30px;
@@ -88,10 +125,19 @@
 
     .food-listing-item__actions--order {
         height: 33%;
+        // background-color: lightseagreen;
+        position: relative;
 
         &--btn {
             margin-top: 20px;
             height: 50px;
+
+            .button {
+                @include mobile {
+                    width: 100%;
+                    margin: 0 auto;
+                }
+            }
         }
     }
 }
