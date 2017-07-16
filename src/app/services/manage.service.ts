@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 @Injectable()
 export class ManageService {
 
-  baseUrl = 'http://127.0.0.1:8000';
+  baseUrl: string = "http://127.0.0.1:8000"
 
   constructor(private http: Http, private router: Router) {
   }
@@ -16,8 +16,10 @@ export class ManageService {
 
   }
 
-  getInventory(seller){
-    return this.http.get(`${this.baseUrl}/items/`+ seller).map((response: Response) =>{
+  getInventory(){
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.get(`${this.baseUrl}/items/manage/published`, options).map((response: Response) =>{
       const data = response.json();
       console.log(data);
       return data;

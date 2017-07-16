@@ -7,6 +7,7 @@ import { FoodItem } from './../shared/food/food';
 import { fooditemsMock } from './../shared/food/food-mock';
 import { FoodQuantity } from './../shared/food/food-quantity';
 import {Router } from '@angular/router';
+import { ManageService } from '../../services/manage.service';
 
 
 // import template from './frontpage.template.html';
@@ -18,27 +19,35 @@ import {Router } from '@angular/router';
 
 })
 
-export class ManageComponent implements OnInit{
+export class ManageComponent implements OnInit {
 
   foodItemsToDisplay: FoodQuantity[] = [];
   foodItemsQuantity: FoodQuantity[] = [];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private manageService: ManageService) {
 
-    for(const fooditem of fooditemsMock){
-      this.foodItemsQuantity.push(new FoodQuantity(new FoodItem( fooditem.name,
-        fooditem.description,
-        fooditem.sellerComments,
-        fooditem.pricePerPortion,
-        fooditem.bulkPricing,
-        fooditem.image,
-        fooditem.type,
-        fooditem.rating,
-        fooditem.addressStreet,
-        fooditem.addressPostalCode,
-        fooditem.addressCity), 10));
-    }
-    this.foodItemsToDisplay = this.foodItemsQuantity.slice();
+    const data = this.manageService.getInventory().subscribe(
+      (res: any) => {
+      },
+      (error) => { console.log(error); }
+    );
+    console.log(data);
+
+
+    // for(const fooditem of fooditemsMock){
+    //   this.foodItemsQuantity.push(new FoodQuantity(new FoodItem( fooditem.name,
+    //     fooditem.description,
+    //     fooditem.sellerComments,
+    //     fooditem.pricePerPortion,
+    //     fooditem.bulkPricing,
+    //     fooditem.image,
+    //     fooditem.type,
+    //     fooditem.rating,
+    //     fooditem.addressStreet,
+    //     fooditem.addressPostalCode,
+    //     fooditem.addressCity), 10));
+    // }
+    // this.foodItemsToDisplay = this.foodItemsQuantity.slice();
 
   }
 
@@ -51,7 +60,7 @@ export class ManageComponent implements OnInit{
   }
 
   cancelOrders(){
-    
+
   }
 
   ngOnInit(){}

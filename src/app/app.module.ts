@@ -18,6 +18,7 @@ import { AuthService } from './services/auth.service';
 import { HttpModule } from '@angular/http';
 import { ManageComponent } from './components/manage-inventory/manage-inventory.component';
 import { FilterSearchResultsPipe } from './components/cb-find-food/cb-food-search.pipe';
+import {ManageService} from "./services/manage.service";
 
 const appRoutes: Routes = [
   { path: '', component: FrontpageComponent, pathMatch: 'full' },
@@ -55,6 +56,7 @@ const appRoutes: Routes = [
   providers: [
     AuthGuard,
     AuthService,
+    ManageService
   ],
   bootstrap: [AppComponent]
 })
