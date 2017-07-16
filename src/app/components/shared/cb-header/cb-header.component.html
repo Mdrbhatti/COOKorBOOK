@@ -1,4 +1,4 @@
-<div class = hero-head>
+<div class="hero-head">
   <header class="nav">
     <div class="container">
       <div class="nav-left">
@@ -12,13 +12,13 @@
           Cook food
         </a>
       </div>
-      <span class="nav-toggle">
+      <span class="nav-toggle" (click)="toggleOnMobile = !toggleOnMobile">
         <span></span>
         <span></span>
         <span></span>
       </span>
 
-      <div class="nav-right nav-menu">
+      <div class="nav-right nav-menu" [class.is-active]="toggleOnMobile">
         <a class="nav-item" routerLink="/login" routerLinkActive="is-active">Sign in</a>
         <a class="nav-item" routerLink="/register" routerLinkActive="is-active">Register</a>
       </div>

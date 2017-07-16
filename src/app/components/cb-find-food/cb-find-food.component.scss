@@ -11,17 +11,16 @@
     background-size: cover;
 }
 .title-find-food {
+    color: #fff;
     @include desktop {
         font-family: $open-sans-semibold;
         font-size: 72px;
-        color: #fff;
         text-shadow: 0 0 26px rgba(0, 0, 0, 1);
     }
 
     @include mobile {
         font-family: $open-sans-semibold;
         font-size: 42px;
-        color: #fff;
         text-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
     }
 }
