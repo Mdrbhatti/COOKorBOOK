@@ -5,9 +5,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FoodItem } from './../shared/food/food';
 import { fooditemsMock } from './../shared/food/food-mock';
-import { FoodQuantity } from './../shared/food/food-quantity';
+import { FoodQuantity } from './food-quantity';
 import {Router } from '@angular/router';
 import { ManageService } from '../../services/manage.service';
+import {forEach} from "@angular/router/src/utils/collection";
 
 
 // import template from './frontpage.template.html';
@@ -23,31 +24,19 @@ export class ManageComponent implements OnInit {
 
   foodItemsToDisplay: FoodQuantity[] = [];
   foodItemsQuantity: FoodQuantity[] = [];
+  random: any[];
 
   constructor(private router: Router, private manageService: ManageService) {
 
-    const data = this.manageService.getInventory().subscribe(
-      (res: any) => {
+    this.manageService.getInventory().subscribe(
+      (res: any[]) => {
+        this.random = res;
+        console.log(this.random);
+        res.forEach(test => this.foodItemsToDisplay.push(new FoodQuantity(test.item.title, test.price, test.servings)))
       },
       (error) => { console.log(error); }
+
     );
-    console.log(data);
-
-
-    // for(const fooditem of fooditemsMock){
-    //   this.foodItemsQuantity.push(new FoodQuantity(new FoodItem( fooditem.name,
-    //     fooditem.description,
-    //     fooditem.sellerComments,
-    //     fooditem.pricePerPortion,
-    //     fooditem.bulkPricing,
-    //     fooditem.image,
-    //     fooditem.type,
-    //     fooditem.rating,
-    //     fooditem.addressStreet,
-    //     fooditem.addressPostalCode,
-    //     fooditem.addressCity), 10));
-    // }
-    // this.foodItemsToDisplay = this.foodItemsQuantity.slice();
 
   }
 
@@ -56,7 +45,7 @@ export class ManageComponent implements OnInit {
   }
 
   cancel(){
-    setTimeout(() => {this.router.navigate(['/find-food']);}, 0);
+    setTimeout(() => {this.router.navigate(['/find-food']); }, 0);
   }
 
   cancelOrders(){

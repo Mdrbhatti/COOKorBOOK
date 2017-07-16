@@ -30,7 +30,7 @@ const appRoutes: Routes = [
   { path: 'manage-inventory', component: ManageComponent, canActivate: [AuthGuard] },
   { path: 'find-food', component: CbFindFoodComponent, canActivate: [AuthGuard] },
   { path: 'cook-food', component: CbPublishItemComponent, canActivate: [AuthGuard] },
-  { path: 'order-food/:id', component: CbOrderItemComponent, canActivate: [AuthGuard] }
+  { path: 'order-food/:id', component: CbOrderItemComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
