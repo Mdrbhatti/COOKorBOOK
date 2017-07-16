@@ -5,7 +5,7 @@ import { ItemAllergen } from './Allergen';
 import { PublishInformation } from './Publish';
 import { itemsMock } from './ItemMock';
 import { ImageResult, ResizeOptions } from 'ng2-imageupload';
-import { CookOrBookApiService } from '../../services/cookorbookapi.service';
+import { BackendService } from '../../services/backend.service';
 
 @Component({
   selector: 'app-cb-publish-item',
@@ -32,7 +32,7 @@ export class CbPublishItemComponent implements OnInit {
     resizeMaxWidth: 256
   };
 
-  constructor(private apiService: CookOrBookApiService) {
+  constructor(private apiService: BackendService) {
     this.itemsAvailable = itemsMock;
   }
 
@@ -107,32 +107,23 @@ export class CbPublishItemComponent implements OnInit {
 
   registerItem() {
     // API call to create new item
-    console.log(`Registering item, id: ${this.itemsAvailable.length}`);
-    this.apiService.createItem(this.title,
+    return this.apiService.createItem(this.title,
       this.description,
       this.tagsToItems(this.categories, ItemCategory),
       this.tagsToItems(this.allergens, ItemAllergen),
-      this.image)
-      .subscribe((res: any) => {
-        console.log(res.json());
-      });
-    // set dummy id
-    let item = new Item(this.itemsAvailable.length);
-    this._id = item.id;
-
-    item.title = this.title;
-    item.description = this.description;
-    item.categories = this.tagsToItems(this.categories, ItemCategory);
-    item.allergens = this.tagsToItems(this.allergens, ItemAllergen);
-    this.itemsAvailable.push(item);
-    return item;
+      this.image);
   }
 
   publishItem() {
     // check item form
-    console.log('Publishing item :)');
     if (this._id == -1) {
-      this.registerItem()
+      this.registerItem().subscribe((res: any) => {
+        console.log(res)
+        this._id = res._id;
+      },
+        (error) => {
+          console.log(error);
+        });
     }
 
   }
