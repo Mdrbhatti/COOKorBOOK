@@ -21,13 +21,13 @@
             <span></span>
             </span>
             <div *ngIf="isUserLoggedIn()" class="nav-right nav-menu" [class.is-active]="toggleOnMobile">
+                <a class="nav-item" routerLink="/profile" routerLinkActive="is-active">Profile</a>
                 <a class="nav-item" (click)="logUserOut()">Log out</a>
             </div>
             <div *ngIf="!isUserLoggedIn()" class="nav-right nav-menu" [class.is-active]="toggleOnMobile">
-                <a class="nav-item" (click)="redirectToLogIn()">Sign in</a>
-                <a class="nav-item" (click)="redirectToRegister()">Register</a>
+                <a class="nav-item" routerLink="/login" routerLinkActive="is-active">Sign in</a>
+                <a class="nav-item" routerLink="/register" routerLinkActive="is-active">Register</a>
             </div>
         </div>
-
     </header>
 </div>

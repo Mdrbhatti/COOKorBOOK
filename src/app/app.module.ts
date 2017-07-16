@@ -13,8 +13,10 @@ import { CbHeaderComponent } from './components/shared/cb-header/cb-header.compo
 import { FrontpageComponent } from './components/frontpage/frontpage.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './services/auth.service';
+import { BackendService } from './services/backend.service';
 import { HttpModule } from '@angular/http';
 import { ManageComponent } from './components/manage-inventory/manage-inventory.component';
 import { FilterSearchResultsPipe } from './components/cb-find-food/cb-food-search.pipe';
@@ -26,7 +28,9 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'manage-inventory', component: ManageComponent, canActivate: [AuthGuard] },
   { path: 'find-food', component: CbFindFoodComponent, canActivate: [AuthGuard] },
-  { path: 'cook-food', component: CbPublishItemComponent, canActivate: [AuthGuard] }
+  { path: 'cook-food', component: CbPublishItemComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 
 @NgModule({
@@ -38,6 +42,8 @@ const appRoutes: Routes = [
     RegisterComponent,
     LoginComponent,
     CbPublishItemComponent,
+    FilterSearchResultsPipe,
+    ProfileComponent,
     ManageComponent,
     FilterSearchResultsPipe
   ],
@@ -57,6 +63,7 @@ const appRoutes: Routes = [
     AuthGuard,
     AuthService,
     ManageService
+    BackendService
   ],
   bootstrap: [AppComponent]
 })

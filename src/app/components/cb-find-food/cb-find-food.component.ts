@@ -20,18 +20,18 @@ export class CbFindFoodComponent implements OnInit {
   constructor() {
 
     for (const fooditem of fooditemsMock) {
-      this.foodItems.push(new FoodItem( fooditem.name,
-                                        fooditem.description,
-                                        fooditem.sellerComments,
-                                        fooditem.pricePerPortion,
-                                        fooditem.bulkPricing,
-                                        fooditem.image,
-                                        fooditem.type,
-                                        fooditem.rating,
-                                        fooditem.addressStreet,
-                                        fooditem.addressPostalCode,
-                                        fooditem.addressCity
-                                      ));
+      this.foodItems.push(new FoodItem(fooditem.name,
+        fooditem.description,
+        fooditem.sellerComments,
+        fooditem.pricePerPortion,
+        fooditem.bulkPricing,
+        fooditem.image,
+        fooditem.type,
+        fooditem.rating,
+        fooditem.addressStreet,
+        fooditem.addressPostalCode,
+        fooditem.addressCity
+      ));
     }
     this.foodItemsToDisplay = this.foodItems.slice();
   }
@@ -53,7 +53,7 @@ export class CbFindFoodComponent implements OnInit {
   }
 
   updateFilter(f: any) {
-    for ( const key in f) {
+    for (const key in f) {
       if (this.filterParametersArray[key] !== undefined) {  // not first filter of category
         this.filterParametersArray[key].push(f[key]);
       } else if (this.filterParametersArray[key] === undefined) { // first category filter
@@ -71,7 +71,7 @@ export class CbFindFoodComponent implements OnInit {
       key = i;
       value = r[i];
     }
-    if (this.filterParametersArray[key] !== undefined ) { // if the key exists
+    if (this.filterParametersArray[key] !== undefined) { // if the key exists
       const indexOfValueToDelete = this.filterParametersArray[key].indexOf(value);
       if (indexOfValueToDelete > -1) {
         this.filterParametersArray[key].splice(indexOfValueToDelete, 1);
@@ -86,12 +86,12 @@ export class CbFindFoodComponent implements OnInit {
   updatePriceFilter(e: any, range: string) {  // simple filter for now
     const rangeArray = range.split(',');
     if (e.target.checked) {
-      for (let i = 0; i < rangeArray.length; i++ ) {
-        this.updateFilter({pricePerPortion : Number(rangeArray[i])});
+      for (let i = 0; i < rangeArray.length; i++) {
+        this.updateFilter({ pricePerPortion: Number(rangeArray[i]) });
       }
     } else {
-      for (let i = 0; i < rangeArray.length; i++ ) {
-        this.removeFilterParameter({pricePerPortion : Number(rangeArray[i])});
+      for (let i = 0; i < rangeArray.length; i++) {
+        this.removeFilterParameter({ pricePerPortion: Number(rangeArray[i]) });
       }
     }
   }

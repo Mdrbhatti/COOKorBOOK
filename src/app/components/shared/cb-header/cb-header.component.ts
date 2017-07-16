@@ -10,8 +10,8 @@ export class CbHeaderComponent implements OnInit {
   toggleOnMobile = false;
   constructor(private router: Router) { }
 
-  ngOnInit() { 
-   }
+  ngOnInit() {
+  }
 
   isUserLoggedIn() {
     return localStorage.getItem('token') !== null;
@@ -19,13 +19,8 @@ export class CbHeaderComponent implements OnInit {
 
   logUserOut() {
     localStorage.removeItem('token');
+    localStorage.removeItem('userType');
+    localStorage.removeItem('id');
     setTimeout(() => { this.router.navigate(['/login']); }, 500);
   }
-  redirectToLogIn () {
-    this.router.navigate(['/login']);
-  }
-  redirectToRegister () {
-    this.router.navigate(['/register']);
-  }
-
 }
