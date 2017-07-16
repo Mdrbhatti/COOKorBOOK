@@ -56,7 +56,7 @@ export class CbPublishItemComponent implements OnInit {
                     <div class="media">
                       <div class="media-left">
                         <figure class="image is-48x48">
-                          <img src="file://${ item.image.path }" alt="Image">
+                          <img src="http://localhost:8000/${ item.image.path }" alt="Image">
                         </figure>
                       </div>
                       <div class="media-content">

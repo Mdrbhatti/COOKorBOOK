@@ -1,108 +1,169 @@
 <app-cb-header></app-cb-header>
-
 <div *ngIf="published" class="notification is-success has-text-centered">
     <button class="delete"></button> Item successfully published...
 </div>
 
-<section class="section">
+<section class="section cb-publish-food-section-header">
   <div class="container">
-    <h1 class="title has-text-centered is-1">Publish food</h1>
+    <h1 class="title has-text-centered title-publish-food">Select your meal or<br />create a new one</h1>
   </div>
 </section>
-
 <section class="section">
   <div class="container">
     <form (ngSubmit)="publishItem()">
       <div class="columns">
         <div class="column is-half has-text-centered is-offset-one-quarter">
-          <h2 class="subtitle is-2">Select or create new</h2>
-          <div class="field">
-            <div class="control">
-              <input ngui-auto-complete
-                    [(ngModel)]="title"
-                    class="input"
-                    name="title"
-                    [source]="itemsAvailable"
-                    [list-formatter]="autocompleteFormatter"
-                    display-property-name="title"
-                    (ngModelChange)="onChange($event)"/>
+          <h2 class="subtitle is-2">Publish food item</h2>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Title</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <p class="control is-expanded">
+                  <input ngui-auto-complete
+                        [(ngModel)]="title"
+                        class="input"
+                        name="title"
+                        [source]="itemsAvailable"
+                        [list-formatter]="autocompleteFormatter"
+                        display-property-name="title"
+                        (ngModelChange)="onChange($event)"
+                        placeholder="Enter title"/>
+                </p>
+              </div>
             </div>
           </div>
-          <div class="field">
-            <div class="control">
-              <input type="file" imageUpload
-                (imageSelected)="imageSelected($event)"
-                [resizeOptions]="imageResizeOptions"
-                name="image"
-                [disabled]="itemReused"/>
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Picture</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <p class="control is-expanded">
+                  <input type="file" imageUpload
+                    (imageSelected)="imageSelected($event)"
+                    [resizeOptions]="imageResizeOptions"
+                    name="image"
+                    [disabled]="itemReused"/>
+                </p>
+              </div>
             </div>
           </div>
-          <div class="field">
-            <p class="control">
-              <textarea [(ngModel)]="description"
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Description</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <p class="control is-expanded">
+                  <textarea [(ngModel)]="description"
                         name="description"
                         class="textarea"
-                        placeholder="Description"
+                        placeholder="Enter description"
                         [disabled]="itemReused"></textarea>
-            </p>
+                </p>
+              </div>
+            </div>
           </div>
-          <div class="field">
-            <p class="control">
-              <tag-input [(ngModel)]="categories"
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Categories</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <p class="control is-expanded">
+                  <tag-input [(ngModel)]="categories"
                         name="categories"
                         [theme]="'minimal'"
                         placeholder="Add category"
                         secondaryPlaceholder="Add categories"
                         [disabled]="itemReused"></tag-input>
-            </p>
+                </p>
+                <p class="help">
+                  Enter category and press enter to start entering new one.
+                </p>
+              </div>
+            </div>
           </div>
-          <div class="field">
-            <p class="control">
-              <tag-input [(ngModel)]="allergens"
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Allergens</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <p class="control is-expanded">
+                  <tag-input [(ngModel)]="allergens"
                         name="allergens"
                         [theme]="'minimal'"
                         placeholder="Add allergen"
                         secondaryPlaceholder="Add allergens"
                         [disabled]="itemReused"></tag-input>
-            </p>
+                </p>
+                <p class="help">
+                  Enter allergen and press enter to start entering new one.
+                </p>
+              </div>
+            </div>
           </div>
+
           <hr />
-          <div class="field">
-            <div class="control">
-              <input ngui-datetime-picker
+
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Publish date</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <p class="control is-expanded">
+                  <input ngui-datetime-picker
                     [(ngModel)]="date"
                     date-only="true"
                     class="input"
                     name="date"
-                    placeholder="Publish date"/>
+                    placeholder="Set date"/>
+                </p>
+              </div>
             </div>
           </div>
-          <div class="field">
-            <div class="control">
-              <input [(ngModel)]="servings"
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Amount of servings</label>
+            </div>
+            <div class="field-body">
+              <div class="field">
+                <p class="control is-expanded">
+                  <input [(ngModel)]="servings"
                     class="input"
                     name="title"
                     type="number"
-                    placeholder="Amount of servings" />
+                    placeholder="Set amount" />
+                </p>
+              </div>
             </div>
           </div>
-          <div class="field has-addons">
-            <p class="control">
-              <span class="select">
-                <select>
-                  <option>$</option>
-                  <option>£</option>
-                  <option>€</option>
-                </select>
-              </span>
-            </p>
-            <p class="control is-expanded">
-              <input [(ngModel)]="price"
+          <div class="field is-horizontal">
+            <div class="field-label is-normal">
+              <label class="label">Price per serving</label>
+            </div>
+            <div class="field-body">
+              <div class="field has-addons">
+                <p class="control">
+                  <span class="select">
+                    <select>
+                      <option>€</option>
+                    </select>
+                  </span>
+                </p>
+                <p class="control is-expanded">
+                  <input [(ngModel)]="price"
                     class="input"
                     name="price"
                     type="text"
-                    placeholder="Price per serving">
-            </p>
+                    placeholder="Set price">
+                </p>
+              </div>
+            </div>
           </div>
           <hr />
           <div class="field cb-publish-submit">
