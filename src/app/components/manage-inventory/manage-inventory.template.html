@@ -42,12 +42,9 @@
         <div class="column">
           <div class="food-listing-item__actions--price">
             <div class="columns">
-                <span class="select is-medium is-fullwidth">
-                  <select>
-                  <option *ngFor="let num of foodItem.quantityList" selected value="{{num}}">{{num}}</option>
-                  </select>
-                  <!--<input type="text" placeholder="Provide new total amount...">-->
-                </span>
+              <p class="control">
+                <input class="input is-medium" type="text" placeholder="Quantity..." value = "{{foodItem.quantity}}">
+              </p>
             </div>
           </div>
         </div>
