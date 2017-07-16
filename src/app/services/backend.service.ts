@@ -73,7 +73,7 @@ export class BackendService {
   }
 
   getItems(params) {
-    const uri = `${this.baseUrl}/items${this.serializeDictToQuery(params, null)}`;
+    const uri = `${this.baseUrl}/items?${this.serializeDictToQuery(params, null)}`;
     const token = localStorage.getItem('token');
     const headers = new Headers();
     headers.append('Authorization', `JWT ${token}`);

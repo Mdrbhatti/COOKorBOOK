@@ -21,7 +21,6 @@
                     [source]="itemsAvailable"
                     [list-formatter]="autocompleteFormatter"
                     display-property-name="title"
-                    (valueChanged)="titleReused($event)"
                     (ngModelChange)="onChange($event)"/>
             </div>
           </div>
@@ -30,7 +29,8 @@
               <input type="file" imageUpload
                 (imageSelected)="imageSelected($event)"
                 [resizeOptions]="imageResizeOptions"
-                name="image"/>
+                name="image"
+                [disabled]="itemReused"/>
             </div>
           </div>
           <div class="field">
@@ -38,7 +38,8 @@
               <textarea [(ngModel)]="description"
                         name="description"
                         class="textarea"
-                        placeholder="Description" ></textarea>
+                        placeholder="Description"
+                        [disabled]="itemReused"></textarea>
             </p>
           </div>
           <div class="field">
@@ -47,7 +48,8 @@
                         name="categories"
                         [theme]="'minimal'"
                         placeholder="Add category"
-                        secondaryPlaceholder="Add categories"></tag-input>
+                        secondaryPlaceholder="Add categories"
+                        [disabled]="itemReused"></tag-input>
             </p>
           </div>
           <div class="field">
@@ -56,7 +58,8 @@
                         name="allergens"
                         [theme]="'minimal'"
                         placeholder="Add allergen"
-                        secondaryPlaceholder="Add allergens"></tag-input>
+                        secondaryPlaceholder="Add allergens"
+                        [disabled]="itemReused"></tag-input>
             </p>
           </div>
           <hr />

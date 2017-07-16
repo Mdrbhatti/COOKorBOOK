@@ -1,9 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Item } from './Item';
-import { ItemCategory } from './Category';
-import { ItemAllergen } from './Allergen';
-import { PublishInformation } from './Publish';
-import { itemsMock } from './ItemMock';
 import { ImageResult, ResizeOptions } from 'ng2-imageupload';
 import { BackendService } from '../../services/backend.service';
 
@@ -14,14 +9,17 @@ import { BackendService } from '../../services/backend.service';
 })
 
 export class CbPublishItemComponent implements OnInit {
-  public itemsAvailable: Array<Item> = [];
+  public itemsAvailable = [];
   // item variables
   private _id: number = -1;
   public title: string = '';
   public description: string = '';
-  public categories: Array<ItemCategory> = [];
-  public allergens: Array<ItemAllergen> = [];
-  public image: String = '';
+  public categories = [];
+  public allergens= [];
+  public image: string = '';
+  // flag for disabling field
+  public itemReused: boolean = false;
+
   // publish info
   public date: string = '';
   public servings: number;
@@ -33,7 +31,13 @@ export class CbPublishItemComponent implements OnInit {
   };
 
   constructor(private apiService: BackendService) {
-    this.itemsAvailable = itemsMock;
+    this.apiService.getItems({}).subscribe((res: any) => {
+        // console.log(res);
+        this.itemsAvailable = res;
+      },
+        (error) => {
+          console.log(error);
+      });
   }
 
   ngOnInit() { }
@@ -46,12 +50,13 @@ export class CbPublishItemComponent implements OnInit {
       }
       return html
     };
+    console.log(item);
     let html = `<div class="card">
                   <div class="card-content">
                     <div class="media">
                       <div class="media-left">
                         <figure class="image is-48x48">
-                          <img src="${ item.image_url}" alt="Image">
+                          <img src="file://${ item.image.path }" alt="Image">
                         </figure>
                       </div>
                       <div class="media-content">
@@ -62,7 +67,7 @@ export class CbPublishItemComponent implements OnInit {
                     </div>
 
                     <div class="content">
-                      ${ item.description}
+                      ${ item.description }
                     </div>
                   </div>
                 </div>`;
@@ -73,13 +78,14 @@ export class CbPublishItemComponent implements OnInit {
   itemsToTags(items) {
     let tags = [];
     for (let item of items) {
-      tags.push({ title: { display: item.title, value: item.title } });
+      tags.push({ display: item.title, value: item.title });
     }
     return tags;
   }
 
-  tagsToItems(tags, itemClass) {
+  tagsToItems(tags) {
     let items = [];
+    console.log(tags);
     for (let tag of tags) {
       items.push({ 'title': tag.value , 'description': ''});
     }
@@ -92,25 +98,38 @@ export class CbPublishItemComponent implements OnInit {
       || imageResult.dataURL;
   }
 
-  titleReused(item) {
-    this._id = item.id;
-    this.description = item.description;
-    this.categories = this.itemsToTags(item.categories);
-    this.allergens = this.itemsToTags(item.allergens);
-  }
-
   onChange(newValue) {
-    if (typeof(newValue) === 'object')
-    console.log(newValue);
-    return true;
+    if (typeof (newValue) === 'object') {
+      // item selected, set values
+      this._id = newValue.id;
+      this.description = newValue.description;
+      this.categories = this.itemsToTags(newValue.categories);
+      this.allergens = this.itemsToTags(newValue.allergens);
+      // make all item fields readonly, except title
+      this.itemReused = true;
+      console.log(this.itemReused);
+    } else if (typeof (newValue) === 'string') {
+      // unmake readonly
+      this.itemReused = false;
+
+      this.apiService.getItems({ title: newValue }).subscribe((res: any) => {
+        // console.log(res);
+        this.itemsAvailable = res;
+      },
+        (error) => {
+          console.log(error);
+      });
+      // text being entered
+      this._id = -1;
+    }
   }
 
   registerItem() {
     // API call to create new item
     return this.apiService.createItem(this.title,
       this.description,
-      this.tagsToItems(this.categories, ItemCategory),
-      this.tagsToItems(this.allergens, ItemAllergen),
+      this.tagsToItems(this.categories),
+      this.tagsToItems(this.allergens),
       this.image);
   }
 
