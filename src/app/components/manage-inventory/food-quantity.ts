@@ -2,7 +2,7 @@
  * Created by oysteinhauan on 07/07/17.
  */
 
-import {FoodItem} from "../shared/food/food";
+import {FoodItem} from "../cb-find-food/food";
 
 export class FoodQuantity {
 

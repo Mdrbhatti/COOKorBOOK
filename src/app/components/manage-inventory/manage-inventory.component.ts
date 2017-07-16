@@ -3,8 +3,8 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import { FoodItem } from './../shared/food/food';
-import { fooditemsMock } from './../shared/food/food-mock';
+import { FoodItem } from '../cb-find-food/food';
+import { fooditemsMock } from '../cb-find-food/food-mock';
 import { FoodQuantity } from './food-quantity';
 import {Router } from '@angular/router';
 import { ManageService } from '../../services/manage.service';
