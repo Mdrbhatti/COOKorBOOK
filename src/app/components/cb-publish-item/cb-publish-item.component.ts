@@ -4,7 +4,8 @@ import { ItemCategory } from './Category';
 import { ItemAllergen } from './Allergen';
 import { PublishInformation } from './Publish';
 import { itemsMock } from './ItemMock';
-
+import { ImageResult, ResizeOptions } from 'ng2-imageupload';
+import { CookOrBookApiService } from '../../services/cookorbookapi.service';
 
 @Component({
   selector: 'app-cb-publish-item',
@@ -20,13 +21,18 @@ export class CbPublishItemComponent implements OnInit {
   public description: string = '';
   public categories: Array<ItemCategory> = [];
   public allergens: Array<ItemAllergen> = [];
-
+  public image: String = '';
   // publish info
   public date: string = '';
   public servings: number = 0;
   public price: number = 0.0;
 
-  constructor() {
+  imageResizeOptions: ResizeOptions = {
+    resizeMaxHeight: 256,
+    resizeMaxWidth: 256
+  };
+
+  constructor(private apiService: CookOrBookApiService) {
     this.itemsAvailable = itemsMock;
   }
 
@@ -67,7 +73,7 @@ export class CbPublishItemComponent implements OnInit {
   itemsToTags(items) {
     let tags = [];
     for (let item of items) {
-      tags.push(item.title);
+      tags.push({ title: { display: item.title, value: item.title } });
     }
     return tags;
   }
@@ -75,11 +81,15 @@ export class CbPublishItemComponent implements OnInit {
   tagsToItems(tags, itemClass) {
     let items = [];
     for (let tag of tags) {
-      var item = new itemClass();
-      item.title = tag;
-      items.push(item);
+      items.push({ 'title': tag.value , 'description': ''});
     }
     return items;
+  }
+
+  imageSelected(imageResult: ImageResult) {
+    this.image = imageResult.resized
+      && imageResult.resized.dataURL
+      || imageResult.dataURL;
   }
 
   titleReused(item) {
@@ -89,8 +99,23 @@ export class CbPublishItemComponent implements OnInit {
     this.allergens = this.itemsToTags(item.allergens);
   }
 
+  onChange(newValue) {
+    if (typeof(newValue) === 'object')
+    console.log(newValue);
+    return true;
+  }
+
   registerItem() {
+    // API call to create new item
     console.log(`Registering item, id: ${this.itemsAvailable.length}`);
+    this.apiService.createItem(this.title,
+      this.description,
+      this.tagsToItems(this.categories, ItemCategory),
+      this.tagsToItems(this.allergens, ItemAllergen),
+      this.image)
+      .subscribe((res: any) => {
+        console.log(res.json());
+      });
     // set dummy id
     let item = new Item(this.itemsAvailable.length);
     this._id = item.id;
@@ -105,10 +130,10 @@ export class CbPublishItemComponent implements OnInit {
 
   publishItem() {
     // check item form
+    console.log('Publishing item :)');
     if (this._id == -1) {
-      this.registerItem();
+      this.registerItem()
     }
-    // published info accessable via:
-    // this.publishForm.controls
+
   }
 }

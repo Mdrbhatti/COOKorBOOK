@@ -22,8 +22,15 @@
                     [list-formatter]="autocompleteFormatter"
                     display-property-name="title"
                     (valueChanged)="titleReused($event)"
-                    type="text"
-                    placeholder="Title" />
+                    (ngModelChange)="onChange($event)"/>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <input type="file" imageUpload
+                (imageSelected)="imageSelected($event)"
+                [resizeOptions]="imageResizeOptions"
+                name="image"/>
             </div>
           </div>
           <div class="field">

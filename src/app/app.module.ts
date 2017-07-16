@@ -16,6 +16,8 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './services/auth.service';
 import { HttpModule } from '@angular/http';
+import { CookOrBookApiService } from './services/cookorbookapi.service';
+import { ImageUploadModule } from 'ng2-imageupload';
 
 const appRoutes: Routes = [
   { path: '', component: FrontpageComponent, pathMatch: 'full' },
@@ -45,11 +47,13 @@ const appRoutes: Routes = [
     NguiDatetimePickerModule,
     NguiAutoCompleteModule,
     HttpModule,
-    RouterModule
+    RouterModule,
+    ImageUploadModule
   ],
   providers: [
     AuthGuard,
     AuthService,
+    CookOrBookApiService
   ],
   bootstrap: [AppComponent]
 })
