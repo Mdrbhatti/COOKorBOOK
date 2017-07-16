@@ -20,6 +20,7 @@ import { BackendService } from './services/backend.service';
 import { HttpModule } from '@angular/http';
 import { FilterSearchResultsPipe } from './components/cb-find-food/cb-food-search.pipe';
 import { CbOrderItemComponent } from './components/cb-order-item/cb-order-item.component';
+import { CbFooterComponent } from './components/shared/cb-footer/cb-footer.component';
 
 const appRoutes: Routes = [
   { path: '', component: FrontpageComponent, pathMatch: 'full' },
@@ -43,7 +44,8 @@ const appRoutes: Routes = [
     CbPublishItemComponent,
     FilterSearchResultsPipe,
     CbOrderItemComponent,
-    ProfileComponent
+    ProfileComponent,
+    CbFooterComponent
   ],
   imports: [
     TagInputModule,
