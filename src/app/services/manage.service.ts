@@ -17,7 +17,9 @@ export class ManageService {
   }
 
   getInventory(){
-    let headers = new Headers({ 'Content-Type': 'application/json' });
+    const token = localStorage.getItem('token');
+    const headers = new Headers();
+    headers.append('Authorization', 'JWT ' + token);
     let options = new RequestOptions({ headers: headers });
     return this.http.get(`${this.baseUrl}/items/manage/published`, options).map((response: Response) =>{
       const data = response.json();

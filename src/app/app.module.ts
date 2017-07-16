@@ -62,7 +62,7 @@ const appRoutes: Routes = [
   providers: [
     AuthGuard,
     AuthService,
-    ManageService
+    ManageService,
     BackendService
   ],
   bootstrap: [AppComponent]
