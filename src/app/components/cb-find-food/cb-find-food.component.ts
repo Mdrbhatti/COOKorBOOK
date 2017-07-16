@@ -55,7 +55,7 @@ export class CbFindFoodComponent implements OnInit {
           dict['pricePerPortion'] = e.price;
           dict['picture'] = this.image; //
           dict['bulkPricing'] = Math.floor((Math.random()*2)) == 1 ? true : false; //
-          dict['type'] = e.item.categories.title;
+          dict['type'] = e.item.categories[0].description;
           dict['rating'] = Math.floor((Math.random()*5)+1); //
           dict['addressStreet'] = "hilblde32";
           dict['addressPostalCode'] = "90323";
