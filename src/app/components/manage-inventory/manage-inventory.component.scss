@@ -1,0 +1,42 @@
+@import "~variables.scss";
+
+
+.buttonsection{
+  text-align: center;
+}
+
+.price{
+  padding-top: 0px;
+}
+
+.main {
+  background-color: #FAFAFA;
+}
+
+section {
+  font-family: $open-sans-light;
+}
+
+.button.is-info {
+  background-color: #83A62E;
+}
+
+.button.is-danger{
+  background-color: grey;
+}
+
+.buttonsection{
+  margin-top: 1rem;
+}
+
+.cancelorder {
+  margin-top: -0.75rem;
+}
+
+.quantity{
+  margin-left: 1rem;
+}
+
+.currently_ordered span{
+  margin-top: 0.75rem;
+}

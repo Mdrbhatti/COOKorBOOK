@@ -18,7 +18,9 @@ import { AuthGuard } from './auth.guard';
 import { AuthService } from './services/auth.service';
 import { BackendService } from './services/backend.service';
 import { HttpModule } from '@angular/http';
+import { ManageComponent } from './components/manage-inventory/manage-inventory.component';
 import { FilterSearchResultsPipe } from './components/cb-find-food/cb-food-search.pipe';
+import {ManageService} from "./services/manage.service";
 import { CbOrderItemComponent } from './components/cb-order-item/cb-order-item.component';
 import { CbFooterComponent } from './components/shared/cb-footer/cb-footer.component';
 
@@ -26,6 +28,7 @@ const appRoutes: Routes = [
   { path: '', component: FrontpageComponent, pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'manage-inventory', component: ManageComponent, canActivate: [AuthGuard] },
   { path: 'find-food', component: CbFindFoodComponent, canActivate: [AuthGuard] },
   { path: 'cook-food', component: CbPublishItemComponent, canActivate: [AuthGuard] },
   { path: 'order-food/:id', component: CbOrderItemComponent, canActivate: [AuthGuard] },
@@ -45,7 +48,9 @@ const appRoutes: Routes = [
     FilterSearchResultsPipe,
     CbOrderItemComponent,
     ProfileComponent,
-    CbFooterComponent
+    CbFooterComponent,
+    ManageComponent,
+    FilterSearchResultsPipe
   ],
   imports: [
     TagInputModule,
@@ -62,6 +67,7 @@ const appRoutes: Routes = [
   providers: [
     AuthGuard,
     AuthService,
+    ManageService,
     BackendService
   ],
   bootstrap: [AppComponent]
