@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageResult, ResizeOptions } from 'ng2-imageupload';
 import { BackendService } from '../../services/backend.service';
+import validator from 'validator';
 
 @Component({
   selector: 'app-cb-publish-item',
@@ -21,6 +22,8 @@ export class CbPublishItemComponent implements OnInit {
   public itemReused: boolean = false;
   // flag for successful publish
   public published: boolean = false;
+  // generic errors that are displayed to user
+  public errors: Array<String> = [];
 
   // publish info
   public date: string = '';
@@ -37,7 +40,7 @@ export class CbPublishItemComponent implements OnInit {
         this.itemsAvailable = res;
       },
         (error) => {
-          console.log(error);
+        console.log(error);
       });
   }
 
@@ -71,7 +74,6 @@ export class CbPublishItemComponent implements OnInit {
                     </div>
                   </div>
                 </div>`;
-    // let html = `<span>${data.title}</span>`;
     return html;
   }
 
@@ -114,7 +116,7 @@ export class CbPublishItemComponent implements OnInit {
         this.itemsAvailable = res;
       },
         (error) => {
-          console.log(error);
+        console.log(error);
       });
       // text being entered
       this._id = -1;
@@ -131,6 +133,7 @@ export class CbPublishItemComponent implements OnInit {
   }
 
   publishItem() {
+    this.errors = [];
     // check item form
     if (this._id == -1) {
       this.registerItem().subscribe((res: any) => {
@@ -139,19 +142,39 @@ export class CbPublishItemComponent implements OnInit {
           this.published = true;
         },
           (error) => {
-            console.log(error);
+            this.errors.push("Failed to publish item");
           });
       },
         (error) => {
-          console.log(error);
+        this.errors.push("Failed to create a new item ");
         });
     } else {
       this.apiService.publishItem(this._id, this.date, this.servings, this.price).subscribe((res: any) => {
         this.published = true;
       },
         (error) => {
-          console.log(error);
+        this.errors.push("Failed to publish item");
         });
     }
+  }
+
+  isTitleValid() {
+    return validator.isLength(this.title, { min: 10, max: 255 });
+  }
+
+  isCategoriesValid() {
+    return validator.isLength(this.categories, { min: 1 });
+  }
+
+  isPublishDateValid() {
+    return validator.isAfter(this.date) && validator.isISO8601(this.date);
+  }
+
+  isServingsValid() {
+    return validator.isInt(this.servings);
+  }
+
+  isPriceValid() {
+    return validator.isFloat(this.price);
   }
 }

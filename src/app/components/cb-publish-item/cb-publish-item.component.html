@@ -1,7 +1,5 @@
 <app-cb-header></app-cb-header>
-<div *ngIf="published" class="notification is-success has-text-centered">
-    <button class="delete"></button> Item successfully published...
-</div>
+
 
 <section class="section cb-publish-food-section-header">
   <div class="container">
@@ -155,7 +153,7 @@
                     </select>
                   </span>
                 </p>
-                <p class="control is-expanded">
+                <p class="control is-expanded" >
                   <input [(ngModel)]="price"
                     class="input"
                     name="price"
@@ -170,6 +168,15 @@
             <div class="control">
               <button class="button is-primary">Publish</button>
             </div>
+          </div>
+          <div *ngIf="published" class="notification is-success has-text-centered">
+              <button class="delete"></button> Item successfully published...
+          </div>
+          <div *ngIf="errors.length != 0" class="notification is-danger has-text-centered">
+              <button class="delete"></button>
+              <p *ngFor="let error of errors">
+                {{error}}
+              </p>
           </div>
         </div>
       </div>
