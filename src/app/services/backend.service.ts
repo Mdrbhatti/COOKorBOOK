@@ -30,13 +30,17 @@ export class BackendService {
       }
       );
   }
-
-  getPublishedItems() {
+  // Get all items: (find-food)
+  getPublishedItems(id) {
+    let query = "";
     const token = localStorage.getItem('token');
     const headers = new Headers();
     headers.append('Authorization', 'JWT ' + token);
+    if(id){
+      query += `?_id=${id}`;
+    }
 
-    return this.http.get(`${this.baseUrl}/v1/pitem`, { headers: headers })
+    return this.http.get(`${this.baseUrl}/v1/pitem${query}`, { headers: headers })
       .map(
       (response: Response) => {
         const data = response.json();

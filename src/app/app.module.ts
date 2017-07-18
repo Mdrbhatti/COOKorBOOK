@@ -32,7 +32,7 @@ const appRoutes: Routes = [
   { path: 'find-food', component: CbFindFoodComponent, canActivate: [AuthGuard] },
   { path: 'cook-food', component: CbPublishItemComponent, canActivate: [AuthGuard] },
   { path: 'order-food/:id', component: CbOrderItemComponent, canActivate: [AuthGuard] },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }, // TODO: Add ID here
   { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
 

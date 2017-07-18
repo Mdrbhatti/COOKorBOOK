@@ -19,51 +19,20 @@ export class CbFindFoodComponent implements OnInit {
   serachInput = '';
   isFilterMenuClosedOnMobile = true;
 
-  constructor(private bcService: BackendService, private ref: ChangeDetectorRef) { 
-    // this.getAllPublishedItems();
-    // for (const fooditem of fooditemsMock) {
-    //   this.foodItems.push(new FoodItem(fooditem.name,
-    //     fooditem.description,
-    //     fooditem.sellerComments,
-    //     fooditem.pricePerPortion,
-    //     fooditem.bulkPricing,
-    //     fooditem.image,
-    //     fooditem.type,
-    //     fooditem.rating,
-    //     fooditem.addressStreet,
-    //     fooditem.addressPostalCode,
-    //     fooditem.addressCity
-    //   ));
-    // }
-    // this.foodItemsToDisplay = this.foodItems.slice();
+  constructor(private bcService: BackendService,
+    private ref: ChangeDetectorRef) {
   }
 
-  ngOnInit() { this.getAllPublishedItems();}
-  getLinkToItem(id){
+  ngOnInit() { this.getAllPublishedItems(); }
+  getLinkToItem(id) {
     return `/order-food/${id}`;
     // getLinkToItem(foodItem._id)
   }
   getAllPublishedItems() {
-    this.bcService.getPublishedItems().subscribe(
+    this.bcService.getPublishedItems(null).subscribe(
       (res: any) => {
         console.log("Moderate success");
         console.log(res);
-        // for (let e of res) {
-        //   let dict  = {};
-        //   dict['name'] = e.item.title;
-        //   dict['description'] = e.item.description;
-        //   dict['sellerComments'] = "MEOWWWW"; //
-        //   dict['pricePerPortion'] = e.price;
-        //   dict['picture'] = this.image; //
-        //   dict['bulkPricing'] = Math.floor((Math.random()*2)) == 1 ? true : false; //
-        //   dict['type'] = e.item.categories[0].description;
-        //   dict['rating'] = Math.floor((Math.random()*5)+1); //
-        //   dict['addressStreet'] = "hilblde32";
-        //   dict['addressPostalCode'] = "90323";
-        //   dict['addressCity'] = "Munchen";
-        //   this.foodItems.push(dict);
-        // }
-        // console.log(this.foodItems);
         this.foodItems = res;
         this.foodItemsToDisplay = this.foodItems.slice();
         console.log(this.foodItemsToDisplay);
