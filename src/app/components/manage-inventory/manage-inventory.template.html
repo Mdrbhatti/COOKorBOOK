@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <div class="column currently_ordered">
-                    <strong class="quantity">{{item.servingsRemaining}}</strong>
+                    <strong class="quantity">{{item.servings - item.servingsRemaining}}</strong><szrc></szrc>
                     <a class="button is-danger is-medium pull-right cancelorder" (click)="cancelOrder(item._id)">Cancel meal</a>
                 </div>
             </div>
