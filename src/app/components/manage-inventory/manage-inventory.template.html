@@ -1,4 +1,11 @@
 <app-cb-header></app-cb-header>
+
+<div *ngIf="saveStatus=='success'" class="notification is-success has-text-centered">
+  <button class="delete"></button> Save successful.
+</div>
+<div *ngIf="saveStatus=='fail'" class="notification is-warning has-text-centered">
+  <button class="delete"></button> Save failed, contact Admin.
+</div>
 <section class="section">
     <div class="container">
         <h1 class="title has-text-centered is-1">Manage Inventory</h1>

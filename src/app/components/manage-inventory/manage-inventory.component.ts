@@ -19,9 +19,11 @@ import {forEach} from "@angular/router/src/utils/collection";
 })
 
 export class ManageComponent implements OnInit {
-  items: any[]
+  items: any[];
+  errors: any[];
   foodItemsToDisplay: FoodQuantity[] = [];
   foodItemsQuantity: FoodQuantity[] = [];
+  saveStatus = '';
 
   constructor(private router: Router, private manageService: ManageService) {
 
@@ -37,11 +39,26 @@ export class ManageComponent implements OnInit {
 
   }
 
-  save(){
-    console.log(this.items);
+  save() {
+    let succesfulSaves = 0;
+    console.log(this.items.length);
     this.items.forEach(item => this.manageService.updateInventory(item._id, item.pricePerPortion, item.servings).subscribe(
-    ))
-    setTimeout(() => {this.router.navigate(['/find-food']); }, 2000);
+      (res: any) => {
+        succesfulSaves ++;
+        console.log(succesfulSaves);
+        if (succesfulSaves === this.items.length) {
+          this.saveStatus = 'success'
+          this.manageService.getInventory().subscribe(
+            (result: any[]) => {
+              this.items = result;
+            },
+            (error) => { console.log(error); }
+
+          );
+        }
+      },
+      (error) => { console.log(error); this.saveStatus = 'fail' }
+    ));
   }
 
   cancel(){
