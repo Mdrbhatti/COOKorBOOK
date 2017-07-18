@@ -17,7 +17,6 @@ export class ManageService {
     const headers = new Headers();
     headers.append('Authorization', 'JWT ' + token);
     let options = new RequestOptions({ headers: headers });
-    console.log("here");
     const req = {
       'itemId': itemId, 'pricePerPortion': price, 'servings': servings
     }
@@ -48,5 +47,24 @@ export class ManageService {
         return Observable.throw(error.status);
       }
       );
+  }
+
+  dropMeal(itemId: string) {
+    const token = localStorage.getItem('token');
+    const headers = new Headers();
+    headers.append('Authorization', 'JWT ' + token);
+    const options = new RequestOptions({ headers: headers });
+    const req = {
+      'itemId': itemId
+    }
+    return this.http.post(`${this.baseUrl}/items/manage/delete`, req, options).map((response: Response) => {
+      const data = response.json();
+      console.log(data);
+      return data;
+    }).catch((error: Response) => {
+      const data = error.json();
+      console.log(data);
+      return Observable.throw(error.status);
+    });
   }
 }

@@ -6,6 +6,12 @@
 <div *ngIf="saveStatus=='fail'" class="notification is-warning has-text-centered">
   <button class="delete"></button> Save failed, contact Admin.
 </div>
+<div *ngIf="deleteStatus=='success'" class="notification is-success has-text-centered">
+  <button class="delete"></button> Delete successful.
+</div>
+<div *ngIf="deleteStatus=='fail'" class="notification is-warning has-text-centered">
+  <button class="delete"></button> Delete failed, contact Admin.
+</div>
 <section class="section">
     <div class="container">
         <h1 class="title has-text-centered is-1">Manage Inventory</h1>
@@ -58,7 +64,7 @@
                 </div>
                 <div class="column currently_ordered">
                     <strong class="quantity">{{item.servingsRemaining}}</strong>
-                    <a class="button is-danger is-medium pull-right cancelorder" (click)="cancelOrders()">Cancel meal</a>
+                    <a class="button is-danger is-medium pull-right cancelorder" (click)="cancelOrder(item._id)">Cancel meal</a>
                 </div>
             </div>
         </div>

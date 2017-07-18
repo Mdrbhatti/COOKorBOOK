@@ -24,6 +24,7 @@ export class ManageComponent implements OnInit {
   foodItemsToDisplay: FoodQuantity[] = [];
   foodItemsQuantity: FoodQuantity[] = [];
   saveStatus = '';
+  deleteStatus = '';
 
   constructor(private router: Router, private manageService: ManageService) {
 
@@ -65,8 +66,22 @@ export class ManageComponent implements OnInit {
     setTimeout(() => {this.router.navigate(['/find-food']); }, 0);
   }
 
-  cancelOrders(){
+  cancelOrder(itemId) {
+    console.log(itemId);
+    this.manageService.dropMeal(itemId).subscribe(
+      (res: any) => {
+          this.deleteStatus = 'success'
+          this.manageService.getInventory().subscribe(
+            (result: any[]) => {
+              this.items = result;
+            },
+            (error) => {
+              console.log(error);
+            this.deleteStatus = 'fail';}
 
+          );
+      }
+    );
   }
 
   ngOnInit(){}
