@@ -45,33 +45,23 @@ export class CbFindFoodComponent implements OnInit {
       (res: any) => {
         console.log("Moderate success");
         console.log(res);
-        for (let e of res) {
-          let dict  = {};
-            dict['name'] = e.item.title;
-          dict['description'] = e.item.description;
-          dict['sellerComments'] = "MEOWWWW"; //
-          dict['pricePerPortion'] = e.price;
-          dict['picture'] = this.image; //
-          dict['bulkPricing'] = Math.floor((Math.random()*2)) == 1 ? true : false; //
-          dict['type'] = e.item.categories[0].description;
-          dict['rating'] = Math.floor((Math.random()*5)+1); //
-          dict['addressStreet'] = "hilblde32";
-          dict['addressPostalCode'] = "90323";
-          dict['addressCity'] = "Munchen";
-          this.foodItems.push(dict);
-          // this.foodItems.name = e.item.title;
-          // this.foodItems.description = e.item.description;
-          // this.foodItems.sellerComments = "MEOWWWW"; //
-          // this.foodItems.pricePerPortion = e.price;
-          // this.foodItems.image = this.image; //
-          // this.foodItems.bulkPricing = Math.floor((Math.random()*2)) == 1 ? true : false; //
-          // this.foodItems.type = e.item.categories.title;
-          // this.foodItems.rating = Math.floor((Math.random()*5)+1); //
-          // this.foodItems.addressStreet = "hilblde32";
-          // this.foodItems.addressPostalCode = "90323";
-          // this.foodItems.addressCity = "Munchen";
-        }
-        console.log(this.foodItems);
+        // for (let e of res) {
+        //   let dict  = {};
+        //   dict['name'] = e.item.title;
+        //   dict['description'] = e.item.description;
+        //   dict['sellerComments'] = "MEOWWWW"; //
+        //   dict['pricePerPortion'] = e.price;
+        //   dict['picture'] = this.image; //
+        //   dict['bulkPricing'] = Math.floor((Math.random()*2)) == 1 ? true : false; //
+        //   dict['type'] = e.item.categories[0].description;
+        //   dict['rating'] = Math.floor((Math.random()*5)+1); //
+        //   dict['addressStreet'] = "hilblde32";
+        //   dict['addressPostalCode'] = "90323";
+        //   dict['addressCity'] = "Munchen";
+        //   this.foodItems.push(dict);
+        // }
+        // console.log(this.foodItems);
+        this.foodItems = res;
         this.foodItemsToDisplay = this.foodItems.slice();
         console.log(this.foodItemsToDisplay);
         this.ref.detectChanges();

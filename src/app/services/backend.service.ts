@@ -36,7 +36,7 @@ export class BackendService {
     const headers = new Headers();
     headers.append('Authorization', 'JWT ' + token);
 
-    return this.http.get(`${this.baseUrl}/items/published`, { headers: headers })
+    return this.http.get(`${this.baseUrl}/v1/pitem`, { headers: headers })
       .map(
       (response: Response) => {
         const data = response.json();
