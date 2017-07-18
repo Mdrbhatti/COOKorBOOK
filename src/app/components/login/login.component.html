@@ -1,49 +1,59 @@
 <app-cb-header></app-cb-header>
-<!--Username-->
-<!--<div class="field is-grouped-centered">-->
-<div *ngIf="loginStatus=='success'" class="notification is-success has-text-centered">
-    <button class="delete"></button> Login successful. Redirecting...
-</div>
-<div *ngIf="loginStatus=='fail'" class="notification is-warning has-text-centered">
-    <button class="delete"></button> Wrong username or password. Try again...
-</div>
-<form>
-    <div class="column is-half is-offset-one-quarter">
-        <div class="field is-narrow">
-            <div class="control has-icons-left has-icons-right">
-                <input class="input is-large" [class.is-success]="isUsernameValid()" [class.is-danger]="!isUsernameValid()" name="username" type="text" placeholder="Username" [(ngModel)]="username">
-                <span class="icon is-small is-left">
-                  <i class="fa fa-user"></i>
-                </span>
-                <span class="icon is-small is-right" *ngIf="isUsernameValid()">
-                  <i class="fa fa-check "></i>
-                </span>
+<div class="hero is-fullheight cb-login-bg">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-multiline">
+                <div class="column is-10 is-offset-1">
+                    <div class="title-login-page">Login into COOKorBOOK</div>
+                    <br>
+                    <div class="columns">
+                        <div class="column is-half">
+                            <form>
+                                <div class="field">
+                                    <p class="control has-icons-left has-icons-right">
+                                        <input class="input is-large" [class.is-success]="isUsernameValid()" [class.is-danger]="!isUsernameValid()" name="username" type="text" placeholder="Username" [(ngModel)]="username">
+                                        <span class="icon is-left">
+                                            <i class="fa fa-envelope"></i>
+                                        </span>
+                                        <span class="icon is-right" *ngIf="isUsernameValid()">
+                                            <i class="fa fa-check"></i>
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="field">
+                                    <p class="control has-icons-left">
+                                        <input class="input is-large" [class.is-success]="isPasswordValid()" [class.is-danger]="!isPasswordValid()" name="password"
+                                                    type="password" placeholder="Password" [(ngModel)]="password">
+                                        <span class="icon is-left">
+                                            <i class="fa fa-lock"></i>
+                                        </span>
+                                        <span class="icon is-right" *ngIf="isPasswordValid()">
+                                            <i class="fa fa-check"></i>
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="field">
+                                    <p class="control">
+                                        <button *ngIf="(isUsernameValid() && isPasswordValid())" class="button is-info is-large btn-login" (click)="logInUser()">
+                                            Login
+                                        </button>
+                                        <button *ngIf="!(isUsernameValid() && isPasswordValid())" class="button is-info is-large btn-login" disabled>
+                                            Login
+                                        </button>
+                                    </p>
+                                </div>
+                            </form>
+                            <br>
+                            <div *ngIf="loginStatus=='success'" class="notification is-success has-text-centered">
+                                <button class="delete"></button> Login successful. Redirecting...
+                            </div>
+                            <div *ngIf="loginStatus=='fail'" class="notification is-warning has-text-centered">
+                                <button class="delete"></button> Wrong username or password. Try again...
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <!--</div>-->
-    <!--Password-->
-    <div class="column is-half is-offset-one-quarter">
-        <div class="field is-narrow">
-            <div class="field is-narrow">
-                <p class="control has-icons-left has-icons-right">
-                    <input class="input is-large" [class.is-success]="isPasswordValid()" [class.is-danger]="!isPasswordValid()" name="password" type="password" placeholder="Password" [(ngModel)]="password">
-                    <span class="icon is-small is-left">
-                  <i class="fa fa-lock"></i>
-                </span>
-                </p>
-            </div>
-        </div>
-    </div>
-    <!--Password Confirm-->
-    <div class="has-text-centered">
-        <!-- Some really cool stuff going on here ;) -->
-        <div *ngIf="(isUsernameValid() && isPasswordValid())" class="button is-large" (click)="logInUser()">
-            <i class="fa fa-sign-in fa-lg"></i> Log in
-        </div>
-        <div *ngIf="!(isUsernameValid() && isPasswordValid())" class="button is-large" disabled>
-            <i class="fa fa-sign-in fa-lg"></i> Log in
-        </div>
-    </div>
-</form>
-<app-cb-footer></app-cb-footer>
+</div>
