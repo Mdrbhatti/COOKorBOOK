@@ -19,20 +19,20 @@ import {forEach} from "@angular/router/src/utils/collection";
 })
 
 export class ManageComponent implements OnInit {
-  items: any[]
+  items: any[];
+  errors: any[];
   foodItemsToDisplay: FoodQuantity[] = [];
   foodItemsQuantity: FoodQuantity[] = [];
-  random: any[];
+  saveStatus = '';
+  deleteStatus = '';
 
   constructor(private router: Router, private manageService: ManageService) {
 
     this.manageService.getInventory().subscribe(
       (res: any[]) => {
-        this.random = res;
         this.items = res;
         console.log("Published items");
         console.log(this.items);
-        // res.forEach(test => this.foodItemsToDisplay.push(new FoodQuantity(test.item._id, test.item.title, test.price, test.servings)))
       },
       (error) => { console.log(error); }
 
@@ -40,18 +40,48 @@ export class ManageComponent implements OnInit {
 
   }
 
-  save(){
-    this.foodItemsToDisplay.forEach(item => this.manageService.updateInventory(item.itemId, item.price, item.quantity).subscribe(
+  save() {
+    let succesfulSaves = 0;
+    console.log(this.items.length);
+    this.items.forEach(item => this.manageService.updateInventory(item._id, item.pricePerPortion, item.servings).subscribe(
+      (res: any) => {
+        succesfulSaves ++;
+        console.log(succesfulSaves);
+        if (succesfulSaves === this.items.length) {
+          this.saveStatus = 'success'
+          this.manageService.getInventory().subscribe(
+            (result: any[]) => {
+              this.items = result;
+            },
+            (error) => { console.log(error); }
 
-    ))
+          );
+        }
+      },
+      (error) => { console.log(error); this.saveStatus = 'fail' }
+    ));
   }
 
   cancel(){
     setTimeout(() => {this.router.navigate(['/find-food']); }, 0);
   }
 
-  cancelOrders(){
+  cancelOrder(itemId) {
+    console.log(itemId);
+    this.manageService.dropMeal(itemId).subscribe(
+      (res: any) => {
+          this.deleteStatus = 'success'
+          this.manageService.getInventory().subscribe(
+            (result: any[]) => {
+              this.items = result;
+            },
+            (error) => {
+              console.log(error);
+            this.deleteStatus = 'fail';}
 
+          );
+      }
+    );
   }
 
   ngOnInit(){}
