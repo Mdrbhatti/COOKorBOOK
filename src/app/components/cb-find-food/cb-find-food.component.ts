@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChangeDetectionStrategy } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
-import { FoodItem } from './food';
-import { fooditemsMock } from './food-mock';
 import { FilterSearchResultsPipe } from './cb-food-search.pipe';
 import { BackendService } from '../../services/backend.service';
 
