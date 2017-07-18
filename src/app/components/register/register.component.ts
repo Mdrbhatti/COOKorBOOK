@@ -20,6 +20,10 @@ export class RegisterComponent implements OnInit {
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
+    let token = localStorage.getItem('token');
+    if (token) {
+      setTimeout(() => { this.router.navigate(['/find-food']); }, 0);
+    }
   }
 
   // Test email validity
@@ -59,14 +63,14 @@ export class RegisterComponent implements OnInit {
   registerUser() {
     this.authService.register(this.name, this.username, this.password, this.email, this.userType).subscribe(
       (res: any) => {
-        this.registerStatus = 'success';        
+        this.registerStatus = 'success';
         localStorage.setItem('token', res.token);
         localStorage.setItem('userType', res.userType);
         localStorage.setItem('id', res.id);
         console.log("Access Token : \n" + res.token + "\nid: " + res.id);
         setTimeout(() => { this.router.navigate(['/find-food']); }, 2000);
       },
-      (error) => { console.log(error); this.registerStatus = 'fail';}
+      (error) => { console.log(error); this.registerStatus = 'fail'; }
     );
   }
 }

@@ -12,7 +12,7 @@ export class ManageService {
   constructor(private http: Http, private router: Router) {
   }
 
-  updateInventory(itemId, price, quantity){
+  updateInventory(itemId, price, quantity) {
     const token = localStorage.getItem('token');
     const headers = new Headers();
     headers.append('Authorization', 'JWT ' + token);
@@ -21,8 +21,7 @@ export class ManageService {
     const req = {
       'itemId': itemId, 'price': price, 'servings': quantity
     }
-    return this.http.post(`${this.baseUrl}/items/manage`, req, options).map((response: Response) =>
-    {
+    return this.http.post(`${this.baseUrl}/items/manage`, req, options).map((response: Response) => {
       const data = response.json();
       console.log(data);
       return data;
@@ -31,15 +30,14 @@ export class ManageService {
       console.log(data);
       return Observable.throw(error.status);
     });
-
   }
 
-  getInventory(){
+  getInventory() {
     const token = localStorage.getItem('token');
     const headers = new Headers();
     headers.append('Authorization', 'JWT ' + token);
     let options = new RequestOptions({ headers: headers });
-    return this.http.get(`${this.baseUrl}/items/manage/published`, options).map((response: Response) =>{
+    return this.http.get(`${this.baseUrl}/v1/pitem`, options).map((response: Response) => {
       const data = response.json();
       console.log(data);
       return data;
@@ -49,10 +47,6 @@ export class ManageService {
         console.log(data);
         return Observable.throw(error.status);
       }
-    )
-
+      );
   }
-
-
-
 }

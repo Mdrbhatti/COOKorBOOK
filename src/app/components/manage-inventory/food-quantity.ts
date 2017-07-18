@@ -2,8 +2,6 @@
  * Created by oysteinhauan on 07/07/17.
  */
 
-import {FoodItem} from "../cb-find-food/food";
-
 export class FoodQuantity {
 
   title: string;
@@ -20,6 +18,4 @@ export class FoodQuantity {
     this.quantity = quantity;
     this.quantityList = Array.from(Array(50), (x, i) => i);
   }
-
-
 }

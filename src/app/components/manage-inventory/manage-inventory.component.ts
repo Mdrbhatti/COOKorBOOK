@@ -3,8 +3,6 @@
  */
 
 import { Component, OnInit } from '@angular/core';
-import { FoodItem } from '../cb-find-food/food';
-import { fooditemsMock } from '../cb-find-food/food-mock';
 import { FoodQuantity } from './food-quantity';
 import {Router } from '@angular/router';
 import { ManageService } from '../../services/manage.service';
@@ -21,7 +19,7 @@ import {forEach} from "@angular/router/src/utils/collection";
 })
 
 export class ManageComponent implements OnInit {
-
+  items: any[]
   foodItemsToDisplay: FoodQuantity[] = [];
   foodItemsQuantity: FoodQuantity[] = [];
   random: any[];
@@ -31,8 +29,10 @@ export class ManageComponent implements OnInit {
     this.manageService.getInventory().subscribe(
       (res: any[]) => {
         this.random = res;
-        console.log(this.random);
-        res.forEach(test => this.foodItemsToDisplay.push(new FoodQuantity(test.item._id, test.item.title, test.price, test.servings)))
+        this.items = res;
+        console.log("Published items");
+        console.log(this.items);
+        // res.forEach(test => this.foodItemsToDisplay.push(new FoodQuantity(test.item._id, test.item.title, test.price, test.servings)))
       },
       (error) => { console.log(error); }
 

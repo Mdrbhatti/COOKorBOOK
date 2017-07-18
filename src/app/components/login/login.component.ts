@@ -16,6 +16,10 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router, private authService: AuthService) { }
 
   ngOnInit() {
+    let token = localStorage.getItem('token');
+    if (token) {
+      setTimeout(() => { this.router.navigate(['/find-food']); }, 0);
+    }
   }
 
   isUsernameValid() {

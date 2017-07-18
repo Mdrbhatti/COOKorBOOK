@@ -30,13 +30,17 @@ export class BackendService {
       }
       );
   }
-
-  getPublishedItems() {
+  // Get all items: (find-food)
+  getPublishedItems(id) {
+    let query = "";
     const token = localStorage.getItem('token');
     const headers = new Headers();
     headers.append('Authorization', 'JWT ' + token);
+    if (id) {
+      query += `?_id=${id}`;
+    }
 
-    return this.http.get(`${this.baseUrl}/items/published`, { headers: headers })
+    return this.http.get(`${this.baseUrl}/v1/pitem${query}`, { headers: headers })
       .map(
       (response: Response) => {
         const data = response.json();
@@ -50,6 +54,28 @@ export class BackendService {
         return Observable.throw('Something went wrong@getUserData');
       }
       );
+  }
+
+  orderItem(id, req) {
+
+    const token = localStorage.getItem('token');
+    const headers = new Headers();
+    headers.append('Authorization', 'JWT ' + token);
+
+    return this.http.post(`${this.baseUrl}/v1/pitem/${id}/order`, req, { headers: headers })
+      .map(
+      (response: Response) => {
+        const data = response.json();
+        console.log(data);
+        return data;
+      })
+      .catch(
+      (error: Response) => {
+        const data = error.json();
+        console.log(data);
+        return Observable.throw(error.status);
+      });
+
   }
 
   getUserReviews(id, type) {
