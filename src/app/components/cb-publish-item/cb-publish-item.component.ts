@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Item } from './Item';
-import { ItemCategory } from './Category';
-import { ItemAllergen } from './Allergen';
-import { PublishInformation } from './Publish';
-import { itemsMock } from './ItemMock';
-
+import { ImageResult, ResizeOptions } from 'ng2-imageupload';
+import { BackendService } from '../../services/backend.service';
+import validator from 'validator';
 
 @Component({
   selector: 'app-cb-publish-item',
@@ -13,7 +10,7 @@ import { itemsMock } from './ItemMock';
 })
 
 export class CbPublishItemComponent implements OnInit {
-  public itemsAvailable: Array<Item> = [];
+  public itemsAvailable = [];
   // item variables
   private _id: number = -1;
   public title: string = '';
@@ -35,10 +32,10 @@ export class CbPublishItemComponent implements OnInit {
   public servings: number;
   public price: number;
 
-  
+
   sellerComments; // add
   bulkPricing;
-// TODO: add in form
+  // TODO: add in form
   addressStreet;
   addressPostalCode;
   addressCity;
@@ -48,57 +45,11 @@ export class CbPublishItemComponent implements OnInit {
     resizeMaxWidth: 256
   };
 
-  constructor(private apiService: BackendService) {
-    // this.apiService.getItems({}).subscribe((res: any) => {
-    //     this.itemsAvailable = res;
-    //   },
-    //     (error) => {
-    //     console.log(error);
-    //   });
-  }
+  constructor(private apiService: BackendService) { }
 
   ngOnInit() { }
 
-  // autocompleteFormatter(item: any): string {
-  //   let generateTagsHtml = (list, tag) => {
-  //     let html = '';
-  //     for (let item of list) {
-  //       html += `<span class="tag ${ tag }">${ item.title }</span>`;
-  //     }
-  //     return html
-  //   };
-  //   let html = `<div class="card">
-  //                 <div class="card-content">
-  //                   <div class="media">
-  //                     <div class="media-left">
-  //                       <figure class="image is-48x48">
-  //                         <img src="http://localhost:8000/${ item.image.path }" alt="Image">
-  //                       </figure>
-  //                     </div>
-  //                     <div class="media-content">
-  //                       <p class="title is-4">${ item.title}</p>
-  //                       <p class="subtitle is-6">${ generateTagsHtml(item.categories, 'is-success')}</p>
-  //                       <p class="subtitle is-6">${ generateTagsHtml(item.allergens, 'is-danger')}</p>
-  //                     </div>
-  //                   </div>
-
-  //                   <div class="content">
-  //                     ${ item.description }
-  //                   </div>
-  //                 </div>
-  //               </div>`;
-  //   return html;
-  // }
-
-  // itemsToTags(items) {
-  //   let tags = [];
-  //   for (let item of items) {
-  //     tags.push({ display: item.title, value: item.title });
-  //   }
-  //   return tags;
-  // }
-
-  tagsToItems(tags, itemClass) {
+  tagsToItems(tags) {
     let items = [];
     if (tags.length === 0) {
       items.push("");
@@ -119,40 +70,11 @@ export class CbPublishItemComponent implements OnInit {
   }
 
   onChange(newValue) {
-    // if (typeof (newValue) === 'object') {
-    //   // item selected, set values
-    //   this._id = newValue._id;
-    //   this.description = newValue.description;
-    //   this.categories = this.itemsToTags(newValue.categories);
-    //   this.allergens = this.itemsToTags(newValue.allergens);
-    //   // make all item fields readonly, except title
-    //   this.itemReused = true;
-    // } else if (typeof (newValue) === 'string') {
-    //   // unmake readonly
-    //   this.itemReused = false;
-
-    //   this.apiService.getItems({ title: newValue }).subscribe((res: any) => {
-    //     this.itemsAvailable = res;
-    //   },
-    //     (error) => {
-    //     console.log(error);
-    //   });
-    //   // text being entered
-    //   this._id = -1;
-    // }
   }
 
-  // registerItem() {
-  //   // API call to create new item
-  //   return this.apiService.createItem(this.title,
-  //     this.description,
-  //     this.tagsToItems(this.categories),
-  //     this.tagsToItems(this.allergens),
-  //     this.image);
-  // }
-setBulk(val){
-  this.bulkPricing = val;
-}
+  setBulk(val) {
+    this.bulkPricing = val;
+  }
   publishItem() {
     let params = {};
     params["description"] = this.description;
@@ -179,31 +101,8 @@ setBulk(val){
         console.log("Published item:");
         console.log(res);
       },
-      (error) => { console.log("Error @ publish item");console.log(error); }
+      (error) => { console.log("Error @ publish item"); console.log(error); }
     );
-    // this.errors = [];
-    // // check item form
-    // if (this._id == -1) {
-    //   this.registerItem().subscribe((res: any) => {
-    //     this._id = res._id;
-    //     this.apiService.publishItem(this._id, this.date, this.servings, this.price).subscribe((res: any) => {
-    //       this.published = true;
-    //     },
-    //       (error) => {
-    //         this.errors.push("Failed to publish item");
-    //       });
-    //   },
-    //     (error) => {
-    //     this.errors.push("Failed to create a new item ");
-    //     });
-    // } else {
-    //   this.apiService.publishItem(this._id, this.date, this.servings, this.price).subscribe((res: any) => {
-    //     this.published = true;
-    //   },
-    //     (error) => {
-    //     this.errors.push("Failed to publish item");
-    //     });
-    // }
   }
 
   isTitleValid() {

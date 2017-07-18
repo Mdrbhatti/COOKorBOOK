@@ -19,6 +19,7 @@ import { AuthService } from './services/auth.service';
 import { BackendService } from './services/backend.service';
 import { HttpModule } from '@angular/http';
 import { ManageComponent } from './components/manage-inventory/manage-inventory.component';
+import { ImageUploadModule } from 'ng2-imageupload';
 import { FilterSearchResultsPipe } from './components/cb-find-food/cb-food-search.pipe';
 import {ManageService} from "./services/manage.service";
 import { CbOrderItemComponent } from './components/cb-order-item/cb-order-item.component';
@@ -62,7 +63,8 @@ const appRoutes: Routes = [
     NguiDatetimePickerModule,
     NguiAutoCompleteModule,
     HttpModule,
-    RouterModule
+    RouterModule,
+    ImageUploadModule
   ],
   providers: [
     AuthGuard,

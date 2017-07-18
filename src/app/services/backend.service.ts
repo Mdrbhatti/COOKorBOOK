@@ -104,9 +104,7 @@ export class BackendService {
       }
       );
   }
-<<<<<<< Updated upstream
-}
-=======
+
 
   // private serializeDictToQuery(dict, prefix) {
   //   let str = [];
@@ -174,4 +172,3 @@ export class BackendService {
       })
   }
 }
->>>>>>> Stashed changes

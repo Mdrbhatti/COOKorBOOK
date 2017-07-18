@@ -1,300 +1,228 @@
 <app-cb-header></app-cb-header>
-
-<<<<<<< Updated upstream <section class="section">
+<section class="section cb-publish-food-section-header">
     <div class="container">
-        <h1 class="title has-text-centered is-1">Publish food</h1>
+        <h1 class="title has-text-centered title-publish-food">Create a delicious and <br /> healthy meal</h1>
     </div>
-    =======
+</section>
 
-    <section class="section cb-publish-food-section-header">
-        <div class="container">
-            <h1 class="title has-text-centered title-publish-food">Select your meal or<br />create a new one</h1>
-        </div>
-        >>>>>>> Stashed changes
-    </section>
-
-    <section class="section">
-        <<<<<<< Updated upstream <div class="container">
-            <form (ngSubmit)="publishItem()">
-                <div class="columns">
-                    <div class="column is-half has-text-centered is-offset-one-quarter">
-                        <h2 class="subtitle is-2">Select or create new</h2>
-                        <div class="field">
-                            <div class="control">
-                                <input ngui-auto-complete [(ngModel)]="title" class="input" name="title" [source]="itemsAvailable" [list-formatter]="autocompleteFormatter" display-property-name="title" (valueChanged)="titleReused($event)" type="text" placeholder="Title" />
-                            </div>
+<section class="section">
+    <div class="container">
+        <form (ngSubmit)="publishItem()">
+            <div class="columns">
+                <div class="column is-half has-text-centered is-offset-one-quarter">
+                    <h2 class="subtitle is-2">Publish food item</h2>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Title</label>
                         </div>
-                        <div class="field">
-                            <p class="control">
-                                <textarea [(ngModel)]="description" name="description" class="textarea" placeholder="Description"></textarea>
-                            </p>
-                        </div>
-                        <div class="field">
-                            <p class="control">
-                                <tag-input [(ngModel)]="categories" name="categories" [theme]="'minimal'" placeholder="Add category" secondaryPlaceholder="Add categories"></tag-input>
-                            </p>
-                        </div>
-                        <div class="field">
-                            <p class="control">
-                                <tag-input [(ngModel)]="allergens" name="allergens" [theme]="'minimal'" placeholder="Add allergen" secondaryPlaceholder="Add allergens"></tag-input>
-                            </p>
-                        </div>
-                        <hr />
-                        <div class="field">
-                            <div class="control">
-                                <input ngui-datetime-picker [(ngModel)]="date" class="input" name="date" />
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="control">
-                                <input [(ngModel)]="servings" class="input" name="title" type="number" placeholder="Amount of servings" />
-                            </div>
-                        </div>
-                        <div class="field has-addons">
-                            <p class="control">
-                                <span class="select">
-                <select>
-                  <option>$</option>
-                  <option>£</option>
-                  <option>€</option>
-                </select>
-              </span>
-                            </p>
-                            <p class="control is-expanded">
-                                <input [(ngModel)]="price" class="input" name="price" type="text" placeholder="Price per serving">
-                            </p>
-                        </div>
-                        <hr />
-                        <div class="field">
-                            <div class="control">
-                                <p class="control">
-                                    <button class="button is-primary">Publish</button>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded">
+                                    <input [(ngModel)]="title" class="input" name="title" display-property-name="title" placeholder="Enter title" />
                                 </p>
                             </div>
                         </div>
                     </div>
-                </div>
-            </form>
-            </div>
-            =======
-            <div class="container">
-                <form (ngSubmit)="publishItem()">
-                    <div class="columns">
-                        <div class="column is-half has-text-centered is-offset-one-quarter">
-                            <h2 class="subtitle is-2">Publish food item</h2>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">Title</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <p class="control is-expanded">
-                                            <input [(ngModel)]="title" class="input" name="title" display-property-name="title" placeholder="Enter title" />
-                                        </p>
-                                    </div>
-                                </div>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Picture</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded">
+                                    <input type="file" imageUpload (imageSelected)="imageSelected($event)" [resizeOptions]="imageResizeOptions" name="image" [disabled]="itemReused" />
+                                </p>
                             </div>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">Picture</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <p class="control is-expanded">
-                                            <input type="file" imageUpload (imageSelected)="imageSelected($event)" [resizeOptions]="imageResizeOptions" name="image" [disabled]="itemReused" />
-                                        </p>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Description</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded">
+                                    <textarea [(ngModel)]="description" name="description" class="textarea" placeholder="Enter description" [disabled]="itemReused"></textarea>
+                                </p>
                             </div>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">Description</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <p class="control is-expanded">
-                                            <textarea [(ngModel)]="description" name="description" class="textarea" placeholder="Enter description" [disabled]="itemReused"></textarea>
-                                        </p>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Categories</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded">
+                                    <tag-input [(ngModel)]="categories" name="categories" [theme]="'minimal'" placeholder="Add category" secondaryPlaceholder="Add categories" [disabled]="itemReused"></tag-input>
+                                </p>
+                                <p class="help">
+                                    Enter category and press enter to start entering new one.
+                                </p>
                             </div>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">Categories</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <p class="control is-expanded">
-                                            <tag-input [(ngModel)]="categories" name="categories" [theme]="'minimal'" placeholder="Add category" secondaryPlaceholder="Add categories" [disabled]="itemReused"></tag-input>
-                                        </p>
-                                        <p class="help">
-                                            Enter category and press enter to start entering new one.
-                                        </p>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Ingredients</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded">
+                                    <tag-input [(ngModel)]="ingredients" name="ingredients" [theme]="'minimal'" placeholder="Add ingredient" secondaryPlaceholder="Add ingredients" [disabled]="itemReused"></tag-input>
+                                </p>
+                                <p class="help">
+                                    Enter Ingredient and press enter to start entering new one.
+                                </p>
                             </div>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">Ingredients</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <p class="control is-expanded">
-                                            <tag-input [(ngModel)]="ingredients" name="ingredients" [theme]="'minimal'" placeholder="Add ingredient" secondaryPlaceholder="Add ingredients" [disabled]="itemReused"></tag-input>
-                                        </p>
-                                        <p class="help">
-                                            Enter Ingredient and press enter to start entering new one.
-                                        </p>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Allergens</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded">
+                                    <tag-input [(ngModel)]="allergens" name="allergens" [theme]="'minimal'" placeholder="Add allergen" secondaryPlaceholder="Add allergens" [disabled]="itemReused"></tag-input>
+                                </p>
+                                <p class="help">
+                                    Enter allergen and press enter to start entering new one.
+                                </p>
                             </div>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">Allergens</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <p class="control is-expanded">
-                                            <tag-input [(ngModel)]="allergens" name="allergens" [theme]="'minimal'" placeholder="Add allergen" secondaryPlaceholder="Add allergens" [disabled]="itemReused"></tag-input>
-                                        </p>
-                                        <p class="help">
-                                            Enter allergen and press enter to start entering new one.
-                                        </p>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Comments</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded">
+                                    <textarea [(ngModel)]="sellerComments" name="sellerComments" class="textarea" placeholder="Enter comments" [disabled]="itemReused"></textarea>
+                                </p>
                             </div>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">Comments</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <p class="control is-expanded">
-                                            <textarea [(ngModel)]="sellerComments" name="sellerComments" class="textarea" placeholder="Enter comments" [disabled]="itemReused"></textarea>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
+                    </div>
 
-                            <hr />
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">Address Street</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <p class="control is-expanded">
-                                            <input [(ngModel)]="addressStreet" class="input" name="title" type="text" placeholder="Enter street" />
-                                        </p>
-                                    </div>
-                                </div>
+                    <hr />
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Address Street</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded">
+                                    <input [(ngModel)]="addressStreet" class="input" name="title" type="text" placeholder="Enter street" />
+                                </p>
                             </div>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">Address Postal Code</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <p class="control is-expanded">
-                                            <input [(ngModel)]="addressPostalCode" class="input" name="title" type="text" placeholder="Enter postal code" />
-                                        </p>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Address Postal Code</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded">
+                                    <input [(ngModel)]="addressPostalCode" class="input" name="title" type="text" placeholder="Enter postal code" />
+                                </p>
                             </div>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">Address City</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <p class="control is-expanded">
-                                            <input [(ngModel)]="addressCity" class="input" name="title" type="text" placeholder="Enter city" />
-                                        </p>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Address City</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded">
+                                    <input [(ngModel)]="addressCity" class="input" name="title" type="text" placeholder="Enter city" />
+                                </p>
                             </div>
-                            <hr/>
+                        </div>
+                    </div>
+                    <hr/>
 
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">Pickup time</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <p class="control is-expanded">
-                                            <input ngui-datetime-picker [(ngModel)]="date" class="input" name="date" placeholder="Set date" />
-                                        </p>
-                                    </div>
-                                </div>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Pickup time</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded">
+                                    <input ngui-datetime-picker [(ngModel)]="date" class="input" name="date" placeholder="Set date" />
+                                </p>
                             </div>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">Amount of servings</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <p class="control is-expanded">
-                                            <input [(ngModel)]="servings" class="input" name="title" type="number" placeholder="Set amount" />
-                                        </p>
-                                    </div>
-                                </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Amount of servings</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded">
+                                    <input [(ngModel)]="servings" class="input" name="title" type="number" placeholder="Set amount" />
+                                </p>
                             </div>
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">Price per serving</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field has-addons">
-                                        <p class="control">
-                                            <span class="select">
+                        </div>
+                    </div>
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Price per serving</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field has-addons">
+                                <p class="control">
+                                    <span class="select">
                     <select>
                       <option>€</option>
                     </select>
                   </span>
-                                        </p>
-                                        <p class="control is-expanded">
-                                            <input [(ngModel)]="price" class="input" name="price" type="text" placeholder="Set price">
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">Bulk pricing</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field has-addons">
-                                        <label class="radio">
-                                  <input type="radio" name="question" (click)="setBulk(true)">
-                                  Yes
-                                </label>
-                                        <label class="radio">
-                                  <input type="radio" name="question" (click)="setBulk(false)">
-                                  No
-                                </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr />
-                            <div class="field cb-publish-submit">
-                                <div class="control">
-                                    <button class="button is-primary">Publish</button>
-                                </div>
-                            </div>
-                            <div *ngIf="published" class="notification is-success has-text-centered">
-                                <button class="delete"></button> Item successfully published...
-                            </div>
-                            <div *ngIf="errors.length != 0" class="notification is-danger has-text-centered">
-                                <button class="delete"></button>
-                                <p *ngFor="let error of errors">
-                                    {{error}}
+                                </p>
+                                <p class="control is-expanded">
+                                    <input [(ngModel)]="price" class="input" name="price" type="text" placeholder="Set price">
                                 </p>
                             </div>
                         </div>
                     </div>
-                </form>
+
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label">Bulk pricing</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field has-addons">
+                                <label class="radio">
+                                  <input type="radio" name="question" (click)="setBulk(true)">
+                                  Yes
+                                </label>
+                                <label class="radio">
+                                  <input type="radio" name="question" (click)="setBulk(false)">
+                                  No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="field cb-publish-submit">
+                        <div class="control">
+                            <button class="button is-primary">Publish</button>
+                        </div>
+                    </div>
+                    <div *ngIf="published" class="notification is-success has-text-centered">
+                        <button class="delete"></button> Item successfully published...
+                    </div>
+                    <div *ngIf="errors.length != 0" class="notification is-danger has-text-centered">
+                        <button class="delete"></button>
+                        <p *ngFor="let error of errors">
+                            {{error}}
+                        </p>
+                    </div>
+                </div>
             </div>
-            >>>>>>> Stashed changes
-    </section>
-    <app-cb-footer></app-cb-footer>
+        </form>
+    </div>
+</section>
+<app-cb-footer></app-cb-footer>
