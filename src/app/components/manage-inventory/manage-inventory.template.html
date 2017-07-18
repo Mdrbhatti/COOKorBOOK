@@ -1,4 +1,17 @@
 <app-cb-header></app-cb-header>
+
+<div *ngIf="saveStatus=='success'" class="notification is-success has-text-centered">
+  <button class="delete"></button> Save successful.
+</div>
+<div *ngIf="saveStatus=='fail'" class="notification is-warning has-text-centered">
+  <button class="delete"></button> Save failed, contact Admin.
+</div>
+<div *ngIf="deleteStatus=='success'" class="notification is-success has-text-centered">
+  <button class="delete"></button> Delete successful.
+</div>
+<div *ngIf="deleteStatus=='fail'" class="notification is-warning has-text-centered">
+  <button class="delete"></button> Delete failed, contact Admin.
+</div>
 <section class="section">
     <div class="container">
         <h1 class="title has-text-centered is-1">Manage Inventory</h1>
@@ -37,21 +50,21 @@
                 </div>
                 <div class="column price">
                     <p class="control">
-                        <input class="input is-medium" type="text" placeholder="Price..." value="{{item.pricePerPortion}}">
+                        <input [(ngModel)]="item.pricePerPortion" class="input is-medium" type="text" placeholder="Price..." value="{{item.pricePerPortion}}">
                     </p>
                 </div>
                 <div class="column">
                     <div class="food-listing-item__actions--price">
                         <div class="columns">
                             <p class="control">
-                                <input class="input is-medium" type="text" placeholder="Quantity..." value="{{item.servings}}">
+                                <input [(ngModel)]="item.servings" class="input is-medium" type="text" placeholder="Servings ..." value="{{item.servings}}">
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="column currently_ordered">
-                    <strong class="quantity">TODO</strong>
-                    <a class="button is-danger is-medium pull-right cancelorder" (click)="cancelOrders()">Cancel meal</a>
+                    <strong class="quantity">{{item.servingsRemaining}}</strong>
+                    <a class="button is-danger is-medium pull-right cancelorder" (click)="cancelOrder(item._id)">Cancel meal</a>
                 </div>
             </div>
         </div>
