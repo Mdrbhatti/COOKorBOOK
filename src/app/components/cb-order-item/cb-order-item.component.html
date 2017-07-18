@@ -29,8 +29,7 @@
                         <p>Ingredients</p>
                     </div>
                     <div class="message-body">
-
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempusneque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+                        <p *ngFor="let i of item.ingredients">{{i}}</p>
                     </div>
                 </article>
                 <article class="message">
@@ -38,7 +37,7 @@
                         <p>Allergens</p>
                     </div>
                     <div class="message-body">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempusneque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
+                        <p *ngFor="let i of item.allergens">{{i}}</p>
                     </div>
                 </article>
             </div>
@@ -48,37 +47,30 @@
                         <tr>
                             <th>Item</th>
                             <th>Portions</th>
+                            <th>Price</th>
                             <th>Subtotal</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>
-                                <h4 class="subtitle is-4">Spaghetti Bolognaise</h4>
+                                <h4 class="subtitle is-4">{{item.name}}</h4>
                                 <p>
-                                    w/ parmeggiano and basilikum<br> Cooked after my grandmother\'s famous recipe
+                                    {{item.description}}<br> {{item.sellerComments}}
                                 </p>
-                                <span class="tag is-success">vegetarian</span>
+                                <span class="tag is-success">{{item.type}}</span>
                             </td>
                             <td>
                                 <p class="control">
                                     <span class="select">
-                    <select>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                      <option>6</option>
-                      <option>7</option>
-                      <option>8</option>
-                      <option>9</option>
-                      <option>10</option>
-                    </select>
-                  </span>
+                                      <select [(ngModel)]="selectedServings">
+                                        <option *ngFor="let i of rangeFaker(item.servingsRemaining); let index = index" [value]="index+1">{{index+1}}</option>
+                                      </select>
+                                   </span>
                                 </p>
                             </td>
-                            <td>123</td>
+                            <td><strong>€</strong> {{item.pricePerPortion}}</td>
+                            <td><strong>€</strong> {{selectedServings * item.pricePerPortion}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -92,12 +84,10 @@
                         <div class="field">
                             <p class="control">
                                 <span class="select is-large">
-                  <select>
-                    <option>24/8 20:00</option>
-                    <option>24/8 21:00</option>
-                    <option>24/8 22:00</option>
-                  </select>
-                </span>
+                                  <select [(ngModel)]="selectedPickupTime">
+                                    <option *ngFor="let time of item.pickupTime">{{time}}</option>
+                                  </select>
+                                </span>
                             </p>
                         </div>
                     </div>
@@ -106,19 +96,15 @@
                         <div class="field">
                             <p class="control">
                                 <span class="select is-large">
-                  <select>
-                    <option>24/8 20:00</option>
-                    <option>24/8 21:00</option>
-                    <option>24/8 22:00</option>
-                  </select>
-                </span>
+                                  <select [(ngModel)]="selectedPickupTime">
+                                    <option *ngFor="let time of item.pickupTime">{{time}}</option>
+                                  </select>
+                                </span>
                             </p>
                         </div>
                     </div>
                 </div>
-
                 <hr>
-
                 <div class="columns">
                     <div class="column">
                         Any additional remarks
@@ -126,7 +112,7 @@
                     <div class="column is-three-quarters">
                         <div class="field">
                             <p class="control">
-                                <textarea class="textarea is-hovered" placeholder="Write here"></textarea>
+                                <textarea class="textarea is-hovered" [(ngModel)]="buyerComments"></textarea>
                             </p>
                         </div>
                     </div>
@@ -137,17 +123,17 @@
                         <h3 class="subtitle is-3">Order Total</h3>
                     </div>
                     <div class="column has-text-right">
-                        <h3 class="subtitle is-3"> € 123</h3>
+                        <h3 class="subtitle is-3"><strong>€</strong> {{selectedServings * item.pricePerPortion}}</h3>
                     </div>
                 </div>
                 <div class="columns">
                     <div class="column is-three-quarters"></div>
                     <div class="column">
                         <!-- change to input type submit after changing to form -->
-                        <a class="button is-large is-cb-bg is-text-white is-fullwidth">
+                        <a class="button is-large is-cb-bg is-text-white is-fullwidth" (click)="validateInput()">
                             <span class="icon is-medium">
-                <i class="fa fa-shopping-cart"></i>
-              </span>
+                              <i class="fa fa-shopping-cart"></i>
+                            </span>
                             <span>Order</span>
                         </a>
                     </div>
