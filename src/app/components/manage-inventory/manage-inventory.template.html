@@ -1,71 +1,72 @@
 <app-cb-header></app-cb-header>
 <section class="section">
-  <div class="container">
-    <h1 class="title has-text-centered is-1">Manage Inventory</h1>
-  </div>
+    <div class="container">
+        <h1 class="title has-text-centered is-1">Manage Inventory</h1>
+    </div>
 </section>
 <section>
-  <div class="container main">
-    <div class="columns">
-      <div class="column">
-        <div class="content">
-          <h1>Dish</h1>
-        </div>
-      </div>
-      <div class="column">
-        <div class="content">
-          <h1>Price (€)</h1>
-        </div>
-      </div>
-      <div class="column">
-        <div class="content">
-          <h1>Quantity</h1>
-        </div>
-      </div>
-      <div class="column">
-        <div class="content">
-          <h1>Currently ordered</h1>
-        </div>
-      </div>
-    </div>
-    <div class="food-listing-item" *ngFor="let foodItem of foodItemsToDisplay">
-      <div class="columns">
-        <div class="column">
-          <div class="content">
-            <h3>{{foodItem.title}}</h3></div>
-        </div>
-        <div class="column price">
-          <p class="control">
-            <input class="input is-medium" type="text" placeholder="Price..." value = "{{foodItem.price}}">
-          </p>
-        </div>
-        <div class="column">
-          <div class="food-listing-item__actions--price">
-            <div class="columns">
-              <p class="control">
-                <input class="input is-medium" type="text" placeholder="Quantity..." value = "{{foodItem.quantity}}">
-              </p>
+    <div class="container main">
+        <div class="columns">
+            <div class="column">
+                <div class="content">
+                    <h1>Dish</h1>
+                </div>
             </div>
-          </div>
+            <div class="column">
+                <div class="content">
+                    <h1>Price (€)</h1>
+                </div>
+            </div>
+            <div class="column">
+                <div class="content">
+                    <h1>Quantity</h1>
+                </div>
+            </div>
+            <div class="column">
+                <div class="content">
+                    <h1>Currently ordered</h1>
+                </div>
+            </div>
         </div>
-        <div class="column currently_ordered">
-          <strong class="quantity">TODO</strong>
-          <a class="button is-danger is-medium pull-right cancelorder" (click)="cancelOrders()">Cancel meal</a>
+        <div class="food-listing-item" *ngFor="let item of items">
+            <div class="columns">
+                <div class="column">
+                    <div class="content">
+                        <h3>{{item.name}}</h3>
+                    </div>
+                </div>
+                <div class="column price">
+                    <p class="control">
+                        <input class="input is-medium" type="text" placeholder="Price..." value="{{item.pricePerPortion}}">
+                    </p>
+                </div>
+                <div class="column">
+                    <div class="food-listing-item__actions--price">
+                        <div class="columns">
+                            <p class="control">
+                                <input class="input is-medium" type="text" placeholder="Quantity..." value="{{item.servings}}" disabled>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="column currently_ordered">
+                    <strong class="quantity">TODO</strong>
+                    <a class="button is-danger is-medium pull-right cancelorder" (click)="cancelOrders()">Cancel meal</a>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 
 </section>
 <section>
-  <div class = "container">
-    <div class = "column is-centered buttonsection">
-      <a class="button is-info is-large" (click)="save()">
+    <div class="container">
+        <div class="column is-centered buttonsection">
+            <a class="button is-info is-large" (click)="save()">
         Save changes
       </a>
-      <a class="button is-danger is-large" (click)="cancel()">
+            <a class="button is-danger is-large" (click)="cancel()">
         Cancel
       </a>
+        </div>
     </div>
-  </div>
 </section>

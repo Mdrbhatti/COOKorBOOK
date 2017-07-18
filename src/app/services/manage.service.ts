@@ -37,7 +37,7 @@ export class ManageService {
     const headers = new Headers();
     headers.append('Authorization', 'JWT ' + token);
     let options = new RequestOptions({ headers: headers });
-    return this.http.get(`${this.baseUrl}/items/manage/published`, options).map((response: Response) => {
+    return this.http.get(`${this.baseUrl}/v1/pitem`, options).map((response: Response) => {
       const data = response.json();
       console.log(data);
       return data;
