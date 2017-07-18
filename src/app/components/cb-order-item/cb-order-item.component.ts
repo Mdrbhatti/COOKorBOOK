@@ -46,11 +46,11 @@ export class CbOrderItemComponent implements OnInit, OnDestroy {
       (res: any) => {
         console.log("Item ordered: ");
         console.log(res);
-        setTimeout(() => { this.router.navigate(['/manage-inventory']); }, 1000);
+        setTimeout(() => { this.router.navigate(['/find-food']); }, 1000);
       },
       (error) => {
         console.log(error);
-        setTimeout(() => { this.router.navigate(['/manage-inventory']); }, 2000);
+        setTimeout(() => { this.router.navigate(['/find-food']); }, 2000);
         console.log("Failed while ordering item");
       }
     );
