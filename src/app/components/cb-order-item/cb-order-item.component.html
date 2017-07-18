@@ -1,10 +1,15 @@
 <app-cb-header></app-cb-header>
-<section class="section cb-order-food-section-header">
+<section *ngIf="item == null" class="section notification  has-text-centered ">
+    <div class="container">
+        <h1 class="is-warning">Zoink! You just took a wrong turn... Redirecting</h1>
+    </div>
+</section>
+<section *ngIf="item != null" class="section cb-order-food-section-header">
     <div class="container">
         <h1 class="title has-text-centered title-order-food">Few clicks away<br>from fresh homemade food</h1>
     </div>
 </section>
-<section class="section">
+<section *ngIf="item != null" class="section">
     <div class="container">
         <h1 class="title">
             Place your order here
@@ -16,7 +21,7 @@
             <!-- hide this sidebar on mobile -->
             <div class="column is-3 is-hidden-mobile">
                 <div class="order-item__img">
-                    <img src="http://www.italianicious.com.au/uploads/italianicious/articles/Ital-0312-gnocch-sorrentino-630.jpg" width="100%" />
+                    <img src="{{item.image}}" width="100%" />
                 </div>
                 <br>
                 <article class="message">
@@ -24,6 +29,7 @@
                         <p>Ingredients</p>
                     </div>
                     <div class="message-body">
+
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Pellentesque risus mi</strong>, tempusneque. Donec dui urna, vehicula et sem eget, facilisis sodales sem.
                     </div>
                 </article>
