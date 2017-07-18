@@ -11,9 +11,7 @@ import { BackendService } from '../../services/backend.service';
   styleUrls: ['./cb-find-food.component.scss']
 })
 export class CbFindFoodComponent implements OnInit {
-  image = `http://drop.ndtv.com/albums/COOKS/corngallery/creolespicedcornthumb_640x480.jpg`;
   foodItems: any = [];
-  // foodItems: FoodItem[] = [];
   foodItemsToDisplay: any[] = [];
   filterParametersArray = {};
   serachInput = '';
@@ -24,10 +22,9 @@ export class CbFindFoodComponent implements OnInit {
   }
 
   ngOnInit() { this.getAllPublishedItems(); }
-  getLinkToItem(id) {
-    return `/order-food/${id}`;
-    // getLinkToItem(foodItem._id)
-  }
+
+  getLinkToItem(id) { return `/order-food/${id}`; }
+
   getAllPublishedItems() {
     this.bcService.getPublishedItems(null).subscribe(
       (res: any) => {
