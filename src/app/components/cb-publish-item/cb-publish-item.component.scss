@@ -1,1 +1,44 @@
+@import "~variables.scss";
+@import "~mixins.scss";
 
+.menu-list a.is-active {
+  background-color: $cb-orange-main;
+}
+
+.cb-publish-food-section-header {
+    background-color: lightcoral;
+    background-image: url("https://i.imgur.com/vCCe4wS.jpg");
+    background-position: center;
+    background-size: cover;
+    @include desktop {
+        min-height: 320px;
+    }
+}
+.title-publish-food {
+    color: #fff;
+    @include desktop {
+        font-family: $open-sans-semibold;
+        font-size: 72px;
+        text-shadow: 0 0 26px rgba(0, 0, 0, 1);
+    }
+
+    @include mobile {
+        font-family: $open-sans-semibold;
+        font-size: 42px;
+        text-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
+    }
+}
+
+.publish-item__img {
+    img {
+        bpublish: 3px solid $cb-orange-main;
+    }
+
+}
+
+
+.cb-publish-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
