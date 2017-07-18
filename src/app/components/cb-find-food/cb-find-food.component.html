@@ -159,7 +159,7 @@
                     <div class="columns">
                         <div class="column">
                             <div class="food-listing-item__img">
-                                <img src="{{foodItem.picture}}" />
+                                <img src="{{foodItem.image}}" />
                             </div>
                         </div>
                         <div class="column food-listing-item__description">
@@ -200,7 +200,7 @@
                             </div>
                             <div class="food-listing-item__actions--order">
                                 <div class="food-listing-item__actions--order--btn">
-                                    <a class="button is-large is-cb-bg is-text-white" [routerLink]="['/order-food', '98123']">
+                                    <a class="button is-large is-cb-bg is-text-white" [routerLink]="getLinkToItem(foodItem._id)">
                                         <span class="icon is-medium">
                       <i class="fa fa-shopping-cart"></i>
                     </span>

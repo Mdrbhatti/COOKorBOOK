@@ -39,7 +39,10 @@ export class CbFindFoodComponent implements OnInit {
   }
 
   ngOnInit() { this.getAllPublishedItems();}
-
+  getLinkToItem(id){
+    return `/order-food/${id}`;
+    // getLinkToItem(foodItem._id)
+  }
   getAllPublishedItems() {
     this.bcService.getPublishedItems().subscribe(
       (res: any) => {
