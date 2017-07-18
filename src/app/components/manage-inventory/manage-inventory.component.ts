@@ -28,7 +28,7 @@ export class ManageComponent implements OnInit {
 
   constructor(private router: Router, private manageService: ManageService) {
 
-    this.manageService.getInventory().subscribe(
+    this.manageService.getInventory(localStorage.getItem('id')).subscribe(
       (res: any[]) => {
         this.items = res;
         console.log("Published items");
@@ -49,7 +49,7 @@ export class ManageComponent implements OnInit {
         console.log(succesfulSaves);
         if (succesfulSaves === this.items.length) {
           this.saveStatus = 'success'
-          this.manageService.getInventory().subscribe(
+          this.manageService.getInventory(localStorage.getItem('id')).subscribe(
             (result: any[]) => {
               this.items = result;
             },
@@ -71,7 +71,7 @@ export class ManageComponent implements OnInit {
     this.manageService.dropMeal(itemId).subscribe(
       (res: any) => {
           this.deleteStatus = 'success'
-          this.manageService.getInventory().subscribe(
+          this.manageService.getInventory(localStorage.getItem('id')).subscribe(
             (result: any[]) => {
               this.items = result;
             },
