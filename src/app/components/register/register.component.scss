@@ -1,0 +1,40 @@
+@import "~variables.scss";
+@import "~mixins.scss";
+
+.cb-register-bg {
+    background-image: url('../../../assets/images/register-bg-2.jpg');
+    background-size: cover;
+}
+
+.cb-error-container-bg {
+    background-color: rgba(255, 0, 0, 0.5);
+    color: white;
+    padding: 20px;
+    font-size: 12px;
+}
+
+.cb-text-logo {
+  font-family: $open-sans-extra-bold;
+  letter-spacing: -3px;
+  font-size: 40px;
+}
+
+.title-register-page {
+    color: #fff;
+    @include desktop {
+        font-family: $open-sans-semibold;
+        font-size: 32px;
+        text-shadow: 0 0 20px rgba(0, 0, 0, 1);
+        line-height: 1.2;
+    }
+
+    @include mobile {
+        font-family: $open-sans-semibold;
+        font-size: 22px;
+        text-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
+    }
+}
+
+.btn-register {
+    width: 100%;
+}
