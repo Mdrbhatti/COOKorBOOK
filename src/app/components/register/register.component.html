@@ -1,101 +1,91 @@
 <app-cb-header></app-cb-header>
-<!--Name-->
-<div *ngIf="registerStatus=='success'" class="notification is-success has-text-centered">
-    <button class="delete"></button> Registeration successful. Redirecting...
+<div class="hero is-fullheight cb-register-bg">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-multiline">
+                <div class="column is-10 is-offset-1">
+                    <div class="title-register-page">Register for COOKorBOOK</div>
+                    <br>
+                    <div class="columns">
+                        <div class="column is-half">
+                            <form>
+                                <div class="field is-narrow">
+                                    <div class="control has-icons-left has-icons-right">
+                                        <span class="select is-large is-fullwidth" [class.is-success]="isUserTypeValid()" [class.is-danger]="!isUserTypeValid()">
+                                            <select [(ngModel)]="userType" class="form-control" [ngModelOptions]="{standalone: true}">
+                                                <option disabled [ngValue]="'placeholder'" style="display:none">Choose Account Type</option>
+                                                <option [ngValue]="'seller'">Seller</option>
+                                                <option [ngValue]="'buyer'">Buyer</option>
+                                            </select>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="field is-narrow">
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input class="input is-large" [class.is-success]="isNameValid()" [class.is-danger]="!isNameValid()" name="name" type="text" placeholder="Name" [(ngModel)]="name">
+                                        <span class="icon is-small is-left">
+                                        <i class="fa fa-user"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="field is-narrow">
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input class="input is-large" [class.is-success]="isUsernameValid()" [class.is-danger]="!isUsernameValid()" name="username" type="text" placeholder="Username" [(ngModel)]="username">
+                                        <span class="icon is-small is-left">
+                                        <i class="fa fa-user"></i>
+                                        </span>
+                                        <span class="icon is-small is-right" *ngIf="isUsernameValid()">
+                                        <i class="fa fa-check "></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="field is-narrow">
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input class="input is-large" [class.is-success]="isEmailValid()" [class.is-danger]="!isEmailValid()" name="email" type="email" placeholder="Email" [(ngModel)]="email">
+                                        <span class="icon is-small is-left ">
+                                        <i class="fa fa-envelope "></i>
+                                        </span>
+                                        <span class="icon is-small is-right" *ngIf="isEmailValid()">
+                                        <i class="fa fa-check "></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="field is-narrow">
+                                    <div class="control has-icons-left has-icons-right">
+                                        <input class="input is-large" [class.is-success]="isPasswordValid()" [class.is-danger]="!isPasswordValid()" name="password" type="password" placeholder="Password" [(ngModel)]="password">
+                                        <span class="icon is-small is-left">
+                                        <i class="fa fa-lock"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <p class="control">
+                                        <button [disabled]="!enableButton()" class="button is-info is-large btn-register" (click)="registerUser()">
+                                            Register
+                                        </button>
+                                    </p>
+                                </div>
+                            </form>
+                            <br>
+                            <div *ngIf="registerStatus=='success'" class="notification is-success has-text-centered">
+                                <button class="delete"></button> Registeration successful. Redirecting...
+                            </div>
+                            <div *ngIf="registerStatus=='fail'" class="notification is-warning has-text-centered">
+                                <button class="delete"></button> Registeration unsuccessful. Try again...
+                            </div>
+                        </div>
+                        <div class="column">
+                            <p class="help is-danger cb-error-container-bg" *ngIf="!enableButton()">
+                                <span *ngIf="!isNameValid()">Name is required</span><br>
+                                <span *ngIf="!isUserTypeValid()">Select a User type</span><br>
+                                <span *ngIf="!isUsernameValid()">Username is required</span><br>
+                                <span *ngIf="!isEmailValid()">Email is required</span><br>
+                                <span *ngIf="!isPasswordValid()">Password with at least 4 characters is required </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div *ngIf="registerStatus=='fail'" class="notification is-warning has-text-centered">
-    <button class="delete"></button> Registeration unsuccessful. Try again...
-</div>
-<br>
-<form>
-    <div class="has-text-centered column is-half is-offset-one-quarter">
-        <div class="field is-narrow">
-            <div class="control has-icons-left has-icons-right">
-                <span class="select is-large is-fullwidth" [class.is-success]="isUserTypeValid()" [class.is-danger]="!isUserTypeValid()">
-                    <select [(ngModel)]="userType" class="form-control" [ngModelOptions]="{standalone: true}">
-                        <option disabled [ngValue]="'placeholder'" style="display:none">Choose Account Type</option>
-                        <option [ngValue]="'seller'">Seller</option>
-                        <option [ngValue]="'buyer'">Buyer</option>
-                    </select>
-                </span>
-            </div>
-        </div>
-    </div>
-
-    <div class="column is-half is-offset-one-quarter">
-        <div class="field is-narrow">
-            <div class="control has-icons-left has-icons-right">
-                <input class="input is-large" [class.is-success]="isNameValid()" [class.is-danger]="!isNameValid()" name="name" type="text" placeholder="Name" [(ngModel)]="name">
-                <span class="icon is-small is-left">
-                  <i class="fa fa-user"></i>
-                </span>
-            </div>
-        </div>
-    </div>
-    <!--Username-->
-    <div class="column is-half is-offset-one-quarter">
-        <div class="field is-narrow">
-            <div class="control has-icons-left has-icons-right">
-                <input class="input is-large" [class.is-success]="isUsernameValid()" [class.is-danger]="!isUsernameValid()" name="username" type="text" placeholder="Username" [(ngModel)]="username">
-                <span class="icon is-small is-left">
-                  <i class="fa fa-user"></i>
-                </span>
-                <span class="icon is-small is-right" *ngIf="isUsernameValid()">
-                  <i class="fa fa-check "></i>
-                </span>
-            </div>
-        </div>
-    </div>
-    <!--Email-->
-    <div class="column is-half is-offset-one-quarter">
-        <div class="field is-narrow">
-            <div class="control has-icons-left has-icons-right">
-                <input class="input is-large" [class.is-success]="isEmailValid()" [class.is-danger]="!isEmailValid()" name="email" type="email" placeholder="Email" [(ngModel)]="email">
-                <span class="icon is-small is-left ">
-                  <i class="fa fa-envelope "></i>
-                </span>
-                <span class="icon is-small is-right" *ngIf="isEmailValid()">
-                  <i class="fa fa-check "></i>
-                </span>
-            </div>
-        </div>
-    </div>
-    <!--Password-->
-    <div class="column is-half is-offset-one-quarter">
-        <div class="field is-narrow">
-            <div class="control has-icons-left has-icons-right">
-                <input class="input is-large" [class.is-success]="isPasswordValid()" [class.is-danger]="!isPasswordValid()" name="password" type="password" placeholder="Password" [(ngModel)]="password">
-                <span class="icon is-small is-left">
-                  <i class="fa fa-lock"></i>
-                </span>
-            </div>
-        </div>
-    </div>
-    <!--Submit -->
-    <div class="has-text-centered">
-        <p class="help is-danger" *ngIf="!isNameValid()">
-            Name is required
-        </p>
-        <p class="help is-danger" *ngIf="!isUserTypeValid()">
-            Select a User type
-        </p>
-        <p class="help is-danger" *ngIf="!isUsernameValid()">
-            Username is required
-        </p>
-        <p class="help is-danger" *ngIf="!isEmailValid()">
-            Email is required
-        </p>
-        <p class="help is-danger" *ngIf="!isPasswordValid()">
-            Password with at least 4 characters is required
-        </p>
-        <br>
-        <div *ngIf="enableButton()" class="button is-large" (click)="registerUser()">
-            <i class="fa fa-sign-in fa-lg"></i> Register
-        </div>
-        <div *ngIf="!enableButton()" class="button is-large" disabled>
-            <i class="fa fa-sign-in fa-lg"></i> Register
-        </div>
-    </div>
-</form>
-<!--fa fa-user-plus-->
-<app-cb-footer></app-cb-footer>
