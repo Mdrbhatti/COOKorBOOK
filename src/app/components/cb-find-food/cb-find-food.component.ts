@@ -31,7 +31,9 @@ export class CbFindFoodComponent implements OnInit {
         console.log("Moderate success");
         console.log(res);
         this.foodItems = res;
-        this.foodItemsToDisplay = this.foodItems.slice();
+        this.foodItemsToDisplay = this.foodItems.filter(item => {
+          return item.servingsRemaining > 0;
+        }).slice();
         console.log(this.foodItemsToDisplay);
         this.ref.detectChanges();
       },

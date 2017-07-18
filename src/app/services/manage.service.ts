@@ -3,11 +3,12 @@ import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
+import { configuration } from '../config/config';
 
 @Injectable()
 export class ManageService {
 
-  baseUrl: string = "http://127.0.0.1:8000"
+  baseUrl = configuration.backendurl;
 
   constructor(private http: Http, private router: Router) {
   }
@@ -31,12 +32,12 @@ export class ManageService {
     });
   }
 
-  getInventory() {
+  getInventory(sellerId: string) {
     const token = localStorage.getItem('token');
     const headers = new Headers();
     headers.append('Authorization', 'JWT ' + token);
     let options = new RequestOptions({ headers: headers });
-    return this.http.get(`${this.baseUrl}/v1/pitem`, options).map((response: Response) => {
+    return this.http.get(`${this.baseUrl}/v1/pitem?seller=${sellerId}`, options).map((response: Response) => {
       const data = response.json();
       console.log(data);
       return data;
