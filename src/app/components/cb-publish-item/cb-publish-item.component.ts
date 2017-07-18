@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ImageResult, ResizeOptions } from 'ng2-imageupload';
 import { BackendService } from '../../services/backend.service';
-import validator from 'validator';
+import { validator } from 'validator';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-cb-publish-item',
@@ -40,12 +41,7 @@ export class CbPublishItemComponent implements OnInit {
   addressPostalCode;
   addressCity;
 
-  imageResizeOptions: ResizeOptions = {
-    resizeMaxHeight: 256,
-    resizeMaxWidth: 256
-  };
-
-  constructor(private apiService: BackendService) { }
+  constructor(private apiService: BackendService, private router: Router) { }
 
   ngOnInit() { }
 
@@ -100,8 +96,11 @@ export class CbPublishItemComponent implements OnInit {
       (res: any) => {
         console.log("Published item:");
         console.log(res);
+        this.published=true;
+        setTimeout(() => { this.router.navigate(['/find-food']); }, 2000);
       },
-      (error) => { console.log("Error @ publish item"); console.log(error); }
+      (error) => { console.log("Error @ publish item"); console.log(error); 
+    this.errors.push("Please fill all form fields");}
     );
   }
 
