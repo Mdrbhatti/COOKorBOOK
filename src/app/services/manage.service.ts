@@ -12,14 +12,14 @@ export class ManageService {
   constructor(private http: Http, private router: Router) {
   }
 
-  updateInventory(itemId, price, quantity) {
+  updateInventory(itemId, price, servings) {
     const token = localStorage.getItem('token');
     const headers = new Headers();
     headers.append('Authorization', 'JWT ' + token);
     let options = new RequestOptions({ headers: headers });
     console.log("here");
     const req = {
-      'itemId': itemId, 'price': price, 'servings': quantity
+      'itemId': itemId, 'pricePerPortion': price, 'servings': servings
     }
     return this.http.post(`${this.baseUrl}/items/manage`, req, options).map((response: Response) => {
       const data = response.json();

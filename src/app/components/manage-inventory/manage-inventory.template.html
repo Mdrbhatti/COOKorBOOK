@@ -37,14 +37,14 @@
                 </div>
                 <div class="column price">
                     <p class="control">
-                        <input class="input is-medium" type="text" placeholder="Price..." value="{{item.pricePerPortion}}">
+                        <input [(ngModel)]="item.pricePerPortion" class="input is-medium" type="text" placeholder="Price..." value="{{item.pricePerPortion}}">
                     </p>
                 </div>
                 <div class="column">
                     <div class="food-listing-item__actions--price">
                         <div class="columns">
                             <p class="control">
-                                <input class="input is-medium" type="text" placeholder="Quantity..." value="{{item.servings}}">
+                                <input [(ngModel)]="item.servings" class="input is-medium" type="text" placeholder="Servings ..." value="{{item.servings}}">
                             </p>
                         </div>
                     </div>

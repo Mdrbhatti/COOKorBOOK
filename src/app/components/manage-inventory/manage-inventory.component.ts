@@ -22,17 +22,14 @@ export class ManageComponent implements OnInit {
   items: any[]
   foodItemsToDisplay: FoodQuantity[] = [];
   foodItemsQuantity: FoodQuantity[] = [];
-  random: any[];
 
   constructor(private router: Router, private manageService: ManageService) {
 
     this.manageService.getInventory().subscribe(
       (res: any[]) => {
-        this.random = res;
         this.items = res;
         console.log("Published items");
         console.log(this.items);
-        // res.forEach(test => this.foodItemsToDisplay.push(new FoodQuantity(test.item._id, test.item.title, test.price, test.servings)))
       },
       (error) => { console.log(error); }
 
@@ -41,9 +38,10 @@ export class ManageComponent implements OnInit {
   }
 
   save(){
-    this.foodItemsToDisplay.forEach(item => this.manageService.updateInventory(item.itemId, item.price, item.quantity).subscribe(
-
+    console.log(this.items);
+    this.items.forEach(item => this.manageService.updateInventory(item._id, item.pricePerPortion, item.servings).subscribe(
     ))
+    setTimeout(() => {this.router.navigate(['/find-food']); }, 2000);
   }
 
   cancel(){
