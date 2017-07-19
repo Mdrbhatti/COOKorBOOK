@@ -31,6 +31,11 @@ export class ManageComponent implements OnInit {
     this.manageService.getInventory(localStorage.getItem('id')).subscribe(
       (res: any[]) => {
         this.items = res;
+        this.items.forEach(
+          item => this.manageService.getOrdersForItem(item._id).subscribe((response: any[]) => {
+            item.orders = response;
+          })
+        );
         console.log("Published items");
         console.log(this.items);
       },
