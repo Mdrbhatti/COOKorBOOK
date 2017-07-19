@@ -3,11 +3,12 @@ import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import 'rxjs/Rx';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
+import { configuration } from '../config/config';
 
 @Injectable()
 export class AuthService {
 
-  baseUrl: string = "http://127.0.0.1:8000"
+  baseUrl: string = configuration.backendurl;
 
   constructor(private http: Http, private router: Router) { }
 
