@@ -13,76 +13,102 @@
   <button class="delete"></button> Delete failed, contact Admin.
 </div>
 <div class="cb-wrapper-manage-inventory">
-    <section class="section">
-        <div class="container">
-            <h1 class="title has-text-centered is-1">Manage Inventory</h1>
+  <section class="section">
+    <div class="container">
+      <h1 class="title has-text-centered is-1">Manage Inventory</h1>
+    </div>
+  </section>
+  <section>
+    <div class="container main">
+      <div class="columns titles">
+        <div class="column">
+          <div class="content">
+            <h1>Dish</h1>
+          </div>
         </div>
-    </section>
-    <section>
-        <div class="container main">
-            <div class="columns">
-                <div class="column">
-                    <div class="content">
-                        <h1>Dish</h1>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="content">
-                        <h1>Price (€)</h1>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="content">
-                        <h1>Quantity</h1>
-                    </div>
-                </div>
-                <div class="column">
-                    <div class="content">
-                        <h1>Currently ordered</h1>
-                    </div>
-                </div>
-            </div>
-            <div class="food-listing-item" *ngFor="let item of items">
-                <div class="columns">
-                    <div class="column">
-                        <div class="content">
-                            <h3>{{item.name}}</h3>
-                        </div>
-                    </div>
-                    <div class="column price">
-                        <p class="control">
-                            <input [(ngModel)]="item.pricePerPortion" class="input is-medium" type="text" placeholder="Price..." value="{{item.pricePerPortion}}">
-                        </p>
-                    </div>
-                    <div class="column">
-                        <div class="food-listing-item__actions--price">
-                            <div class="columns">
-                                <p class="control">
-                                    <input [(ngModel)]="item.servings" class="input is-medium" type="text" placeholder="Servings ..." value="{{item.servings}}">
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column currently_ordered">
-                        <strong class="quantity">{{item.servings - item.servingsRemaining}}</strong>
-                        <a class="button is-danger is-medium pull-right cancelorder" (click)="cancelOrder(item._id)">Cancel meal</a>
-                    </div>
-                </div>
-            </div>
+        <div class="column">
+          <div class="content">
+            <h1>Price (€)</h1>
+          </div>
         </div>
+        <div class="column">
+          <div class="content">
+            <h1>Quantity</h1>
+          </div>
+        </div>
+        <div class="column">
+          <div class="content">
+            <h1>Currently ordered</h1>
+          </div>
+        </div>
+      </div>
+      <div class="food-listing-item" *ngFor="let item of items">
+        <div class="columns">
+          <div class="column">
+            <div class="content">
+              <h3><strong>{{item.name}}</strong></h3>
+            </div>
+          </div>
+          <div class="column price">
+            <p class="control">
+              <input [(ngModel)]="item.pricePerPortion" class="input is-medium" type="text" placeholder="Price..." value="{{item.pricePerPortion}}">
+            </p>
+          </div>
+          <div class="column">
+            <div class="food-listing-item__actions--price">
+                <p class="control">
+                  <input [(ngModel)]="item.servings" class="input is-medium" type="text" placeholder="Servings ..." value="{{item.servings}}">
+                </p>
+            </div>
+          </div>
+          <div class="column currently_ordered">
+            <strong class="quantity">{{item.servings - item.servingsRemaining}}</strong>
+            <a class="button is-danger is-medium pull-right cancelorder" (click)="cancelMeal(item._id)">Cancel meal</a>
+          </div>
+        </div>
+        <div class="item-orders" *ngFor="let order of item.orders">
+          <div class = "columns">
+            <div class="column">
+              <div class="content">
+                <h3>Order from <strong>{{order.buyer.email}}</strong></h3>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <h3>Pickup time <br> <strong>{{order.pickUptime}}</strong></h3>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <h3>Remarks: <br> <strong>{{order.buyerComments}}</strong></h3>
+              </div>
+            </div>
+            <div class="column">
+              <div class="content">
+                <a class="button is-danger is-medium pull-right cancelorder" (click)="cancelOrder(item._id, order._id)">Cancel order</a>
+                <h3>Quantity: <strong>{{order.servings}}</strong></h3>
+              </div>
+              <div class="content">
+                <h3>Total: <strong>€{{order.price}}</strong></h3>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    </section>
-    <section>
-        <div class="container">
-            <div class="column is-centered buttonsection">
-                <a class="button is-info is-large" (click)="save()">
-            Save changes
+  </section>
+  <section>
+    <div class="container">
+      <div class="column is-centered buttonsection">
+        <a class="button is-info is-large" (click)="save()">
+          Save changes
         </a>
-                <a class="button is-danger is-large" (click)="cancel()">
-            Cancel
+        <a class="button is-danger is-large" (click)="cancel()">
+          Cancel
         </a>
-            </div>
-        </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </div>
 <app-cb-footer></app-cb-footer>
