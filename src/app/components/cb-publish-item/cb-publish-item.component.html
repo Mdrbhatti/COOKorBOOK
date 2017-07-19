@@ -54,7 +54,7 @@
                         <div class="field-body">
                             <div class="field">
                                 <p class="control is-expanded">
-                                    <tag-input [(ngModel)]="categories" name="categories" [theme]="'minimal'" placeholder="Add category" secondaryPlaceholder="Add categories" [disabled]="itemReused"></tag-input>
+                                    <tag-input [(ngModel)]="categories" name="categories" [theme]="'minimal'" placeholder="Add category" secondaryPlaceholder="Add categories" [disabled]="itemReused" [errorMessages]="errorMessages" [validators]="validators"></tag-input>
                                 </p>
                                 <p class="help">
                                     Enter category and press enter to start entering new one.
@@ -69,7 +69,7 @@
                         <div class="field-body">
                             <div class="field">
                                 <p class="control is-expanded">
-                                    <tag-input [(ngModel)]="ingredients" name="ingredients" [theme]="'minimal'" placeholder="Add ingredient" secondaryPlaceholder="Add ingredients" [disabled]="itemReused"></tag-input>
+                                    <tag-input [(ngModel)]="ingredients" name="ingredients" [theme]="'minimal'" placeholder="Add ingredient" secondaryPlaceholder="Add ingredients" [disabled]="itemReused" [errorMessages]="errorMessages" [validators]="validators"></tag-input>
                                 </p>
                                 <p class="help">
                                     Enter Ingredient and press enter to start entering new one.
@@ -84,7 +84,7 @@
                         <div class="field-body">
                             <div class="field">
                                 <p class="control is-expanded">
-                                    <tag-input [(ngModel)]="allergens" name="allergens" [theme]="'minimal'" placeholder="Add allergen" secondaryPlaceholder="Add allergens" [disabled]="itemReused"></tag-input>
+                                    <tag-input [(ngModel)]="allergens" name="allergens" [theme]="'minimal'" placeholder="Add allergen" secondaryPlaceholder="Add allergens" [disabled]="itemReused" [errorMessages]="errorMessages" [validators]="validators"></tag-input>
                                 </p>
                                 <p class="help">
                                     Enter allergen and press enter to start entering new one.
@@ -208,17 +208,15 @@
                     <hr />
                     <div class="field cb-publish-submit">
                         <div class="control">
-                            <button class="button is-primary">Publish</button>
+                            <button *ngIf="!isFormValid()" class="button is-primary" disabled>Publish</button>
+                            <button *ngIf="isFormValid()" class="button is-primary">Publish</button>
                         </div>
                     </div>
                     <div *ngIf="published" class="notification is-success has-text-centered">
                         <button class="delete"></button> Item successfully published...
                     </div>
-                    <div *ngIf="errors.length != 0" class="notification is-danger has-text-centered">
-                        <button class="delete"></button>
-                        <p *ngFor="let error of errors">
-                            {{error}}
-                        </p>
+                    <div *ngIf="showBox()" class="notification is-warning has-text-centered">
+                        All Fields Mandatory
                     </div>
                 </div>
             </div>

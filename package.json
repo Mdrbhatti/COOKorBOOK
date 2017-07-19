@@ -30,6 +30,7 @@
     "ngx-chips": "^1.4.5",
     "rxjs": "^5.1.0",
     "validator": "^8.0.0",
+    "validator.ts": "^0.2.2",
     "zone.js": "^0.8.4"
   },
   "devDependencies": {

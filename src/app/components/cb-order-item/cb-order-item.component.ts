@@ -15,6 +15,7 @@ export class CbOrderItemComponent implements OnInit, OnDestroy {
   price: number;
   selectedPickupTime: string;
   buyerComments: string= "Write here";
+  serverResponse = true;
 
   constructor(private bcService: BackendService, private route: ActivatedRoute,
     private router: Router) { }
@@ -22,11 +23,16 @@ export class CbOrderItemComponent implements OnInit, OnDestroy {
   rangeFaker(num) { return new Array(num); }
 
   ngOnInit() {
+    this.serverResponse = true;
     this.sub = this.route.params.subscribe(params => {
       this.id = params['id'];
       this.getItem();
     });
   }
+  // onChange(event){
+  //   alert(event);
+  //   console.log(event);
+  // }
 
   validateInput() {
     if (this.selectedPickupTime && (this.selectedServings > 0)) {
@@ -65,6 +71,7 @@ export class CbOrderItemComponent implements OnInit, OnDestroy {
       },
       (error) => {
         console.log(error);
+        this.serverResponse=false;
         setTimeout(() => { this.router.navigate(['/find-food']); }, 2000);
         console.log("Failed while retrieving order item");
       }

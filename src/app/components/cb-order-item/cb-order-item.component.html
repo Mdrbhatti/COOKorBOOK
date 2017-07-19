@@ -1,5 +1,5 @@
 <app-cb-header></app-cb-header>
-<section *ngIf="item == null" class="section notification  has-text-centered ">
+<section *ngIf="!serverResponse" class="section notification  has-text-centered ">
     <div class="container">
         <h1 class="is-warning">Zoink! You just took a wrong turn... Redirecting</h1>
     </div>
