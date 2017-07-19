@@ -1,8 +1,7 @@
 @import "~variables.scss";
 @import "~mixins.scss";
-
 .menu-list a.is-active {
-  background-color: $cb-orange-main;
+    background-color: $cb-orange-main;
 }
 
 .cb-order-food-section-header {
@@ -14,6 +13,7 @@
         min-height: 320px;
     }
 }
+
 .title-order-food {
     color: #fff;
     @include desktop {
@@ -21,7 +21,6 @@
         font-size: 72px;
         text-shadow: 0 0 26px rgba(0, 0, 0, 1);
     }
-
     @include mobile {
         font-family: $open-sans-semibold;
         font-size: 42px;
@@ -33,5 +32,9 @@
     img {
         border: 3px solid $cb-orange-main;
     }
+}
 
+a.disabled {
+    cursor: not-allowed;
+    text-decoration: underline;
 }

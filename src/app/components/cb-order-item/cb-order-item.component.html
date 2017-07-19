@@ -83,7 +83,7 @@
                     <div class="column is-pulled-right is-hidden-mobile">
                         <div class="field">
                             <p class="control">
-                                <span class="select is-large">
+                                <span class="select ">
                                   <select [(ngModel)]="selectedPickupTime">
                                     <option *ngFor="let time of item.pickupTime">{{time}}</option>
                                   </select>
@@ -130,13 +130,16 @@
                     <div class="column is-three-quarters"></div>
                     <div class="column">
                         <!-- change to input type submit after changing to form -->
-                        <a class="button is-large is-cb-bg is-text-white is-fullwidth" (click)="validateInput()">
+                        <a class="button is-large is-cb-bg is-text-white is-fullwidth" (click)="orderItem()">
                             <span class="icon is-medium">
                               <i class="fa fa-shopping-cart"></i>
                             </span>
                             <span>Order</span>
                         </a>
                     </div>
+                </div>
+                <div *ngIf="!orderFail" class="notification is-warning has-text-centered">
+                    <button class="delete"></button> Invalid order...
                 </div>
             </div>
         </div>

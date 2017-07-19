@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BackendService } from '../../services/backend.service';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-cb-order-item',
   templateUrl: './cb-order-item.component.html',
@@ -13,10 +13,11 @@ export class CbOrderItemComponent implements OnInit, OnDestroy {
   private sub: any;
   selectedServings: number = 0;
   price: number;
-  selectedPickupTime: string;
-  buyerComments: string= "Write here";
+  selectedPickupTime: string = "";
+  buyerComments: string = "Write here";
   serverResponse = true;
-
+  clicked = false;
+  orderFail=true;
   constructor(private bcService: BackendService, private route: ActivatedRoute,
     private router: Router) { }
 
@@ -28,17 +29,6 @@ export class CbOrderItemComponent implements OnInit, OnDestroy {
       this.id = params['id'];
       this.getItem();
     });
-  }
-  // onChange(event){
-  //   alert(event);
-  //   console.log(event);
-  // }
-
-  validateInput() {
-    if (this.selectedPickupTime && (this.selectedServings > 0)) {
-      this.orderItem();
-    }
-    // TODO: show warning here or smthing
   }
 
   orderItem() {
@@ -56,8 +46,9 @@ export class CbOrderItemComponent implements OnInit, OnDestroy {
       },
       (error) => {
         console.log(error);
-        setTimeout(() => { this.router.navigate(['/find-food']); }, 2000);
+        // setTimeout(() => { this.router.navigate(['/find-food']); }, 1000);
         console.log("Failed while ordering item");
+        this.orderFail = false;
       }
     );
   }
@@ -68,11 +59,13 @@ export class CbOrderItemComponent implements OnInit, OnDestroy {
         console.log("Item received for ordering: " + res.length);
         console.log(res[0]);
         this.item = res[0];
+        res[0].pickupTime.forEach(function (part, index, theArray) {
+          theArray[index] = moment(theArray[index]).format('lll');
+        });
       },
       (error) => {
         console.log(error);
-        this.serverResponse=false;
-        setTimeout(() => { this.router.navigate(['/find-food']); }, 2000);
+        this.serverResponse = false;
         console.log("Failed while retrieving order item");
       }
     );
