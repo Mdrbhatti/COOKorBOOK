@@ -1,8 +1,14 @@
 @import "~variables.scss";
 @import "~mixins.scss";
-
 .menu-list a.is-active {
-  background-color: $cb-orange-main;
+    background-color: $cb-orange-main;
+}
+
+.cb-error-container-bg {
+    background-color: rgba(255, 0, 0, 0.5);
+    color: white;
+    padding: 20px;
+    font-size: 12px;
 }
 
 .cb-publish-food-section-header {
@@ -14,6 +20,7 @@
         min-height: 320px;
     }
 }
+
 .title-publish-food {
     color: #fff;
     @include desktop {
@@ -21,7 +28,6 @@
         font-size: 72px;
         text-shadow: 0 0 26px rgba(0, 0, 0, 1);
     }
-
     @include mobile {
         font-family: $open-sans-semibold;
         font-size: 42px;
@@ -33,12 +39,10 @@
     img {
         bpublish: 3px solid $cb-orange-main;
     }
-
 }
 
-
 .cb-publish-submit {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

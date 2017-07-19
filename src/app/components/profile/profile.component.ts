@@ -8,17 +8,25 @@ import { BackendService } from '../../services/backend.service';
 })
 
 export class ProfileComponent implements OnInit {
+  currentUserUsername:string;
   currentUserId: string;
   currentUserType: string;
   reviews: any[];
   stars = '★';
-  constructor(private activatedRoute: ActivatedRoute, private bcService: BackendService) { }
+  userInParmIsSelf = false;
+  userIsSelf=false;
+
+  constructor(private activatedRoute: ActivatedRoute, private bcService: BackendService,
+  private router: Router) { }
   // Get params
   ngOnInit() {
+    this.currentUserUsername= "";
     this.activatedRoute.queryParams.subscribe((params: Params) => {
       const filter: string = params['id'];
+      this.userIsSelf=false;
       if (filter) {
         this.currentUserId = filter;
+        
         console.log("Filtering enabled");
         this.getUser();
       }
@@ -27,7 +35,13 @@ export class ProfileComponent implements OnInit {
         this.currentUserId = localStorage.getItem("id");
         this.currentUserType = localStorage.getItem("id");
         this.getUser();
+        this.userInParmIsSelf = false;
+        this.userIsSelf=true;
       }
+      if (this.currentUserId == localStorage.getItem("id")){
+          this.userInParmIsSelf = true;
+          this.userIsSelf = true;
+        }
     });
   }
 
@@ -40,6 +54,7 @@ export class ProfileComponent implements OnInit {
       (res: any) => {
         this.currentUserType = res[0].userType;
         console.log("Great success:" + res[0].userType);
+        this.currentUserUsername = res[0].username;
         this.getReceivedReviews();
       },
       (error) => { console.log(error); }
@@ -56,6 +71,12 @@ export class ProfileComponent implements OnInit {
       (error) => { console.log(error); }
     );
   }
+  getReviewerProfile(buyerId){
+    console.log(`/profile?id=${buyerId}`);
+    this.router.navigate(['/profile'], { queryParams: { id: buyerId } });
+    // return `/profile?id=${buyerId}`;
+  }
+  
 
   getReceivedReviews() {
     // seller  = id

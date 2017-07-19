@@ -31,6 +31,7 @@ export class BackendService {
       }
       );
   }
+    
   // Get all items: (find-food)
   getPublishedItems(id) {
     let query = "";
@@ -105,56 +106,6 @@ export class BackendService {
       }
       );
   }
-
-
-  // private serializeDictToQuery(dict, prefix) {
-  //   let str = [];
-  //   for (let p of Object.keys(dict)) {
-  //     let k = prefix ? `${prefix}[${p}]` : p;
-  //     let v = dict[p];
-  //     if (v !== null && typeof v === 'object') {
-  //       str.push(this.serializeDictToQuery(v, k));
-  //     } else {
-  //       str.push(`${encodeURIComponent(k)}=${encodeURIComponent(v)}`);
-  //     }
-  //   }
-  //   return str.join('&');
-  // }
-
-  // getItems(params) {
-  //   const uri = `${this.baseUrl}/items?${this.serializeDictToQuery(params, null)}`;
-  //   const token = localStorage.getItem('token');
-  //   const headers = new Headers();
-  //   headers.append('Authorization', `JWT ${token}`);
-  //   return this.http.get(uri, { headers: headers })
-  //     .map((response: Response) => {
-  //       const data = response.json();
-  //       console.log(data);
-  //       return data;
-  //     })
-  //     .catch((error: Response) => {
-  //       console.log(error);
-  //       return Observable.throw('Something went wrong@getItems');
-  //     });
-  // }
-
-  // createItem(title, description, categories, allergens, image) {
-  //   const uri = `${this.baseUrl}/items`;
-  //   const token = localStorage.getItem('token');
-  //   const headers = new Headers();
-  //   headers.append('Authorization', `JWT ${token}`);
-  //   const body = { title: title, description: description, categories: categories, allergens: allergens, image: image };
-  //   return this.http.post(uri, body, { headers: headers })
-  //     .map((response: Response) => {
-  //       const data = response.json();
-  //       console.log(data);
-  //       return data;
-  //     })
-  //     .catch((error: Response) => {
-  //       console.log(error);
-  //       return Observable.throw('Something went wrong@createItem');
-  //     });
-  // }
 
   publishItem(body) {
     const uri = `${this.baseUrl}/v1/pitem`;
