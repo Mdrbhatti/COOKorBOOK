@@ -12,7 +12,8 @@ export class ProfileComponent implements OnInit {
   currentUserType: string;
   reviews: any[];
   stars = '★';
-  constructor(private activatedRoute: ActivatedRoute, private bcService: BackendService) { }
+  constructor(private activatedRoute: ActivatedRoute, private bcService: BackendService,
+  private router: Router) { }
   // Get params
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
@@ -56,6 +57,12 @@ export class ProfileComponent implements OnInit {
       (error) => { console.log(error); }
     );
   }
+  getReviewerProfile(buyerId){
+    console.log(`/profile?id=${buyerId}`);
+    this.router.navigate(['/profile'], { queryParams: { id: buyerId } });
+    // return `/profile?id=${buyerId}`;
+  }
+  
 
   getReceivedReviews() {
     // seller  = id

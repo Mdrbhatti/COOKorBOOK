@@ -20,7 +20,7 @@
                 <div class="content">
                     <p>{{stars.repeat(review.rating)}}
                         <br>
-                        <strong>{{review.title}}</strong> <small>@{{review.buyer.username}}</small> <small>31m</small>
+                        <strong>{{review.title}}</strong> <a (click)="getReviewerProfile(review.buyer._id)">@{{review.buyer.username}}</a> <small>31m</small>
                         <br> {{review.description}}
                     </p>
                 </div>
