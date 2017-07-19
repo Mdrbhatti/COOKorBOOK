@@ -2,7 +2,8 @@
 <br>
 <section class="section cb-find-food-section-header">
     <div class="container">
-        <h1 class="title has-text-centered title-find-food">Your reviews</h1>
+        <h1 *ngIf="userIsSelf" class="title has-text-centered title-find-food">Your reviews</h1>
+        <h1 *ngIf="!userIsSelf" class="title has-text-centered title-find-food">{{currentUserUsername}}'s reviews</h1>
     </div>
 </section>
 <section>
@@ -40,6 +41,37 @@
             </div>
         </article>
 
+    </div>
+    <hr />
+    <div *ngIf="!userIsSelf" class="container">
+        <article class="media">
+            <figure class="media-left">
+                <p class="image is-64x64">
+                    <img src="http://bulma.io/images/placeholders/128x128.png">
+                </p>
+            </figure>
+            <div class="media-content">
+                <div class="field">
+                    <p class="control">
+                        <textarea class="textarea" placeholder="Add a review..."></textarea>
+                    </p>
+                </div>
+                <nav class="level">
+                    <div class="level-left">
+                        <div class="level-item">
+                            <a class="button is-info">Submit</a>
+                        </div>
+                    </div>
+                    <div class="level-right">
+                        <div class="level-item">
+                            <label class="checkbox">
+            <input type="checkbox"> Press enter to submit
+          </label>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </article>
     </div>
 </section>
 <app-cb-footer></app-cb-footer>
