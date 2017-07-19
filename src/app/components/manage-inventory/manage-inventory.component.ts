@@ -31,6 +31,11 @@ export class ManageComponent implements OnInit {
     this.manageService.getInventory(localStorage.getItem('id')).subscribe(
       (res: any[]) => {
         this.items = res;
+        this.items.forEach(
+          item => this.manageService.getOrdersForItem(item._id).subscribe((response: any[]) => {
+            item.orders = response;
+          })
+        );
         console.log("Published items");
         console.log(this.items);
       },
@@ -49,16 +54,13 @@ export class ManageComponent implements OnInit {
         console.log(succesfulSaves);
         if (succesfulSaves === this.items.length) {
           this.saveStatus = 'success'
-          this.manageService.getInventory(localStorage.getItem('id')).subscribe(
-            (result: any[]) => {
-              this.items = result;
-            },
-            (error) => { console.log(error); }
-
-          );
+          setTimeout(() => {this.saveStatus = ''; }, 4000);
         }
       },
-      (error) => { console.log(error); this.saveStatus = 'fail' }
+      (error) => { console.log(error); this.saveStatus = 'fail'
+        setTimeout(() => {this.saveStatus = ''; }, 4000);
+
+      }
     ));
   }
 
@@ -66,22 +68,52 @@ export class ManageComponent implements OnInit {
     setTimeout(() => {this.router.navigate(['/find-food']); }, 0);
   }
 
-  cancelOrder(itemId) {
+  cancelMeal(itemId) {
     console.log(itemId);
     this.manageService.dropMeal(itemId).subscribe(
       (res: any) => {
-          this.deleteStatus = 'success'
-          this.manageService.getInventory(localStorage.getItem('id')).subscribe(
-            (result: any[]) => {
-              this.items = result;
-            },
-            (error) => {
-              console.log(error);
-            this.deleteStatus = 'fail';}
+          this.deleteStatus = 'success';
+        setTimeout(() => {this.deleteStatus = ''; }, 4000);
+        // remove deleted item
+        const items = this.items.filter(item => item._id !== itemId);
+        this.items = items;
 
-          );
+        // this.manageService.getInventory(localStorage.getItem('id')).subscribe(
+        //     (result: any[]) => {
+        //       this.items = result;
+        //     },
+        //     (error) => {
+        //       console.log(error);
+        //     this.deleteStatus = 'fail';
+        //       setTimeout(() => {this.deleteStatus = ''; }, 4000);
+        //
+        //     }
+        //
+        //   );
+      }, (error) => {
+        this.deleteStatus = 'fail';
+        setTimeout(() => {this.deleteStatus = ''; }, 4000);
       }
     );
+  }
+
+  cancelOrder(itemId, orderId) {
+    this.manageService.dropOrder(orderId).subscribe(
+      (res: any) => {
+        this.deleteStatus = 'success';
+        setTimeout(() => {this.deleteStatus = ''; }, 4000);
+        // remove order item
+        this.items.map(item => {
+          const orders = item.orders.filter(order => orderId !== order._id)
+          item.orders = orders;
+        })
+      }, (error) => {
+        console.log(error);
+        this.deleteStatus = 'fail';
+        setTimeout(() => {this.deleteStatus = ''; }, 4000);
+
+      }
+    )
   }
 
   ngOnInit(){}

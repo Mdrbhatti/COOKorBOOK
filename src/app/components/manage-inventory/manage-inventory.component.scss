@@ -6,7 +6,6 @@
 }
 
 .price{
-  padding-top: 0px;
 }
 
 .main {
@@ -29,9 +28,7 @@ section {
   margin-top: 1rem;
 }
 
-.cancelorder {
-  margin-top: -0.75rem;
-}
+
 
 .quantity{
   margin-left: 1rem;
@@ -39,4 +36,31 @@ section {
 
 .currently_ordered span{
   margin-top: 0.75rem;
+}
+
+.cb-wrapper-manage-inventory {
+  min-height: 80vh;
+}
+
+.columns {
+  margin: 0px;
+  border-bottom: 1px solid #c1bebe;
+}
+
+.item-orders {
+  font-size: 60%;
+
+  .columns {
+    background-color: #d7e1be;
+  }
+}
+
+.food-listing-item{
+  .columns {
+    }
+}
+
+
+.content h3:not(:first-child) {
+  margin-top: 0px;
 }

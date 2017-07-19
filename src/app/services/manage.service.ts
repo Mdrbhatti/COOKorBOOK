@@ -68,4 +68,39 @@ export class ManageService {
       return Observable.throw(error.status);
     });
   }
+
+  dropOrder(orderId: string) {
+    const token = localStorage.getItem('token');
+    const headers = new Headers();
+    headers.append('Authorization', 'JWT ' + token);
+    const options = new RequestOptions({ headers: headers });
+    const req = {
+      'orderId': orderId
+    }
+    return this.http.post(`${this.baseUrl}/items/manage/order/delete`, req, options).map((response: Response) => {
+      const data = response.json();
+      console.log(data);
+      return data;
+    }).catch((error: Response) => {
+      const data = error.json();
+      console.log(data);
+      return Observable.throw(error.status);
+    });
+  }
+
+  getOrdersForItem(itemId: string){
+    const token = localStorage.getItem('token');
+    const headers = new Headers();
+    headers.append('Authorization', 'JWT ' + token);
+    const options = new RequestOptions({ headers: headers });
+    return this.http.get(`${this.baseUrl}/v1/order?publishedItem=` + itemId, options).map((response: Response) => {
+      const data = response.json();
+      console.log(data);
+      return data;
+    }).catch((error: Response) => {
+      const data = error.json();
+      console.log(data);
+      return Observable.throw(error.status);
+    });
+  }
 }
