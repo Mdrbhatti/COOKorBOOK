@@ -6,7 +6,6 @@ import { Component, OnInit } from '@angular/core';
 import { FoodQuantity } from './food-quantity';
 import {Router } from '@angular/router';
 import { ManageService } from '../../services/manage.service';
-import {forEach} from "@angular/router/src/utils/collection";
 
 
 // import template from './frontpage.template.html';
