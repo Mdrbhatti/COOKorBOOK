@@ -23,4 +23,9 @@ export class CbHeaderComponent implements OnInit {
     localStorage.removeItem('id');
     setTimeout(() => { this.router.navigate(['/login']); }, 500);
   }
+
+  isUserSeller() {
+    console.log(localStorage.getItem('userType'));
+    return localStorage.getItem('userType') === 'seller';
+  }
 }
