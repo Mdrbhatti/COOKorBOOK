@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BackendService } from '../../services/backend.service';
 import * as moment from 'moment';
+import { configuration } from '../../config/config';
 @Component({
   selector: 'app-cb-order-item',
   templateUrl: './cb-order-item.component.html',
@@ -46,7 +47,7 @@ export class CbOrderItemComponent implements OnInit, OnDestroy {
         console.log(res);
         this.successOrder = res;
         this.isOrderSuccessful = true;
-        setTimeout(() => { this.router.navigate(['/find-food']); }, 50000);
+        setTimeout(() => { this.router.navigate(['/find-food']); }, 3000);
       },
       (error) => {
         console.log(error);
@@ -77,6 +78,12 @@ export class CbOrderItemComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
+  }
+
+  getImageURL(url: string) {
+    url = configuration.backendurl + url.substring(21);
+    console.log(url);
+    return url;
   }
 
 }
