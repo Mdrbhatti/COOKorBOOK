@@ -1,3 +1,3 @@
 export let configuration = {
-    backendurl: 'http://127.0.0.1:8000',
+    backendurl: 'http://52.166.121.5:8000',
 };

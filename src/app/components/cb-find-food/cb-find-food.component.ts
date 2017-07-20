@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { FilterSearchResultsPipe } from './cb-food-search.pipe';
 import { BackendService } from '../../services/backend.service';
+import { configuration } from '../../config/config';
 
 @Component({
   selector: 'app-cb-find-food',
@@ -97,5 +98,11 @@ export class CbFindFoodComponent implements OnInit {
         this.removeFilterParameter({ pricePerPortion: Number(rangeArray[i]) });
       }
     }
+  }
+
+  getImageURL(url: string) {
+    url = configuration.backendurl + url.substring(21);
+    console.log(url);
+    return url;
   }
 }
