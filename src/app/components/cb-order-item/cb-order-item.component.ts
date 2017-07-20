@@ -17,7 +17,9 @@ export class CbOrderItemComponent implements OnInit, OnDestroy {
   buyerComments: string = "Write here";
   serverResponse = true;
   clicked = false;
-  orderFail=true;
+  orderFail = true;
+  successOrder = {};
+  isOrderSuccessful = false;
   constructor(private bcService: BackendService, private route: ActivatedRoute,
     private router: Router) { }
 
@@ -42,7 +44,9 @@ export class CbOrderItemComponent implements OnInit, OnDestroy {
       (res: any) => {
         console.log("Item ordered: ");
         console.log(res);
-        setTimeout(() => { this.router.navigate(['/find-food']); }, 1000);
+        this.successOrder = res;
+        this.isOrderSuccessful = true;
+        setTimeout(() => { this.router.navigate(['/find-food']); }, 50000);
       },
       (error) => {
         console.log(error);

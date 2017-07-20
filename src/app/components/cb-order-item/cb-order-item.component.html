@@ -9,6 +9,34 @@
         <h1 class="title has-text-centered title-order-food">Few clicks away<br>from fresh homemade food</h1>
     </div>
 </section>
+
+<div id="modal" class="modal" [class.is-active]="isOrderSuccessful">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <div class="box">
+      <article class="media">
+        <div class="media-content">
+          <div class="content">
+            <p *ngIf="isOrderSuccessful">
+              <strong>Order Placed Successfully</strong>
+              <br>
+              Your order id: {{successOrder._id | slice:-4}}
+              <br>
+              Product Ordered: {{successOrder.publishedItem.name}}
+              <br>
+              Servings Ordered: {{successOrder.servings}}
+              <br>
+              Total Price: {{successOrder.price}}   
+            </p>
+            <h3 class="subtitle is-3">Redirecting ...</h3>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+  <button class="modal-close is-large"></button>
+</div>
+
 <section *ngIf="item != null" class="section">
     <div class="container">
         <h1 class="title">
