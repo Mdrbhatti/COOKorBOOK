@@ -1,6 +1,3 @@
-[![Build Status](https://travis-ci.org/shumail92/COOKorBOOK.svg?branch=master)](https://travis-ci.org/shumail92/COOKorBOOK)
-[![CircleCI](https://circleci.com/gh/shumail92/COOKorBOOK.svg?style=svg)](https://circleci.com/gh/shumail92/COOKorBOOK)
-
 # CookOrBook
 
 SEBA Course Project - Team 49. 
